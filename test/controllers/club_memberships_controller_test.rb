@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class OwnedClubTest < ActiveSupport::TestCase
+class ClubMembershipsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

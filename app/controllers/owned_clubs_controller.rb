@@ -1,2 +1,0 @@
-class OwnedClubsController < ApplicationController
-end

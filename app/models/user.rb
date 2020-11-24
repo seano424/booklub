@@ -10,8 +10,7 @@ class User < ApplicationRecord
   has_many :club_memberships
   has_many :clubs, through: :club_memberships
 
-  has_many :owned_clubs
-  has_many :created_clubs, through: :owned_clubs, class_name: "Club"
+  has_many :created_clubs, class_name: "Club"
 
   has_many :messages
   has_many :reviews

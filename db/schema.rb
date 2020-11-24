@@ -37,10 +37,12 @@ ActiveRecord::Schema.define(version: 2020_11_24_183350) do
     t.string "name"
     t.text "description"
     t.bigint "book_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "language"
     t.index ["book_id"], name: "index_clubs_on_book_id"
+    t.index ["user_id"], name: "index_clubs_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -51,15 +53,6 @@ ActiveRecord::Schema.define(version: 2020_11_24_183350) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["club_id"], name: "index_messages_on_club_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "owned_clubs", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "club_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["club_id"], name: "index_owned_clubs_on_club_id"
-    t.index ["user_id"], name: "index_owned_clubs_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -91,10 +84,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_183350) do
   add_foreign_key "club_memberships", "clubs"
   add_foreign_key "club_memberships", "users"
   add_foreign_key "clubs", "books"
+  add_foreign_key "clubs", "users"
   add_foreign_key "messages", "clubs"
   add_foreign_key "messages", "users"
-  add_foreign_key "owned_clubs", "clubs"
-  add_foreign_key "owned_clubs", "users"
   add_foreign_key "reviews", "books"
   add_foreign_key "reviews", "users"
 end
