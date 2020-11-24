@@ -4,7 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
-  has_many :clubs
-  has_many :messages
+  validates :username, presence: true, uniqueness: true
+  validates :first_name, :last_name, presence:true
+
+  has_many :club_memberships
+  has_many :clubs, through: :club_memberships
+
   has_many :owned_clubs
+  has_many :created_clubs, through: :owned_clubs, class_name: "Club"
+
+  has_many :messages
+  has_many :reviews
 end

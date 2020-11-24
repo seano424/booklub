@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_003659) do
+ActiveRecord::Schema.define(version: 2020_11_24_183350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,15 +23,24 @@ ActiveRecord::Schema.define(version: 2020_11_24_003659) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "club_memberships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "club_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.boolean "admin", default: false
+    t.index ["club_id"], name: "index_club_memberships_on_club_id"
+    t.index ["user_id"], name: "index_club_memberships_on_user_id"
+  end
+
   create_table "clubs", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "user_id", null: false
     t.bigint "book_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "language"
     t.index ["book_id"], name: "index_clubs_on_book_id"
-    t.index ["user_id"], name: "index_clubs_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -53,6 +62,16 @@ ActiveRecord::Schema.define(version: 2020_11_24_003659) do
     t.index ["user_id"], name: "index_owned_clubs_on_user_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "book_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_reviews_on_book_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -69,10 +88,13 @@ ActiveRecord::Schema.define(version: 2020_11_24_003659) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "club_memberships", "clubs"
+  add_foreign_key "club_memberships", "users"
   add_foreign_key "clubs", "books"
-  add_foreign_key "clubs", "users"
   add_foreign_key "messages", "clubs"
   add_foreign_key "messages", "users"
   add_foreign_key "owned_clubs", "clubs"
   add_foreign_key "owned_clubs", "users"
+  add_foreign_key "reviews", "books"
+  add_foreign_key "reviews", "users"
 end
