@@ -22,9 +22,9 @@ User.create!(
     )
 end
 
-puts "Fished with users"
+puts "Finished with users"
 
-puts "seeding books now..."
+puts "Seeding books now..."
 books = Book.create!([{
     title: Faker::Book.title,
     author: Faker::Book.author,
@@ -65,7 +65,7 @@ puts "Seeding clubs now..."
 
 club = Club.create!([{
     name: "Grandpa Frank and Friends",
-    description: "We are a Grandson and Gradaughter creating a group for other folks to find time to connect with their elders.",
+    description: "We are a Grandson and Grandaughter creating a group for other folks to find time to connect with their elders.",
     # club_photo: "https://images.unsplash.com/photo-1595123550441-d377e017de6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1768&q=80",
     language: "English",
     book_id: books[4].id,
