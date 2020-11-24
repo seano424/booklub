@@ -1,0 +1,27 @@
+.btn-main {
+  color: white;
+  background-color: $bkblue;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin: 5px;
+  font-weight: bolder;
+
+  &:hover {
+    color: lightblue;
+  }
+
+}
+
+.btn-sec {
+  color: $bkblue;
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin: 5px;
+  font-weight: bolder;
+  border: 1px solid $bkblue;
+
+  &:hover {
+    color: lightblue;
+  }
+}
