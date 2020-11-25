@@ -17,4 +17,7 @@
 .link-underlined {
   border-bottom: 2px solid $bkblue;
   font-weight: bolder;
+  &:hover {
+    text-decoration: none;
+  }
 }
