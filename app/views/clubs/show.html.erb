@@ -13,14 +13,18 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-4">
-      <div class="row">
+      <div class="row justify-content-center">
         <div class="col-12">
+          <% if @club.users.any? { |user| user == current_user } || @club.user == current_user %>
+            <%= social_share_button_tag(@club.name) %>
+          <% end %>
           <h4>Currently Reading</h4>
           <img src="https://lithub.com/wp-content/uploads/sites/2/2019/02/485747c67fc7dfb54adb3de4b0e1f4d1.gif" alt="book cover" class="card-img h-75 w-50">
-          <p><%= @club.book.title %> by <%= @club.book.author %></p>
+          <h6><%= @club.book.title %></h6>
+          <p><%= @club.book.author %></p>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-5">
         <div class="col-12">
           <h4>Upcoming Events</h4>
         </div>
