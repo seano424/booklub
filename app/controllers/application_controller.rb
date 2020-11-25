@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   private
 
   def skip_pundit?
-    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^books$)|(^owned_clubs$)/
+    devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)|(^books$)|(^owned_clubs$)|(^rooms$)/
   end
 
   def configure_permitted_parameters
