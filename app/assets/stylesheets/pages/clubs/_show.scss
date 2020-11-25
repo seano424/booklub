@@ -1,0 +1,36 @@
+.club-cover {
+  .club-cover-photo {
+    width: 100vw;
+    height: 350px;
+    object-fit: cover;
+    object-position: center;
+    position: relative;
+  }
+
+  #overlay {
+    position: absolute;
+    top: 65px;
+    left: 0;
+    width: 100vw;
+    height: 350px;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  h1 {
+    position: absolute;
+    top: 85px;
+    left: 50px;
+    font-size: 48px;
+    z-index: 1000;
+    color: white;
+    font-weight: bold;
+  }
+
+  .join-btn {
+    position: absolute;
+    top: 85px;
+    right: 50px;
+    font-size: 20px;
+  }
+}
+

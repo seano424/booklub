@@ -1,0 +1,53 @@
+<div class="club-cover">
+  <img src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" alt="Club cover photo" class="club-cover-photo">
+  <div id="overlay"></div>
+  <h1><%= @club.name %></h1>
+  <% unless @club.users.any? { |member| member.user == current_user } || @club.user == current_user %>
+    <%= link_to "Join this club", new_club_club_membership_path(@club), class: "btn btn-main join-btn" %>
+  <% end %>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-4">
+      <div class="row">
+        <div class="col-12">
+          <h4>Currently Reading</h4>
+          <p><%= @club.book.title %> by <%= @club.book.author %></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <h4>Upcoming Events</h4>
+        </div>
+      </div>
+    </div>
+    <div class="col-8">
+      <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="discussion-tab" data-toggle="tab" href="#discussion" role="tab" aria-controls="discussion" aria-selected="true">Discussion</a>
+        </li>
+        <% if @club.users.any? { |member| member.user == current_user } || @club.user == current_user %>
+          <li class="nav-item">
+            <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="false">Chat</a>
+          </li>
+        <% end %>
+        <% if @club.users.any? { |member| member.user == current_user } || @club.user == current_user %>
+          <li class="nav-item">
+            <a class="nav-link" id="members-tab" data-toggle="tab" href="#members" role="tab" aria-controls="members" aria-selected="false">Members</a>
+          </li>
+        <% end %>
+        <li class="nav-item">
+          <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">About</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="discussion" role="tabpanel" aria-labelledby="discussion-tab">This is the tab for discussion topics</div>
+        <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">This is the tab for the chat</div>
+        <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">This it the tab for the members</div>
+        <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">This is the tab for about</div>
+      </div>
+    </div>
+  </div>
+</div>
+
