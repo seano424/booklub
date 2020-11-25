@@ -1,5 +1,9 @@
 <div class="club-cover">
-  <img src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" alt="Club cover photo" class="club-cover-photo">
+  <% if @club.cover_photo.attached? %>
+    <%= cl_image_tag @club.cover_photo.key, class: "club-cover-photo" %>
+  <% else %>
+    <img src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" alt="Club cover photo" class="club-cover-photo">
+  <% end %>
   <div id="overlay"></div>
   <h1><%= @club.name %></h1>
   <% unless @club.users.any? { |user| user == current_user } || @club.user == current_user %>
@@ -16,6 +20,7 @@
       <div class="row justify-content-center">
         <div class="col-12">
           <% if @club.users.any? { |user| user == current_user } || @club.user == current_user %>
+            <p><strong>Share with friends</strong></p>
             <%= social_share_button_tag(@club.name) %>
           <% end %>
           <h4>Currently Reading</h4>
@@ -52,7 +57,20 @@
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="discussion" role="tabpanel" aria-labelledby="discussion-tab">This is the tab for discussion topics</div>
         <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">This is the tab for the chat</div>
-        <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">This it the tab for the members</div>
+        <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">This is the tab for the members
+          <% if @club.user.profile_photo.attached? %>
+            <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large" %>
+          <% else %>
+            <img src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" class="avatar-large">
+          <% end %>
+          <% @club.users.each do |user| %>
+            <% if user.profile_photo.attached? %>
+              <%= cl_image_tag user.profile_photo.key, class: "avatar-large" %>
+            <% else %>
+              <img src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" class="avatar-large">
+            <% end %>
+          <% end %>
+        </div>
         <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">This is the tab for about</div>
       </div>
     </div>
