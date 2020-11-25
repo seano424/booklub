@@ -14,4 +14,5 @@ class User < ApplicationRecord
 
   has_many :messages
   has_many :reviews
+  has_one_attached :profile_photo
 end
