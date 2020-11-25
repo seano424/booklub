@@ -12,7 +12,8 @@ class ClubsController < ApplicationController
   end
 
   def show
-    @club_membership = ClubMembership.new
+    @club_membership = ClubMembership.find_by(user: current_user, club: @club)
+    @club_membership = ClubMembership.new if @club_membership.nil?
   end
 
   private
