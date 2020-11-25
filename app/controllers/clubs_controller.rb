@@ -21,4 +21,7 @@ class ClubsController < ApplicationController
     @club = Club.find(params[:id])
     authorize @club
   end
+  def club_params
+    params.require(:club).permit[:name, :description, :language, :cover_photo]
+  end
 end
