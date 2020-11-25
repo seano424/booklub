@@ -4,6 +4,5 @@ class BooksController < ApplicationController
     #   @books = Book.search_by_title_author_syllabus
     # else
     #   @book = Book.all
-    end
   end
 end
