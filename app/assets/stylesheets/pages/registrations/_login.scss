@@ -1,0 +1,32 @@
+.login-bg {
+  height: 90vh;
+  width: 100%;
+  background-image: url("https://images.unsplash.com/photo-1550399105-c4db5fb85c18?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80");
+  background-position: center;
+  background-size: cover;
+}
+
+.login {
+  text-align: center;
+  margin-top: 150px;
+  background-color: white;
+  padding-bottom: 10px;
+}
+
+.panel {
+  border-radius: 8px;
+}
+
+.panel-heading {
+  h2 {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+.panel-body {
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-bottom: 10px;
+}

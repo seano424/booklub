@@ -12,6 +12,7 @@ class ClubsController < ApplicationController
   end
 
   def show
+    @club_membership = ClubMembership.new
   end
 
   private
