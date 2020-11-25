@@ -11,3 +11,10 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+@import "components/jumbotron";
+@import "components/card";
+
+.link-underlined {
+  border-bottom: 2px solid $bkblue;
+  font-weight: bolder;
+}

@@ -1,2 +1,62 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="jumbotron jumbotron-fluid m-0 bg-transparent text-center d-flex flex-column justify-content-center align-items-center">
+  <div class="container j-container d-flex flex-column mb-5">
+    <h1 id="feature-header" class="display-4">Join booklubs and discuss books with fellow book lovers!</h1>
+    <div>
+      <%= link_to "Our clubs", clubs_path, class: "btn btn-jumbotron" %>
+    </div>
+</div>
+</div>
+<br>
+
+ <h2 class="text-center pb-4">Explore Featured Book Clubs</h2>
+
+  <div class="row row-cols-1 row-cols-md-3">
+    <div class="col mb-4 pl-4">
+      <div class="card h-100 featured-card border-0 rounded">
+        <img
+            src="https://ca-times.brightspotcdn.com/dims4/default/15db1ed/2147483647/strip/true/crop/652x367+0+317/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fee%2F98%2F823b05674b2382e923688e598a02%2Fla-photos-handouts-la-ca-uncanny-valley-book-90.JPG"
+            class="card-img-top mt-4 mb-0" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= "Uncanny Valley" %></h5>
+          <p class="card-text"><%= "Wiener’s stylish memoir is an uncommonly literary chronicle of tech-world disillusionment." %></p>
+        </div>
+        <div class="card-footer">
+          <%= link_to "Check out more", clubs_path, class: "btn btn-sec" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col mb-4">
+      <div class="card h-100 featured-card border-0 rounded">
+          <img
+            src="https://thestorybookstore.com/wp-content/uploads/2018/07/Bossypants-Tina-Fey.png"
+            class="card-img-top mt-4 mb-0" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= "Bossypants" %></h5>
+          <p class="card-text"><%= "Need a laugh? Our book club meetings will have you rolling on the floor laughing" %></p>
+        </div>
+        <div class="card-footer">
+          <%= link_to "Check out more", clubs_path, class: "btn btn-sec" %>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4 pr-4">
+      <div class="card h-100 featured-card border-0 rounded">
+        <img
+            src="https://cdn.shoplightspeed.com/shops/611345/files/8231848/faber-faber-childrens-wuthering-heights.jpg"
+            class="card-img-top mt-4 mb-0" alt="...">
+        <div class="card-body">
+          <h5 class="card-title"><%= "Wuthering Heights" %></h5>
+          <p class="card-text"><%= "A man becomes obsessed with vengeance when his soul mate marries another man. Heathcliff is Cathy Earnshaw's foster brother; more than that, he is her other half." %></p>
+        </div>
+        <div class="card-footer">
+          <%= link_to "Check out more", clubs_path, class: "btn btn-sec" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card-footer">
+          <%= "Put footer here" %>
+</div>
