@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :clubs do
     resources :club_memberships, only: [ :new, :create, :edit, :update ]
   end
+
+  resources :books, only: :show
 end
