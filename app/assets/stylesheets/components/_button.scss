@@ -25,3 +25,18 @@
     color: lightblue;
   }
 }
+
+.btn-jumbotron {
+  color: white;
+  background-color: $bkblue;
+  padding: 10px 15px;
+  border-radius: 25px;
+  margin: 5px;
+  font-weight: bolder;
+  width: 150px;
+  justify-content: center;
+  &:hover {
+    color: lightblue;
+  }
+
+}
