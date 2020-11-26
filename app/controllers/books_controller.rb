@@ -1,12 +1,17 @@
 class BooksController < ApplicationController
+  require 'nokogiri'
+  require 'open-uri'
+  
+  def index
+    if params[:query]
+      @books = BookApiFetcher.execute(params[:query])
+    else
+      @books = Book.all
+    end
+  end
+
   def show
     @book = Book.find(params[:id])
   end
   
-  def index
-    # if params[:query].present
-    #   @books = Book.search_by_title_author_syllabus
-    # else
-    #   @book = Book.all
-  end
 end
