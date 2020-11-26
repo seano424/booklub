@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Create A Club</h1>
+  <%= simple_form_for(@club) do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :language %>
+    <%= f.input :cover_photo, as: :file %>
+    <%= f.input :private, input_html: { class: "toggle" } %>
+    <%= f.submit "Create", class: "btn btn-primary" %>
+  <% end %>
+</div>
