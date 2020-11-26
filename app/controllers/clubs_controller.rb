@@ -7,9 +7,9 @@ class ClubsController < ApplicationController
 
   def index
     if params[:query].present?
-      @clubs = Club.search_by_name_and_description(params[:query])
+      @clubs = Club.search_by_name_and_description(params[:query]).where(private: false)
     else
-      @clubs = Club.all
+      @clubs = Club.where(private: false)
     end
   end
 
@@ -25,13 +25,32 @@ class ClubsController < ApplicationController
     flash[:alert] = "Your club #{@club.name} has been deleted"
   end
 
+  def new
+    @club = Club.new
+    authorize @club
+  end
+
+  def create
+    @club = Club.new(club_params)
+    @club.user = current_user
+    authorize @club
+    if @club.save
+      flash[:success] = "Your club is ready!📚🤓"
+      redirect_to club_path(@club)
+    else
+      flash[:alert] = "Oops! 🙃 Something went wrong there. Try again."
+      render :new
+    end
+  end
+
   private
 
   def set_club
     @club = Club.find(params[:id])
     authorize @club
   end
+
   def club_params
-    params.require(:club).permit[:name, :description, :language, :cover_photo]
+    params.require(:club).permit(:name, :description, :language, :cover_photo, :private)
   end
 end
