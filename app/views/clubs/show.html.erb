@@ -56,7 +56,14 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="discussion" role="tabpanel" aria-labelledby="discussion-tab">This is the tab for discussion topics</div>
-        <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">This is the tab for the chat</div>
+        <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+          <ul>
+            <% @club.rooms.each do |room| %>
+            <li> <%= room.name %> </li>
+            <% end  %>
+          </ul>
+        </div>
+        </div>
         <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">This is the tab for the members
           <% if @club.user.profile_photo.attached? %>
             <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large" %>

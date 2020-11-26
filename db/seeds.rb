@@ -105,4 +105,5 @@ club = Club.create!([{
     user_id: users[3].id
   }])
 
+
 puts "All finished"
