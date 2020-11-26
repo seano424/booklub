@@ -11,7 +11,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.find(params[:id])
+    @book = BookIdApiFetcher.execute(params[:id])
   end
   
 end
