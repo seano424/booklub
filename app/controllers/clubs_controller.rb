@@ -2,6 +2,8 @@ class ClubsController < ApplicationController
   before_action :set_club, only: [ :show, :edit, :update, :destroy ]
   skip_before_action :authenticate_user!, only: [ :index, :show ]
   # after_action :verify_authorized, only: [ :index ]
+  require 'nokogiri'
+  require 'open-uri'
 
   def index
     if params[:query].present?

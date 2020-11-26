@@ -11,6 +11,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :books, only: :show
+  resources :books, only: [:index, :show]
   resources :club_memberships, only: :destroy
 end

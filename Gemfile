@@ -39,6 +39,8 @@ gem 'simple_form'
 gem 'faker'
 #search function
 gem 'pg_search', '~> 2.3.0'
+gem 'openlibrary'
+
 gem 'cloudinary', '~> 1.16.0'
 
 
