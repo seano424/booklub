@@ -1,0 +1,14 @@
+
+<div class="container">
+  <div class="card-columns">
+    <% @books[0..8].each do |book| %>
+    <div class="card">
+      <img src="<%= book[:image_url] %>" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title"><%= book[:title] %></h5>
+        <p class="card-text"><%= book[:name] %></p>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>

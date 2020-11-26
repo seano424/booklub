@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :club_books, only: [ :new, :create, :edit, :update ]
   end
 
-  resources :books, only: :show
+  resources :books, only: [:index, :show]
   resources :club_memberships, only: :destroy
   resources :club_books, only: :destroy
 end
