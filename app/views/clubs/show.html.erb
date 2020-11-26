@@ -43,19 +43,7 @@
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="discussion" role="tabpanel" aria-labelledby="discussion-tab">This is the tab for discussion topics</div>
-        <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">This is the tab for the chat
-          <h1>#<%= @room.name %></h1>
-          <div id="messages" data-room-id="<%= @room.id %>">
-            <% @room.messages.each do |message| %>
-              <div class="message-container" id="message-<%= message.id %>">
-                <i class="author">
-                  <span><%= message.user.nickname %></span>
-                  <small><%= message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
-                </i>
-                <p><%= message.content %></p>
-              </div>
-            <% end %>
-          </div>
+        <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">This is the tab for the chat</div>
         </div>
         <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">This it the tab for the members</div>
         <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">This is the tab for about</div>
