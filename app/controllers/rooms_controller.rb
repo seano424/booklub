@@ -9,16 +9,16 @@ class RoomsController < ApplicationController
     @club = Club.find(params[:club_id])
   end
 
+  def new
+    @room = Room.new
+    @club = Club.find(params[:club_id])
+  end
+
   def show
     @room = Room.find(params[:id])
     @club = Club.find(params[:club_id])
     @room_message = RoomMessage.new room: @room
     @room_messages = @room.room_messages.includes(:user)
-  end
-
-  def new
-    @room = Room.new
-    @club = Club.find(params[:club_id])
   end
 
   def create
