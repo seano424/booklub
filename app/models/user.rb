@@ -12,6 +12,7 @@ class User < ApplicationRecord
 
   has_many :created_clubs, class_name: "Club"
 
-  has_many :room_messages
+  has_many :messages
+  has_many :reviews
   has_one_attached :profile_photo
 end

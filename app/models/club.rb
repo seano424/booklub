@@ -1,14 +1,12 @@
 class Club < ApplicationRecord
   after_create :create_room
 
+  belongs_to :book
   belongs_to :user
-  has_many :club_memberships, dependent: :destroy
+  has_many :club_memberships
   has_many :users, through: :club_memberships
-  has_many :club_books, dependent: :destroy
-  has_many :books, through: :club_books
 
-  has_many :rooms, dependent: :destroy
-  has_many :room_messages, through: :rooms
+  has_many :rooms
 
   def create_room
     Room.create(name: self.name, club_id: self.id)
@@ -19,8 +17,11 @@ class Club < ApplicationRecord
 
   include PgSearch::Model
   pg_search_scope :search_by_name_and_description,
-    against: [:name, :description, :language],
-    using: {
-      tsearch: { prefix: true }
-    }
+    against: [:name, :description],
+    associated_against: {
+      book: [:title, :author, :syllabus]
+  },
+  using: {
+    tsearch: { prefix: true }
+  }
 end
