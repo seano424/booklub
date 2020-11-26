@@ -17,6 +17,12 @@
                 data: { confirm: "Are you sure you want to leave this club?" },
                 class: "btn btn-sec leave-btn"
     %>
+  <% elsif @club.user == current_user %>
+    <%= link_to "Delete club", club_path(@club),
+                method: :delete,
+                data: { confirm: "Are you sure you want to delete this club?" },
+                class: "btn btn-sec leave-btn"
+    %>
   <% end %>
 </div>
 
