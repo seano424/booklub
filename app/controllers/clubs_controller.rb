@@ -14,7 +14,8 @@ class ClubsController < ApplicationController
   end
 
   def show
-    @club_membership = ClubMembership.new
+    @club_membership = ClubMembership.find_by(user: current_user, club: @club)
+    @club_membership = ClubMembership.new if @club_membership.nil?
   end
 
   private
@@ -22,5 +23,8 @@ class ClubsController < ApplicationController
   def set_club
     @club = Club.find(params[:id])
     authorize @club
+  end
+  def club_params
+    params.require(:club).permit[:name, :description, :language, :cover_photo]
   end
 end
