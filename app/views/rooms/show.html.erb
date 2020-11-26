@@ -42,9 +42,9 @@
   </div>
 
   <div class="col">
-    <div class="chat" data-channel-subscribe="room" data-room-id="<%= @room.id %>">
+    <div class="chat" data-channel-subscribe="room">
       <% @room_messages.each do |room_message| %>
-        <div class="chat-message-container" id="messages">
+        <div class="chat-message-container" id="messages" data-room-id="<%= @room.id  %>">
           <div class="row no-gutters">
             <div class="col-auto text-center">
                 <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" class="avatar" alt="">

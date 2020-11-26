@@ -6,11 +6,11 @@ class RoomMessagesController < ApplicationController
                                        room: @room,
                                        message: params.dig(:room_message, :message)
     @club = @room.club
-
+    authorize @room_message
     RoomChannel.broadcast_to(
-      [@club, @room],
-      render_to_string(partial: "message", locals: { message: @room_message })
-     )
+      @room,
+      render_to_string(partial: "messages", locals: { message: @room_message })
+    )
   end
 
   protected
