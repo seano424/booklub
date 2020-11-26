@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_25_233906) do
+ActiveRecord::Schema.define(version: 2020_11_26_182417) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,17 @@ ActiveRecord::Schema.define(version: 2020_11_25_233906) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "club_books", force: :cascade do |t|
+    t.bigint "book_id", null: false
+    t.bigint "club_id", null: false
+    t.boolean "read_book"
+    t.boolean "current_book"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["book_id"], name: "index_club_books_on_book_id"
+    t.index ["club_id"], name: "index_club_books_on_club_id"
+  end
+
   create_table "club_memberships", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "club_id", null: false
@@ -57,33 +68,11 @@ ActiveRecord::Schema.define(version: 2020_11_25_233906) do
   create_table "clubs", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.bigint "book_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "language"
-    t.index ["book_id"], name: "index_clubs_on_book_id"
     t.index ["user_id"], name: "index_clubs_on_user_id"
-  end
-
-  create_table "messages", force: :cascade do |t|
-    t.text "content"
-    t.bigint "user_id", null: false
-    t.bigint "club_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["club_id"], name: "index_messages_on_club_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
-  end
-
-  create_table "reviews", force: :cascade do |t|
-    t.text "content"
-    t.bigint "user_id", null: false
-    t.bigint "book_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["book_id"], name: "index_reviews_on_book_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "room_messages", force: :cascade do |t|
@@ -123,14 +112,11 @@ ActiveRecord::Schema.define(version: 2020_11_25_233906) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "club_books", "books"
+  add_foreign_key "club_books", "clubs"
   add_foreign_key "club_memberships", "clubs"
   add_foreign_key "club_memberships", "users"
-  add_foreign_key "clubs", "books"
   add_foreign_key "clubs", "users"
-  add_foreign_key "messages", "clubs"
-  add_foreign_key "messages", "users"
-  add_foreign_key "reviews", "books"
-  add_foreign_key "reviews", "users"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
   add_foreign_key "rooms", "clubs"
