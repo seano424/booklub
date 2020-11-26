@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       resources :room_messages
     end
   end
+
+  resources :books, only: :show
 end

@@ -1,80 +1,64 @@
-<div class="container">
-  
+<div class="container py-5">
+  <h1 class="display-3"><em>Let's find a bookclub!</em></h1>
   <div class="row row-cols-1 row-cols-md-2 py-5">
+    <% @clubs[0..3].each do |club| %>
     <div class="col mb-4">
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src="https://lithub.com/wp-content/uploads/2019/11/81Mo8KLnA6L-683x1024.jpg" class="card-img h-100"
-              alt="...">
+            <%= link_to book_path(club) do %>
+            <%= image_tag("https://lithub.com/wp-content/uploads/2019/11/81Mo8KLnA6L-683x1024.jpg", class: "card-img h-100") %>
+            <% end %>
+            <!-- <img src="https://lithub.com/wp-content/uploads/2019/11/81Mo8KLnA6L-683x1024.jpg" class="card-img h-100"
+              alt="..."> -->
           </div>
-          <div class="col-md-8">
+          <div class="col-md-8 d-flex flex-column">
             <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+              <h5 class="card-title"><%= club.name %></h5>
+              <p class="card-text"><%= club.description %></p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted"><em>Created by <%= club.user.username.capitalize()%></em></small>
+              <h4> <%= link_to "Join me!", club_path(club) %> </h4>
+
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col mb-4">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="https://lithub.com/wp-content/uploads/2019/11/91QWDq8AbwL.jpg" class="card-img h-100"
-              alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col mb-4">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="https://lithub.com/wp-content/uploads/2019/11/71wD4yYUqyL-678x1024.jpg" class="card-img h-100"
-              alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="col mb-4">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="https://lithub.com/wp-content/uploads/2019/11/81Mo8KLnA6L-683x1024.jpg" class="card-img h-100"
-              alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
-  <div class="row row-cols-1 row-cols-md-3 py-5">
+  <div class="create-action">
+    <h3 class="display-4"><em>Not what you're looking for?</em></h3>
+    <h2 class="display-2" style="font-weight: 700;"><%= link_to "Invent your own club...", new_club_path %></h2>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 py-5">
+    <% @clubs.drop(4).each do |club| %>
+    <div class="col mb-4">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="https://lithub.com/wp-content/uploads/2019/11/81Mo8KLnA6L-683x1024.jpg" class="card-img h-100"
+              alt="...">
+          </div>
+          <div class="col-md-8 d-flex flex-column">
+            <div class="card-body">
+              <h5 class="card-title"><%= club.name %></h5>
+              <p class="card-text"><%= club.description %></p>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Created by <%= club.user.username.capitalize() %></small>
+              <h4> <%= link_to "Wanna see more??!", club_path(club) %> </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <!-- <div class="row row-cols-1 row-cols-md-3 py-5">
     <div class="col mb-4">
       <div class="card h-100 bg-dark text-white">
         <img src="https://lithub.com/wp-content/uploads/2019/01/ghost-wall-768x959.jpg" class="card-img h-100"
@@ -109,6 +93,6 @@
         </div>
       </div>
     </div>
-  </div>
-</div>
+  </div> -->
 
+</div>
