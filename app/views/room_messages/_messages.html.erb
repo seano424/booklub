@@ -1,0 +1,7 @@
+<div class="message-container" id="message-<%= room_message.id %>">
+      <i class="author">
+        <span><%= room_message.user.username %></span>
+        <small><%= room_message.created_at.strftime("%a %b %e at %l:%M%p") %></small>
+      </i>
+      <p><%= room_message.content %></p>
+</div>

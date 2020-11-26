@@ -7,7 +7,7 @@ class ClubsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:club_id])
+    # @room = Room.find(params[:club_id])
   end
 
   private

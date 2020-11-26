@@ -5,7 +5,7 @@ class Club < ApplicationRecord
   belongs_to :user
   has_many :club_memberships
   has_many :users, through: :club_memberships
-  has_one :room
+  has_many :rooms
 
   validates :name, presence: true, uniqueness: true
 

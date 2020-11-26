@@ -6,18 +6,28 @@ class RoomsController < ApplicationController
 
   def index
     @rooms = Room.all
+    @club = Club.find(params[:club_id])
+  end
+
+  def show
+    @room = Room.find(params[:id])
+    @club = Club.find(params[:club_id])
+    @room_message = RoomMessage.new room: @room
+    @room_messages = @room.room_messages.includes(:user)
   end
 
   def new
     @room = Room.new
+    @club = Club.find(params[:club_id])
   end
 
   def create
     @room = Room.new permitted_parameters
-
+    @club = Club.find(params[:club_id])
+    @room.club = @club
     if @room.save
       flash[:success] = "Room #{@room.name} was created successfully"
-      redirect_to rooms_path
+      redirect_to club_rooms_path(@club)
     else
       render :new
     end

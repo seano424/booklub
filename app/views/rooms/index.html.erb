@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-12 col-md-3">
     <div class="mb-3">
-      <%= link_to new_room_path, class: "btn btn-primary" do %>
+      <%= link_to new_club_room_path(@club), class: "btn btn-primary" do %>
         Create a room
       <% end %>
     </div>
@@ -9,7 +9,7 @@
     <% if @rooms.present? %>
       <nav class="nav flex-column">
         <% @rooms.each do |room| %>
-          <%= link_to room.name, room_path(room), class: "nav-link room-nav-link" %>
+          <%= link_to room.name, club_room_path(room, @club), class: "nav-link room-nav-link" %>
         <% end %>
       </nav>
     <% else %>
