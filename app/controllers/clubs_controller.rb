@@ -33,6 +33,7 @@ class ClubsController < ApplicationController
   def create
     @club = Club.new(club_params)
     @club.user = current_user
+    # @club.club_memberships.admin = true
     authorize @club
     if @club.save
       flash[:success] = "Your club is ready!📚🤓"

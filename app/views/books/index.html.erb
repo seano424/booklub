@@ -6,7 +6,9 @@
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <a href="books/<%="#{book[:book_id]}" %>">Click</a>
+            <a href="books/<%="#{book[:book_id]}" %>">
+              <%= image_tag(book[:image_url], class: "") %>
+            </a>
           </div>
           <div class="col-md-8 d-flex flex-column">
             <div class="card-body">
