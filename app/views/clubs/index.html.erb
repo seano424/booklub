@@ -1,15 +1,6 @@
 <div class="container py-5">
 
-
-  <div class= "" >
-    <%= form_tag books_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "search books and clubs"
-      %>
-    <% end %>
-  </div>
+  <%= render partial: 'form' %>
 
   <div class="testing" style="width: 800px; margin: 0 auto;">
     <div class="container">
