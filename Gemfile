@@ -40,7 +40,7 @@ gem 'faker'
 gem 'pg_search', '~> 2.3.0'
 
 
-group :development, :test do  gem 'pry-byebug'
+group :development, :test do gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
 

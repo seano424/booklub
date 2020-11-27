@@ -1,14 +1,62 @@
 <div class="jumbotron jumbotron-fluid m-0 bg-transparent text-center d-flex flex-column justify-content-center align-items-center">
   <div class="container j-container d-flex flex-column mb-5">
-    <h1 id="feature-header" class="display-4">Join booklubs and discuss books with fellow book lovers!</h1>
+    <h1 id="feature-header" class="display-4 m-0">Join booklubs</h1>
+    <h1 id="feature-header" class="display-4 m-0">discuss books</h1>
+    <h1 id="feature-header" class="display-4 m-0">meet book lovers!</h1>
+
     <div>
       <%= link_to "Our clubs", clubs_path, class: "btn btn-jumbotron" %>
     </div>
 </div>
 </div>
-<br>
+<div id="about" class="page-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="section-heading">
+                        <h4>Are you ready?</h4>
+                        <div class="line-dec"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+               <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="item">
+                        <div class="icon"></div>
+                        <%= image_tag "celebration.svg", class: "icon" %>
+                        <h4>Join</h4>
+                        <p>Join a club and meet people from around the world, gain different perspectives, and delve into the expansive world of literature</p>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="item">
+                        <div class="icon"></div>
+                        <%= image_tag "connected_world.svg", class: "icon" %>
+                        <h4>Connect</h4>
+                        <p>Share your love for literature from fantasy to finance meet new friends and reconnect with old friends through writing.</p>
+                    </div>
+                </div>
+                 <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="item">
+                        <div class="icon"></div>
+                        <%= image_tag "Group_chat.svg", class: "icon" %>
+                        <h4>Create</h4>
+                        <p>Create a new club both private or public and use our collective group chat to discuss the gossip from your paperback</p>
+                    </div>
+                </div>
+                 <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="item">
+                        <div class="icon"></div>
+                        <%= image_tag "book_lover.svg", class: "icon" %>
+                        <h4>Read</h4>
+                        <p>Finish that book that has been collecting dust on your shelf, or revisit conversations about that book that changed your life</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
- <h2 class="text-center pb-4">Explore Featured Book Clubs</h2>
+ <h2 class="text-center pb-4 section-heading"></h2>
 
   <div class="row row-cols-1 row-cols-md-3">
     <div class="col mb-4 pl-4">
@@ -25,6 +73,7 @@
         </div>
       </div>
     </div>
+
 
     <div class="col mb-4">
       <div class="card h-100 featured-card border-0 rounded">
@@ -55,8 +104,4 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="card-footer">
-          <%= "Put footer here" %>
 </div>

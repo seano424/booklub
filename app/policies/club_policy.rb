@@ -10,7 +10,7 @@ class ClubPolicy < ApplicationPolicy
   end
 
   def new?
-    create?
+    true
   end
 
   def create?
