@@ -1,19 +1,10 @@
 .club-cover {
   .club-cover-photo {
     width: 100vw;
-    height: 350px;
+    height: 75vh;
     object-fit: cover;
     object-position: center;
     position: relative;
-  }
-
-  #overlay {
-    position: absolute;
-    top: 65px;
-    left: 0;
-    width: 100vw;
-    height: 350px;
-    background-color: rgba(0, 0, 0, 0.5);
   }
 
   h1 {

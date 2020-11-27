@@ -1,0 +1,8 @@
+.room-nav-link {
+  border: 1px solid lighten($bkblue, 40%);
+  background: lighten($bkblue, 45%);
+
+  & + .room-nav-link {
+    border-top: 0 none;
+  }
+}

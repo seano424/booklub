@@ -44,6 +44,24 @@ class ClubsController < ApplicationController
     end
   end
 
+  def new
+    @club = Club.new
+    authorize @club
+  end
+
+  def create
+    @club = Club.new(club_params)
+    @club.user = current_user
+    authorize @club
+    if @club.save
+      flash[:success] = "Your club is ready!📚🤓"
+      redirect_to club_path(@club)
+    else
+      flash[:alert] = "Oops. 🙃 Something went wrong there. Try again."
+      render :new
+    end
+  end
+
   private
 
   def set_club

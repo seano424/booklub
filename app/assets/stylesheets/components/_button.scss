@@ -40,3 +40,29 @@
   }
 
 }
+.btn-chat-input {
+  color: white;
+  background-color: $bkblue;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bolder;
+
+  &:hover {
+    color: lightblue;
+  }
+
+}
+
+.btn-sec-small {
+  color: $bkblue;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 25px;
+  margin: 3px;
+  font-weight: bolder;
+  border: 1px solid $bkblue;
+
+  &:hover {
+    color: lightblue;
+  }
+}
