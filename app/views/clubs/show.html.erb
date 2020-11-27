@@ -1,5 +1,5 @@
 <div class="club-cover">
-  <img src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" alt="Club cover photo" class="club-cover-photo">
+  <img styel="linear-gradient" src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" alt="Club cover photo" class="club-cover-photo">
   <div id="overlay"></div>
   <h1><%= @club.name %></h1>
   <% unless @club.users.any? { |user| user == current_user } || @club.user == current_user %>

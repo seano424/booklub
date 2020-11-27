@@ -4,7 +4,7 @@ const initUpdateNavbarOnScroll = () => {
     window.addEventListener('scroll', () => {
       console.log("window.scrollY "+window.scrollY);
       console.log("window.innerHeight "+window.innerHeight);
-      if (window.scrollY >= 30) {
+      if (window.scrollY >= 45) {
         navbar.classList.add('navbar-black');
       } else {
         navbar.classList.remove('navbar-black');
