@@ -1,10 +1,12 @@
-<h1>
+<h3 class="pb-4">
   <%= @room.name %>
-</h1>
+</h3>
 
 <div class="row">
   <div class="col-12 col-md-3">
     <%= render partial: 'rooms' %>
+    <%= link_to "Go Back", club_path, class: "btn btn-sec" %>
+
   </div>
 
   <div class="col">
@@ -13,16 +15,16 @@
         <div class="chat-message-container" id="messages" data-room-id="<%= @room.id  %>">
           <div class="row no-gutters">
             <div class="col-auto text-center">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" class="avatar" alt="">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" class="avatar-chat" alt="">
+
             </div>
 
             <div class="col">
               <div class="message-content">
-                <p class="mb-1">
+                <p class="mb-4">
                   <%= room_message.message %>
                 </p>
-
-                <div class="text-right">
+                <div class="text-right mr-2">
                   <small>
                     <%= room_message.created_at %>
                   </small>
@@ -43,7 +45,7 @@
                                    class: 'chat-input'
                                  } %>
         <div class="input-group-append">
-          <%= form.submit "Send", class: 'btn btn-primary chat-input' %>
+          <%= form.submit "Send", class: 'btn btn-chat-input chat-input' %>
         </div>
       </div>
 

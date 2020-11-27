@@ -40,3 +40,15 @@
   }
 
 }
+.btn-chat-input {
+  color: white;
+  background-color: $bkblue;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bolder;
+
+  &:hover {
+    color: lightblue;
+  }
+
+}

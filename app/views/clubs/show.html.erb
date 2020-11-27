@@ -78,8 +78,8 @@
         <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
           <ul class="list-group list-group-flush">
             <% @club.rooms.each do |room| %>
-              <li class="list-group-item"> 
-                <%= link_to room.name, club_room_path(room), class: "chat-link"%> 
+              <li class="list-group-item">
+                <%= link_to room.name, club_room_path(@club, room), class: "chat-link"%>
               </li>
             <% end  %>
           </ul>

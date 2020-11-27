@@ -1,12 +1,10 @@
 <div class="row">
   <div class="col-12 col-md-3">
-    <!-- <div class="mb-3">
-      <%= link_to new_club_room_path(@club), class: "btn btn-primary" do %>
+     <h2>Your Chat Rooms</h2>
+    <div class="mb-3 mt-3">
+      <%= link_to new_club_room_path(@club), class: "btn btn-main" do %>
         Create a room
       <% end %>
-    </div> -->
-    <div>
-      Your Chat Rooms
     </div>
 
     <% if @rooms.present? %>
@@ -18,21 +16,7 @@
     <% else %>
       <div class="text-muted">
         The are no rooms
-      </div>
+      </div>x
     <% end %>
   </div>
 </div>
-
-  <!-- <div class="col">
-    <div class="alert alert-primary">
-      <h4 class="alert-heading">
-        Welcome to the Chat!
-      </h4>
-
-      <hr />
-
-      <p>
-        You can create or join a room from the sidebar.
-      </p>
-    </div>
-</div> -->
