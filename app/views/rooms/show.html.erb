@@ -1,15 +1,17 @@
-<h3 class="pb-4">
+<h2 class="pb-2 pt-2 pl-2">
   <%= @room.name %>
-</h3>
+</h2>
 
 <div class="row">
-  <div class="col-12 col-md-3">
+  <div class="col-12 col-md-2 ml-2">
+    <%= link_to "Your Chat Rooms", club_rooms_path, class: "btn btn-sec-small" %>
     <%= render partial: 'rooms' %>
-    <%= link_to "Go Back", club_path, class: "btn btn-sec" %>
+    <%= link_to "Club Page", club_path, class: "btn btn-sec-small" %>
+
 
   </div>
 
-  <div class="col">
+  <div class="col mr-4">
     <div class="chat" data-channel-subscribe="room">
       <% @room_messages.each do |room_message| %>
         <div class="chat-message-container" id="messages" data-room-id="<%= @room.id  %>">
@@ -21,10 +23,10 @@
 
             <div class="col">
               <div class="message-content">
-                <p class="mb-4">
+                <p class="pt-2">
                   <%= room_message.message %>
                 </p>
-                <div class="text-right mr-2">
+                <div class="text-right mb-2 mr-2">
                   <small>
                     <%= room_message.created_at %>
                   </small>
