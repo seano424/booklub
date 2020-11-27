@@ -99,3 +99,33 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
+
+.member-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+
+  .member-card {
+    height: 90px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 2px 5px $bkblue;
+    overflow-wrap: break-word;
+
+    .member-avatar {
+      position: absolute;
+      left: 10px;
+      box-shadow: 0 2px 5px $bkblue;
+    }
+
+    .member-username {
+      position: absolute;
+      left: 75px;
+      margin: auto;
+    }
+  }
+}
+

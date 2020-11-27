@@ -31,30 +31,31 @@
     <div class="col-4">
       <div class="row justify-content-center mb-3">
         <div class="col-12">
+          <%= link_to "Go Back", clubs_path, class: "btn btn-sec" %>
           <% if @club_membership.id || @club.user == current_user %>
-            <p><strong>Share with friends</strong></p>
+            <p class="mt-2"><strong>Share with friends</strong></p>
             <%= social_share_button_tag(@club.name) %>
           <% end %>
           <h4>Currently Reading</h4>
           <% if @current_book.nil? %>
             <p>Not reading anything right now</p>
           <% else %>
-            <img src="https://lithub.com/wp-content/uploads/sites/2/2019/02/485747c67fc7dfb54adb3de4b0e1f4d1.gif" alt="book cover" class="card-img h-75 w-50">
+            <img src="https://lithub.com/wp-content/uploads/sites/2/2019/02/485747c67fc7dfb54adb3de4b0e1f4d1.gif" alt="book cover" class="book-cover-img">
             <p><strong><%= @current_book.title %></strong></p>
             <p><%= @current_book.author %></p>
           <% end %>
         </div>
       </div>
-      <div class="row mt-5">
+      <div class="row mt-3">
         <div class="col-12">
-          <h4 class="mt-3">Upcoming Events</h4>
+          <h4>Upcoming Events</h4>
         </div>
       </div>
     </div>
     <div class="col-8 club-tabs">
       <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="discussion-tab" data-toggle="tab" href="#discussion" role="tab" aria-controls="discussion" aria-selected="true">Discussion Topics</a>
+          <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">About this club</a>
         </li>
         <% if @club_membership.id || @club.user == current_user %>
           <li class="nav-item">
@@ -66,32 +67,44 @@
             <a class="nav-link" id="members-tab" data-toggle="tab" href="#members" role="tab" aria-controls="members" aria-selected="false">Members (<%= @club.club_memberships.count + 1 %>)</a>
           </li>
         <% end %>
-        <li class="nav-item">
+        <%# <li class="nav-item">
           <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">About</a>
-        </li>
+        </li> %>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="discussion" role="tabpanel" aria-labelledby="discussion-tab">This is the tab for discussion topics</div>
+        <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+          <%= @club.description %>
+        </div>
         <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
-          <ul>
+          <ul class="list-group list-group-flush">
             <% @club.rooms.each do |room| %>
-              <li> <%= room.name %> </li>
+              <li class="list-group-item"> 
+                <%= link_to room.name, club_room_path(room), class: "chat-link"%> 
+              </li>
             <% end  %>
           </ul>
         </div>
-        <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">This is the tab for the members
-          <% if @club.user.profile_photo.attached? %>
-            <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large" %>
-          <% else %>
-            <img src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" class="avatar-large">
-          <% end %>
-          <% @club.users.each do |user| %>
-            <% if user.profile_photo.attached? %>
-              <%= cl_image_tag user.profile_photo.key, class: "avatar-large" %>
-            <% else %>
-              <img src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" class="avatar-large">
+        <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
+          <div class="member-cards">
+            <div class="member-card">
+              <% if @club.user.profile_photo.attached? %>
+                <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large member-avatar" %>
+              <% else %>
+                <img src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" class="avatar-large member-avatar">
+              <% end %>
+              <p class="member-username"><%= @club.user.username %> - Host</p>
+            </div>
+            <% @club.users.each do |user| %>
+              <div class="member-card">
+                <% if user.profile_photo.attached? %>
+                  <%= cl_image_tag user.profile_photo.key, class: "avatar-large member-avatar" %>
+                <% else %>
+                  <img src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" class="avatar-large member-avatar">
+                <% end %>
+                <p class="member-username"><%= user.username %></p>
+              </div>
             <% end %>
-          <% end %>
+          </div>
         </div>
         <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">This is the tab for about</div>
       </div>
