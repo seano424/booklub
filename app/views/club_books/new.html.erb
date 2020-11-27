@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Please select a club:</h2>
+  <!--A user has_many :created_clubs-->
+  <%= simple_form_for [ @book, @club_book ] do |f| %>
+    <%= f.input :club_id, collection: current_user.created_clubs.map { |cc| [cc.name, cc.id] }, class: "beautiful-dropdown" %>
+    <%# <%= f.input :book_id, collection: Book.all %>
+    <%= f.submit "Assign book", class: "btn btn-main" %>
+  <% end %>
+</div>

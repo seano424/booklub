@@ -7,10 +7,14 @@ Rails.application.routes.draw do
     resources :rooms do
       resources :room_messages
     end
-    resources :club_books, only: [ :new, :create, :edit, :update ]
   end
 
-  resources :books, only: [:index, :show]
+  resources :books, only: [ :index, :show, :new, :create ] do
+    collection do
+      get "external"
+    end
+    resources :club_books, only: [ :new, :create, :edit, :update ]
+  end
   resources :club_memberships, only: :destroy
   resources :club_books, only: :destroy
 end
