@@ -11,6 +11,6 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = BookIdApiFetcher.execute(params[:id])
+    @book = GoogleApiFetcher.execute(params[:id])
   end
 end

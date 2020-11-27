@@ -3,14 +3,14 @@
   <div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="<%= @book[:image_url] %>" class="img-fluid" alt="...">
+        <img src="<%= @book[:thumbnail] %>" class="img-fluid" alt="...">
         <%= link_to "Select this book for your bookclub", root_path %>
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h5 class="card-title"> <%= @book[:author] %></h5>
+          <h5 class="card-title"> <%= @book[:authors][0] %></h5>
           <p class="card-text"><%= @book[:description] %></p>
-          <p class="card-text"><%= @book[:isbn] %></p>
+          <p class="card-text"><%= @book[:avg_rating] %></p>
         </div>
       </div>
     </div>

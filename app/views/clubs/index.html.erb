@@ -1,5 +1,13 @@
 <div class="container py-5">
 
+  <% url = 'https://www.googleapis.com/books/v1/volumes?q=HarryPotterandtheSorcerer%27sStone&langRestrict=en' %>
+  <% document_serialized = open(url).read %>
+  <% document = JSON.parse(document_serialized) %>
+  <p><%= document['items'][0]['id'] %></p>
+  <p><%= document['items'][0]['volumeInfo']['title'] %></p>
+
+  <!-- puts "#{user['name']} - #{user['bio']}" -->
+
   <%= render partial: 'form' %>
 
   <div class="testing" style="width: 800px; margin: 0 auto;">
