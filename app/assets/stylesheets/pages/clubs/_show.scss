@@ -38,6 +38,16 @@
     top: 345px;
     right: 50px;
   }
+
+  .back-link {
+    position: absolute;
+    top: 345px;
+    left: 50px;
+  }
+}
+
+.book-cover-img {
+  width: 50%;
 }
 
 .club-tabs .nav-item a {
@@ -53,6 +63,17 @@
   background-color: transparent;
   border-bottom: 3px solid $bkblue;
   color: rgba(0, 0, 0, 1);
-  font-weight: bolder;
+}
+
+.chat-link {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    background-color: #5500ff0c;
+    &::after {
+      content: " 💬";
+    }
+  }
 }
 
