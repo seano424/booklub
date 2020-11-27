@@ -1,0 +1,17 @@
+<!-- <div class="mb-3">
+  <%= link_to new_club_room_path(@club), class: 'btn btn-primary' do %>
+    Create a room
+  <% end %>
+</div> -->
+
+<% if @rooms.present? && (@club.user == current_user)%>
+  <nav class="nav flex-column">
+    <% @rooms.each do |room| %>
+      <%= link_to room.name, club_room_path(@club, room), class: 'nav-link room-nav-link' %>
+    <% end %>
+  </nav>
+<% else %>
+  <div class="text-muted">
+    The are no other rooms
+  </div>
+<% end %>

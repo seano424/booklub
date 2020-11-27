@@ -23,5 +23,48 @@
     right: 50px;
     font-size: 20px;
   }
+
+  .leave-btn {
+    position: absolute;
+    top: 345px;
+    right: 50px;
+  }
+
+  .back-link {
+    position: absolute;
+    top: 345px;
+    left: 50px;
+  }
+}
+
+.book-cover-img {
+  width: 50%;
+}
+
+.club-tabs .nav-item a {
+  color: rgba(0, 0, 0, 0.5);
+  font-family: $headers-font;
+  font-size: 1.5rem;
+  &:hover {
+    color: rgba(0, 0, 0, 0.8);
+  }
+}
+
+.club-tabs .nav-item .active {
+  background-color: transparent;
+  border-bottom: 3px solid $bkblue;
+  color: rgba(0, 0, 0, 1);
+}
+
+.chat-link {
+  text-decoration: none;
+  color: black;
+
+  &:hover {
+    background-color: #5500ff0c;
+    &::after {
+      content: " 💬";
+    }
+  }
 }
 

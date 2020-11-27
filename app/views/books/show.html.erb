@@ -1,18 +1,13 @@
 <div class="container">
-  
-  <div class="card mb-3">
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="" class="card-img" alt="...">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title"> <%= @book.title %> by <%= @book.author %></h5>
-          <p class="card-text"><%= @book.syllabus %></p>
-        </div>
-      </div>
+  <div class="card-product mt-2">
+    <img src="<%= @book[:image_url] %>" />
+    <div class="card-product-infos">
+      <h2><%= @book[:title] %></h2>
+      <h4><%= @book[:author] %></h4>
+      <p><%= @book[:description] %></p>
     </div>
   </div>
-
   <%= link_to "Back to Browse", clubs_path, class: "btn btn-primary" %>
+  <%= link_to "Add to bookclub name", club_path(2), class: "btn-custom" %>
 </div>
+

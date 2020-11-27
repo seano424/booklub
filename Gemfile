@@ -23,6 +23,7 @@ gem 'redis', '~> 4.0'
 # gem 'bcrypt', '~> 3.1.7'
 
 gem 'pundit'
+gem 'social-share-button'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -38,6 +39,9 @@ gem 'simple_form'
 gem 'faker'
 #search function
 gem 'pg_search', '~> 2.3.0'
+gem 'openlibrary'
+
+gem 'cloudinary', '~> 1.16.0'
 
 
 group :development, :test do gem 'pry-byebug'

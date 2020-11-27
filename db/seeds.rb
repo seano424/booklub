@@ -63,12 +63,11 @@ puts "Finished with books!"
 
 puts "Seeding clubs now..."
 
-club = Club.create!([{
+clubs = Club.create!([{
     name: "Grandpa Frank and Friends",
     description: "We are a Grandson and Grandaughter creating a group for other folks to find time to connect with their elders.",
     # club_photo: "https://images.unsplash.com/photo-1595123550441-d377e017de6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1768&q=80",
     language: "English",
-    book_id: books[4].id,
     user_id: users[4].id
   },
   {
@@ -76,7 +75,6 @@ club = Club.create!([{
     description: " Young Adult LGBTQ club. A safe space for kids 12-18 to share books and experiences.",
     # club_photo: "https://images.unsplash.com/photo-1459369510627-9efbee1e6051?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
     language: "English",
-    book_id: books[0].id,
     user_id: users[0].id
 
   },
@@ -85,7 +83,6 @@ club = Club.create!([{
     description: "We read an array of novels and non-fiction and but we really drink more than we read. Women only please.",
     # club_photo: "https://images.unsplash.com/photo-1459369510627-9efbee1e6051?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
     language: "English",
-    book_id: books[1].id,
     user_id: users[1].id
   },
   {
@@ -93,7 +90,6 @@ club = Club.create!([{
     description: "Dig into some business classics and new age business books while digging into a virtual brunch.",
     # club_photo: "https://images.unsplash.com/photo-1459369510627-9efbee1e6051?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
     language: "English",
-    book_id: books[2].id,
     user_id: users[2].id
   },
   {
@@ -101,8 +97,42 @@ club = Club.create!([{
     description: "We read critical classic and break new writers. We also have one feedback on personal writing per week. Join us!",
     # club_photo: "https://images.unsplash.com/photo-1459369510627-9efbee1e6051?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80",
     language: "Spanish",
-    book_id: books[3].id,
     user_id: users[3].id
   }])
+
+puts "Finished with books!"
+
+puts "Seeding club_books now..."
+club_books = ClubBook.create!([{
+  club_id: clubs[0].id,
+  book_id: books[0].id,
+  read_book: false,
+  current_book: true
+},
+{
+  club_id: clubs[1].id,
+  book_id: books[1].id,
+  read_book: false,
+  current_book: true
+},
+{
+  club_id: clubs[2].id,
+  book_id: books[2].id,
+  read_book: false,
+  current_book: true
+},
+{
+  club_id: clubs[3].id,
+  book_id: books[3].id,
+  read_book: false,
+  current_book: true
+},
+{
+  club_id: clubs[4].id,
+  book_id: books[4].id,
+  read_book: false,
+  current_book: true
+}])
+
 
 puts "All finished"

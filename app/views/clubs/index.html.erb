@@ -1,5 +1,23 @@
 <div class="container py-5">
-  <h1 class="display-3"><em>Let's find a bookclub!</em></h1>
+
+  <%= render partial: 'form' %>
+
+  <div class="testing" style="width: 800px; margin: 0 auto;">
+    <div class="container">
+      <form id="city-name">
+        <div class="form-row">
+          <div class="col-9">
+            <input type="text" class="form-control" placeholder="Change me :)">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <h1 class="display-3 primary-header"><em>Let's find a bookclub!</em></h1>
   <div class="row row-cols-1 row-cols-md-2 py-5">
     <% @clubs[0..3].each do |club| %>
     <div class="col mb-4">
@@ -57,42 +75,7 @@
     </div>
     <% end %>
   </div>
-
-  <!-- <div class="row row-cols-1 row-cols-md-3 py-5">
-    <div class="col mb-4">
-      <div class="card h-100 bg-dark text-white">
-        <img src="https://lithub.com/wp-content/uploads/2019/01/ghost-wall-768x959.jpg" class="card-img h-100"
-          alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-    </div>
-    <div class="col mb-4">
-      <div class="card h-100 bg-dark text-white">
-        <img src="https://lithub.com/wp-content/uploads/2019/11/91SGcvBluiL-683x1024.jpg" class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-    </div>
-    <div class="col mb-4">
-      <div class="card h-100 bg-dark text-white">
-        <img src="https://lithub.com/wp-content/uploads/2019/11/91QWDq8AbwL.jpg" class="card-img" alt="...">
-        <div class="card-img-overlay">
-          <h5 class="card-title">Card title</h5>
-          <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-            content. This content is a little bit longer.</p>
-          <p class="card-text">Last updated 3 mins ago</p>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
 </div>
+
+
+<%= javascript_pack_tag 'fetch-books' %>
