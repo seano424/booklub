@@ -1,6 +1,6 @@
 <div class="club-cover">
   <% if @club.cover_photo.attached? %>
-  <%= cl_image_tag @club.cover_photo.key, class: "club-cover-photo" %>
+    <%= cl_image_tag @club.cover_photo.key, class: "club-cover-photo" %>
   <% else %>
   <img
     src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80"
