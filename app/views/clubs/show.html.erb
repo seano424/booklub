@@ -1,30 +1,33 @@
 <div class="club-cover">
   <% if @club.cover_photo.attached? %>
-    <%= cl_image_tag @club.cover_photo.key, class: "club-cover-photo" %>
+  <%= cl_image_tag @club.cover_photo.key, class: "club-cover-photo" %>
   <% else %>
-    <img src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80" alt="Club cover photo" class="club-cover-photo">
+  <img
+    src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80"
+    alt="Club cover photo" class="club-cover-photo">
   <% end %>
   <div id="overlay"></div>
   <h1><%= @club.name %></h1>
   <% unless @club_membership.id || @club.user == current_user %>
-    <%= simple_form_for [ @club, @club_membership ] do |f| %>
-      <%= f.submit "Join this club", class: "btn btn-main join-btn" %>
-    <% end %>
+  <%= simple_form_for [ @club, @club_membership ] do |f| %>
+  <%= f.submit "Join this club", class: "btn btn-main join-btn" %>
+  <% end %>
   <% end %>
   <% if @club_membership.id %>
-    <%= link_to "Leave club", club_membership_path(@club_membership),
+  <%= link_to "Leave club", club_membership_path(@club_membership),
                 method: :delete,
                 data: { confirm: "Are you sure you want to leave this club?" },
                 class: "btn btn-sec leave-btn"
     %>
   <% elsif @club.user == current_user %>
-    <%= link_to "Delete club", club_path(@club),
+  <%= link_to "Delete club", club_path(@club),
                 method: :delete,
                 data: { confirm: "Are you sure you want to delete this club?" },
                 class: "btn btn-sec leave-btn"
     %>
   <% end %>
 </div>
+
 
 <div class="container mt-5">
   <div class="row">
@@ -39,10 +42,19 @@
           <h4>Currently Reading</h4>
           <% if @current_book.nil? %>
             <p>Not reading anything right now</p>
+            <% if @club_membership.admin || @club.user == current_user %>
+            <!-- We need to make a user automatically an admin if they have created a club -->
+              <%= render partial: 'form' %>
+            <% end %>
           <% else %>
-            <img src="https://lithub.com/wp-content/uploads/sites/2/2019/02/485747c67fc7dfb54adb3de4b0e1f4d1.gif" alt="book cover" class="book-cover-img">
+            <img src="https://lithub.com/wp-content/uploads/sites/2/2019/02/485747c67fc7dfb54adb3de4b0e1f4d1.gif"
+              alt="book cover" class="book-cover-img">
             <p><strong><%= @current_book.title %></strong></p>
             <p><%= @current_book.author %></p>
+            <% if @club_membership.admin || @club.user == current_user %>
+            <!-- We need to make a user automatically an admin if they have created a club -->
+              <%= render partial: 'form' %>
+            <% end %>
           <% end %>
         </div>
       </div>
@@ -55,7 +67,8 @@
     <div class="col-8 club-tabs">
       <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">About this club</a>
+          <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about"
+            aria-selected="true">About this club</a>
         </li>
         <% if @club_membership.id || @club.user == current_user %>
           <li class="nav-item">
@@ -63,9 +76,10 @@
           </li>
         <% end %>
         <% if @club_membership.id || @club.user == current_user %>
-          <li class="nav-item">
-            <a class="nav-link" id="members-tab" data-toggle="tab" href="#members" role="tab" aria-controls="members" aria-selected="false">Members (<%= @club.club_memberships.count + 1 %>)</a>
-          </li>
+        <li class="nav-item">
+          <a class="nav-link" id="members-tab" data-toggle="tab" href="#members" role="tab" aria-controls="members"
+            aria-selected="false">Members (<%= @club.club_memberships.count + 1 %>)</a>
+        </li>
         <% end %>
         <%# <li class="nav-item">
           <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">About</a>
@@ -78,9 +92,9 @@
         <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
           <ul class="list-group list-group-flush">
             <% @club.rooms.each do |room| %>
-              <li class="list-group-item"> 
-                <%= link_to room.name, club_room_path(room), class: "chat-link"%> 
-              </li>
+            <li class="list-group-item">
+              <%= link_to room.name, club_room_path(room), class: "chat-link"%>
+            </li>
             <% end  %>
           </ul>
         </div>
@@ -88,27 +102,31 @@
           <div class="member-cards">
             <div class="member-card">
               <% if @club.user.profile_photo.attached? %>
-                <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large member-avatar" %>
+              <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large member-avatar" %>
               <% else %>
-                <img src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" class="avatar-large member-avatar">
+              <img
+                src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                alt="" class="avatar-large member-avatar">
               <% end %>
               <p class="member-username"><%= @club.user.username %> - Host</p>
             </div>
             <% @club.users.each do |user| %>
-              <div class="member-card">
-                <% if user.profile_photo.attached? %>
-                  <%= cl_image_tag user.profile_photo.key, class: "avatar-large member-avatar" %>
-                <% else %>
-                  <img src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80" alt="" class="avatar-large member-avatar">
-                <% end %>
-                <p class="member-username"><%= user.username %></p>
-              </div>
+            <div class="member-card">
+              <% if user.profile_photo.attached? %>
+              <%= cl_image_tag user.profile_photo.key, class: "avatar-large member-avatar" %>
+              <% else %>
+              <img
+                src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                alt="" class="avatar-large member-avatar">
+              <% end %>
+              <p class="member-username"><%= user.username %></p>
+            </div>
             <% end %>
           </div>
         </div>
-        <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">This is the tab for about</div>
+        <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">This is the tab for about
+        </div>
       </div>
     </div>
   </div>
 </div>
-

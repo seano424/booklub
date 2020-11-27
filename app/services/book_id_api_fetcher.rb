@@ -5,7 +5,7 @@ class BookIdApiFetcher
     @book_id = id_value
     @url = "https://www.goodreads.com/book/show/#{@book_id}.xml?key=#{ENV['GOODREADS_API_KEY']}&q="
   end
-
+  
   def execute
     # raise
     doc = Nokogiri::HTML(URI.open(@url)) 
@@ -14,7 +14,7 @@ class BookIdApiFetcher
     image_url = doc.search('image_url').text  
     author = doc.search('name').first.text
     isbn = doc.search('isbn').text
-    {description: full_description, image_url: image_url, author: author, isbn: isbn}
+    { description: full_description, image_url: image_url, author: author, isbn: isbn }
   end
 end
 
