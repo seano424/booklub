@@ -99,3 +99,17 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
+
+.member-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 16px;
+}
+
+.member-card {
+  width: 200px;
+  height: 75px;
+  background-color: turquoise;
+  border-radius: 5px;
+  align-items: center;
+}
