@@ -4,7 +4,7 @@
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="<%= @book[:image_url] %>" class="img-fluid" alt="...">
-        <%= link_to "Select this book for your bookclub", root_path %>
+        <%= link_to "Select this book for your bookclub", new_book_path %>
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -15,5 +15,5 @@
     </div>
   </div>
 
-  <%= link_to "Back to Browse", clubs_path, class: "btn btn-primary" %>
+  <%= link_to "Back to Browse", clubs_path, class: "btn btn-sec" %>
 </div>

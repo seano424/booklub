@@ -35,10 +35,6 @@
       <div class="row justify-content-center mb-3">
         <div class="col-12">
           <%= link_to "Go Back", clubs_path, class: "btn btn-sec" %>
-          <% if @club_membership.id || @club.user == current_user %>
-            <p class="mt-2"><strong>Share with friends</strong></p>
-            <%= social_share_button_tag(@club.name) %>
-          <% end %>
           <h4>Currently Reading</h4>
           <% if @current_book.nil? %>
             <p>Not reading anything right now</p>
@@ -47,20 +43,16 @@
               <%= render partial: 'form' %>
             <% end %>
           <% else %>
-            <img src="https://lithub.com/wp-content/uploads/sites/2/2019/02/485747c67fc7dfb54adb3de4b0e1f4d1.gif"
-              alt="book cover" class="book-cover-img">
+            <img src="<%= @current_book.image_url %>%"
+              alt="<%= @current_book.title %>" class="book-cover-img">
             <p><strong><%= @current_book.title %></strong></p>
             <p><%= @current_book.author %></p>
-            <% if @club_membership.admin || @club.user == current_user %>
-            <!-- We need to make a user automatically an admin if they have created a club -->
-              <%= render partial: 'form' %>
-            <% end %>
           <% end %>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-12">
-          <h4>Upcoming Events</h4>
+          <%# <h4>Upcoming Events</h4> %>
         </div>
       </div>
     </div>
