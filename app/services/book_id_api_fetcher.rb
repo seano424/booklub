@@ -12,7 +12,8 @@ class BookIdApiFetcher
     full_description = description[0, description.length - 3]
     image_url = doc.search('image_url').text
     author = doc.search('name').first.text
-    title = doc.at_xpath('//original_title').text
+    title = doc.at_xpath('//title').text
+    raise
     isbn = doc.search('isbn').text
     { description: full_description, image_url: image_url.strip, author: author, isbn: isbn, title: title }
   end
