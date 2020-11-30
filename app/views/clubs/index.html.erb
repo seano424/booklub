@@ -24,11 +24,13 @@
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <%= link_to book_path(club) do %>
-            <%= image_tag("https://lithub.com/wp-content/uploads/2019/11/81Mo8KLnA6L-683x1024.jpg", class: "card-img h-100") %>
+           <% if club.cover_photo.attached? %>
+             <img src="<%= @book[:image_url] %>" class="card-img-top"/>
+            <% else %>
+            <img class="card-img-top background-image: cover"
+              src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+              alt="">
             <% end %>
-            <!-- <img src="https://lithub.com/wp-content/uploads/2019/11/81Mo8KLnA6L-683x1024.jpg" class="card-img h-100"
-              alt="..."> -->
           </div>
           <div class="col-md-8 d-flex flex-column">
             <div class="card-body">
@@ -57,8 +59,13 @@
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
-            <img src="https://lithub.com/wp-content/uploads/2019/11/81Mo8KLnA6L-683x1024.jpg" class="card-img h-100"
-              alt="...">
+            <% if club.cover_photo.attached? %>
+             <img src="<%= @book[:image_url] %>" class="card-img-top"/>
+            <% else %>
+            <img class="card-img-top background-image: cover"
+              src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+              alt="">
+            <% end %>
           </div>
           <div class="col-md-8 d-flex flex-column">
             <div class="card-body">
