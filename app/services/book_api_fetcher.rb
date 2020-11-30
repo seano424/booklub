@@ -27,15 +27,14 @@ class BookApiFetcher
     page_count         = document['items'][0]['volumeInfo']['pageCount']
     categories         = document['items'][0]['volumeInfo']['categories']
     avg_rating         = document['items'][0]['volumeInfo']['avgRating']
-    image_md         = document['items'][0]['volumeInfo']['imageLinks']['thumbnail']
-    image_lg         = document['items'][0]['volumeInfo']['imageLinks']['large']
+    image_thumbnail         = document['items'][0]['volumeInfo']['imageLinks']['thumbnail']
 
     
 
     image_sm = "http://covers.openlibrary.org/b/isbn/#{isbn}-S.jpg"
-    # image_md = "http://covers.openlibrary.org/b/isbn/#{isbn}-M.jpg"
-    # image_lg = "http://covers.openlibrary.org/b/isbn/#{isbn}-L.jpg"
-
+    image_md = "http://covers.openlibrary.org/b/isbn/#{isbn}-M.jpg"
+    image_lg = "http://covers.openlibrary.org/b/isbn/#{isbn}-L.jpg"
+    
     {
       author: author,
       title: title,
@@ -46,6 +45,8 @@ class BookApiFetcher
       image_sm: image_sm,
       image_md: image_md,
       image_lg: image_lg,
+      image_thumbnail: image_thumbnail,
+      image_nil: image_nil
     }
   end
 end
