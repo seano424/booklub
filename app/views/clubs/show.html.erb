@@ -7,7 +7,7 @@
     alt="Club cover photo" class="club-cover-photo">
   <% end %>
   <div id="overlay"></div>
-  <h1><%= @club.name %></h1>
+  <h1 class="club-title"><%= @club.name %></h1>
   <% unless @club_membership.id || @club.user == current_user %>
   <%= simple_form_for [ @club, @club_membership ] do |f| %>
   <%= f.submit "Join this club", class: "btn btn-main join-btn" %>
@@ -43,6 +43,8 @@
               <%= render partial: 'form' %>
             <% end %>
           <% else %>
+            <img src="<%= @current_book.image_url %>"
+              alt="<%= @current_book.title %>" class="book-cover-img">
             <p><strong><%= @current_book.title %></strong></p>
             <p><%= @current_book.author %></p>
           <% end %>
@@ -57,7 +59,7 @@
     <div class="col-8 club-tabs">
       <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about"
+          <a class="nav-link active" id="about-club-tab" data-toggle="tab" href="#about-club" role="tab" aria-controls="about-club"
             aria-selected="true">About this club</a>
         </li>
         <% if @club_membership.id || @club.user == current_user %>
@@ -76,7 +78,7 @@
         </li> %>
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+        <div class="tab-pane fade show active" id="about-club" role="tabpanel" aria-labelledby="about-club-tab">
           <%= @club.description %>
         </div>
         <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
