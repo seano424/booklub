@@ -21,7 +21,6 @@ class BookApiFetcher
     document_serialized = open(google_url).read
     document            = JSON.parse(document_serialized)
     isbn                = document['items'][0]['volumeInfo']['industryIdentifiers'][0]['identifier']
-    raise
     # title             = document['items'][0]['volumeInfo']['title']
     # authors           = document['items'][0]['volumeInfo']['authors']
     # description       = document['items'][0]['volumeInfo']['description']
