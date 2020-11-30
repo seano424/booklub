@@ -13,11 +13,23 @@ class ClubMembershipsController < ApplicationController
     end
   end
 
+  def update
+    @club = Club.find(params[:club_id])
+    @club_membership = ClubMembership.find(params[:id])
+    @club_membership.update(club_membership_params)
+  end
+
   def destroy
     @club_membership = ClubMembership.find(params[:id])
     @club = @club_membership.club
     @club_membership.destroy
     flash[:alert] = "So sorry to see you go 😞"
     redirect_to club_path(@club)
+  end
+
+  private
+
+  def club_membership_params
+    params.require(:club_membership).permit(:admin)
   end
 end
