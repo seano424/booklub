@@ -2,6 +2,9 @@
   width: 100%; /* You can set the dimensions to whatever you want */
   height: 200px;
   object-fit: cover;
+  flex-shrink: 0;
+    min-width: 100%;
+    min-height: 100%;
 }
 
 .featured-card {
