@@ -4,7 +4,7 @@
     <%= simple_form_for(@club) do |f| %>
       <%= f.input :name %>
       <%= f.input :description %>
-      <%= f.input :language %>
+      <%= f.input :language, as: :select, :collection => %w[Arabic Bengali English French German Hindi Japanese Javanese Korean Mandarin Portugese Russian Spanish Turkish Vietnamese], prompt: 'Select Language', label: false %>
       <%= f.input :cover_photo, as: :file %>
       <%= f.input :private, input_html: { class: "toggle" } %>
       <%= f.submit "Create", class: "btn btn-main" %>
