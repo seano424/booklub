@@ -21,17 +21,19 @@ class BookApiFetcher
     document_serialized = open(google_url).read
     document            = JSON.parse(document_serialized)
     isbn                = document['items'][0]['volumeInfo']['industryIdentifiers'][0]['identifier']
+    raise
     # title             = document['items'][0]['volumeInfo']['title']
     # authors           = document['items'][0]['volumeInfo']['authors']
     # description       = document['items'][0]['volumeInfo']['description']
     page_count          = document['items'][0]['volumeInfo']['pageCount']
     categories          = document['items'][0]['volumeInfo']['categories']
     avg_rating          = document['items'][0]['volumeInfo']['avgRating']
-    image     = document['items'][0]['volumeInfo']['imageLinks']['thumbnail']
+    image               = document['items'][0]['volumeInfo']['imageLinks']['thumbnail']
 
-    # image_sm = "http://covers.openlibrary.org/b/isbn/#{isbn}-S.jpg"
-    # image_md = "http://covers.openlibrary.org/b/isbn/#{isbn}-M.jpg"
-    # image_lg = "http://covers.openlibrary.org/b/isbn/#{isbn}-L.jpg"
+    image_sm = "http://covers.openlibrary.org/b/isbn/#{isbn}-S.jpg"
+    image_md = "http://covers.openlibrary.org/b/isbn/#{isbn}-M.jpg"
+    image_lg = "http://covers.openlibrary.org/b/isbn/#{isbn}-L.jpg"
+    # image_lg = "http://covers.openlibrary.org/b/isbn/0345339711-L.jpg"
     {
       author: author,
       title: title,
@@ -39,9 +41,9 @@ class BookApiFetcher
       page_count: page_count, 
       categories: categories, 
       avg_rating: avg_rating, 
-      # image_sm: image_sm,
-      # image_md: image_md,
-      # image_lg: image_lg,
+      image_sm: image_sm,
+      image_md: image_md,
+      image_lg: image_lg,
       image: image
     }
   end
