@@ -105,13 +105,20 @@
             <% @club.users.each do |user| %>
             <div class="member-card">
               <% if user.profile_photo.attached? %>
-              <%= cl_image_tag user.profile_photo.key, class: "avatar-large member-avatar" %>
+                <%= cl_image_tag user.profile_photo.key, class: "avatar-large member-avatar" %>
               <% else %>
-              <img
-                src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                alt="" class="avatar-large member-avatar">
+                <img
+                  src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                  alt="" class="avatar-large member-avatar">
               <% end %>
               <p class="member-username"><%= user.username %></p>
+              <% if @club.user == current_user %>
+                <div class="make-admin">
+                  <%= simple_form_for [ @club, club_membership = user.club_memberships.find_by(club: @club)] do |f| %>
+                    <%= f.input :admin, input_html: { class: "toggle admin-toggle", check: club_membership.admin } %>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
             <% end %>
           </div>
