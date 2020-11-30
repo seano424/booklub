@@ -10,7 +10,7 @@
     <% if @rooms.present? %>
       <nav class="nav flex-column">
         <% @rooms.each do |room| %>
-          <%= link_to room.name, club_room_path(@club, room), class: "nav-link room-nav-link" %>
+          <%= link_to room.name, club_room_path(@club, room), class: "room-nav" %>
         <% end %>
       </nav>
     <% else %>
