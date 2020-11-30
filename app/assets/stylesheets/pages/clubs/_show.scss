@@ -7,7 +7,7 @@
     position: relative;
   }
 
-  h1 {
+  .club-title {
     position: absolute;
     top: 85px;
     left: 50px;
@@ -15,6 +15,8 @@
     z-index: 1000;
     color: white;
     font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 5px 10px;
   }
 
   .join-btn {
