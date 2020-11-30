@@ -29,12 +29,9 @@ class BookApiFetcher
     avg_rating         = document['items'][0]['volumeInfo']['avgRating']
     image_thumbnail         = document['items'][0]['volumeInfo']['imageLinks']['thumbnail']
 
-    
-
     image_sm = "http://covers.openlibrary.org/b/isbn/#{isbn}-S.jpg"
     image_md = "http://covers.openlibrary.org/b/isbn/#{isbn}-M.jpg"
     image_lg = "http://covers.openlibrary.org/b/isbn/#{isbn}-L.jpg"
-    
     {
       author: author,
       title: title,
