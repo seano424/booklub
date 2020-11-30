@@ -47,7 +47,7 @@
               <%= render partial: 'form' %>
             <% end %>
           <% else %>
-            <img src="https://lithub.com/wp-content/uploads/sites/2/2019/02/485747c67fc7dfb54adb3de4b0e1f4d1.gif"
+            <img src="<%= @current_book.image_url %>"
               alt="book cover" class="book-cover-img">
             <p><strong><%= @current_book.title %></strong></p>
             <p><%= @current_book.author %></p>
