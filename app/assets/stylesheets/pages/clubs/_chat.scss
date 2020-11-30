@@ -1,12 +1,26 @@
+
 .chat {
-  border: 1px solid lighten($secondary, 40%);
-  background: lighten($secondary, 50%);
+  border: 1px solid lighten(#5700FF, 40%);
+  background: lighten(#5700FF, 50%);
   height: 50vh;
   border-radius: 5px 5px 0 0;
   overflow-y: auto;
+  // box-shadow: 0 2px 3px #5700FF;
 }
 
 .chat-input {
-  border-top: 0 none;
-  border-radius: 0 0 5px 5px;
+  border: 5px 5px 0px 0px solid lighten(#5700FF, 40%);
+  border-radius: 0  0 0px 0px;
+  height: 5vh;
+  // box-shadow: 0 2px 5px #5700FF;
 }
+
+// .room-nav-link {
+//   border: 1px solid;
+//   // background: lighten(blue, 45%);
+
+//   // & + .room-nav-link {
+//   //   border-top: 0 none;
+//   // }
+// }
+

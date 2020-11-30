@@ -1,6 +1,6 @@
 <div class="club-cover">
   <% if @club.cover_photo.attached? %>
-  <%= cl_image_tag @club.cover_photo.key, class: "club-cover-photo" %>
+    <%= cl_image_tag @club.cover_photo.key, class: "club-cover-photo" %>
   <% else %>
   <img
     src="https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80"
@@ -35,10 +35,6 @@
       <div class="row justify-content-center mb-3">
         <div class="col-12">
           <%= link_to "Go Back", clubs_path, class: "btn btn-sec" %>
-          <% if @club_membership.id || @club.user == current_user %>
-            <p class="mt-2"><strong>Share with friends</strong></p>
-            <%= social_share_button_tag(@club.name) %>
-          <% end %>
           <h4>Currently Reading</h4>
           <% if @current_book.nil? %>
             <p>Not reading anything right now</p>
@@ -47,20 +43,21 @@
               <%= render partial: 'form' %>
             <% end %>
           <% else %>
+<<<<<<< HEAD
             <img src="<%= @current_book.image_url %>"
               alt="book cover" class="book-cover-img">
+=======
+            <img src="<%= @current_book.image_url %>%"
+              alt="<%= @current_book.title %>" class="book-cover-img">
+>>>>>>> master
             <p><strong><%= @current_book.title %></strong></p>
             <p><%= @current_book.author %></p>
-            <% if @club_membership.admin || @club.user == current_user %>
-            <!-- We need to make a user automatically an admin if they have created a club -->
-              <%= render partial: 'form' %>
-            <% end %>
           <% end %>
         </div>
       </div>
       <div class="row mt-3">
         <div class="col-12">
-          <h4>Upcoming Events</h4>
+          <%# <h4>Upcoming Events</h4> %>
         </div>
       </div>
     </div>

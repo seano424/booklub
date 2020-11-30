@@ -5,8 +5,14 @@ class RoomsController < ApplicationController
   before_action :load_entities
 
   def index
-    @rooms = Room.all
+    # @rooms = []
+    # current_user.clubs.each do |club|
+    #   club.rooms.each do |room|
+    #     @rooms << room
+    #   end
+    # end
     @club = Club.find(params[:club_id])
+    @rooms = @club.rooms
   end
 
   def new
@@ -15,8 +21,8 @@ class RoomsController < ApplicationController
   end
 
   def show
-    @room = Room.find(params[:id])
     @club = Club.find(params[:club_id])
+    @room = Room.find(params[:id])
     @room_message = RoomMessage.new room: @room
     @room_messages = @room.room_messages.includes(:user)
   end
