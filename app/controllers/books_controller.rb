@@ -4,14 +4,14 @@ class BooksController < ApplicationController
   
   def index
     if params[:query]
-      @books = BookApiFetcher.execute(params[:query])
+      @books = BooksApiFetcher.execute(params[:query])
     else
       @books = Book.all
     end
   end
 
   def show
-    @book = BookIdApiFetcher.execute(params[:id])
+    @book = BookApiFetcher.execute(params[:id])
   end
 
   def external
