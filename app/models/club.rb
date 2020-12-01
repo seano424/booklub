@@ -25,4 +25,33 @@ class Club < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
+
+  def find_current_book
+    if self.club_books.find_by(current_book: true).nil?
+      'No book'
+    else
+      self.club_books.find_by(current_book: true).book
+    end
+  end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
