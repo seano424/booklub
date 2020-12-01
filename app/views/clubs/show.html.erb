@@ -10,7 +10,7 @@
   <h1 class="club-title"><%= @club.name %></h1>
   <% unless @club_membership.id || @club.user == current_user %>
   <%= simple_form_for [ @club, @club_membership ] do |f| %>
-  <%= f.submit "Join this club", class: "btn btn-main join-btn" %>
+  <%= f.submit "Join this club", class: "btn btn-main join-btn hvr-underline" %>
   <% end %>
   <% end %>
   <% if @club_membership.id %>
@@ -34,9 +34,15 @@
     <div class="col-4">
       <div class="row justify-content-center mb-3">
         <div class="col-12">
-          <%= link_to "Go Back", clubs_path, class: "btn btn-sec" %>
-          <% if @club_membership.id || @club.user == current_user %>
-            <%= link_to "Share with friends", "#", class: "btn btn-sec clipboard-btn", "data-clipboard-text" => club_url(@club) %>
+          <%= link_to "Go Back", clubs_path, class: "btn btn-sec hvr-underline" %>
+          <% if @club_membership.id %>
+            <%= link_to "Share with friends", "#", class: "btn btn-sec clipboard-btn hvr-underline", "data-clipboard-text" => club_url(@club) %>
+          <% elsif @club.user == current_user %>
+            <h4>Invite your friends!</h4>
+            <%= simple_form_for [ @club, @invite ] do |f| %>
+              <%= f.input :email, label: false, placeholder: "Email" %>
+              <%= f.submit "Invite", class: "d-none" %>
+            <% end %>
           <% end %>
           <h4>Currently Reading</h4>
           <% if @current_book.nil? %>
@@ -48,8 +54,17 @@
           <% else %>
             <img src="<%= @current_book.image_url %>"
               alt="<%= @current_book.title %>" class="book-cover-img">
-            <p><strong><%= @current_book.title %></strong></p>
-            <p><%= @current_book.author %></p>
+            <p class="mb-0"><strong><%= @current_book.title %></strong></p>
+            <p class="mt-0"><%= @current_book.author %></p>
+
+            <% if current_user == @club.user %>
+              <%= simple_form_for [ @current_book, @club.club_books.find_by(book: @current_book) ] do |f| %>
+                <%= f.input :read_book, label: "Mark as read", input_html: { class: "toggle" } %>
+                <%= f.input :current_book, as: :hidden, input_html: { value: false } %>
+                <%= f.button :submit, "Confirm", class: "btn link-underlined hvr-underline" %>
+              <% end %>
+            <% end %>
+
           <% end %>
         </div>
       </div>
@@ -88,7 +103,7 @@
           <ul class="list-group list-group-flush">
             <% @club.rooms.each do |room| %>
             <li class="list-group-item">
-              <%= link_to room.name, club_room_path(room), class: "chat-link"%>
+              <%= link_to room.name, club_room_path(@club, room), class: "chat-link"%>
             </li>
             <% end  %>
           </ul>

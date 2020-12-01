@@ -19,7 +19,13 @@ class ClubBooksController < ApplicationController
     end
   end
 
+  def update
+    @club_book = ClubBook.find(params[:id])
+    @club_book.update(club_books_params)
+    redirect_to @club_book.club
+  end
+
   def club_books_params
-    params.require(:club_book).permit(:club_id)
+    params.require(:club_book).permit(:club_id, :read_book, :current_book)
   end
 end

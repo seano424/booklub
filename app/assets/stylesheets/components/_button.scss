@@ -7,7 +7,11 @@
   font-weight: bolder;
 
   &:hover {
-    color: lightblue;
+    background-color: white;
+    color: $bkblue;
+    transition-delay: 100ms;
+    transition-duration: 100ms;
+
   }
 
 }
@@ -22,7 +26,10 @@
   border: 1px solid $bkblue;
 
   &:hover {
-    color: lightblue;
+    background-color: white;
+    color: $bkblue;
+    transition-delay: 100ms;
+    transition-duration: 100ms;
   }
 }
 
@@ -36,7 +43,11 @@
   width: 150px;
   justify-content: center;
   &:hover {
-    color: lightblue;
+    background-color: white;
+    color: $bkblue;
+    transition-delay: 100ms;
+    transition-duration: 100ms;
+
   }
 
 }
@@ -48,7 +59,10 @@
   font-weight: bolder;
 
   &:hover {
-    color: lightblue;
+    background-color: white;
+    color: $bkblue;
+    transition-delay: 100ms;
+    transition-duration: 100ms;
   }
 
 }
@@ -63,6 +77,39 @@
   border: 1px solid $bkblue;
 
   &:hover {
-    color: lightblue;
+    background-color: white;
+    color: $bkblue;
+    transition-delay: 100ms;
+    transition-duration: 100ms;
   }
+}
+
+.hvr-underline {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  position: relative;
+  overflow: hidden;
+}
+.hvr-underline:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  right: 100%;
+  bottom: 0;
+  background: $bkblue;
+  height: 4px;
+  -webkit-transition-property: right;
+  transition-property: right;
+  transition-delay: 100ms;
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out;
+}
+.hvr-underline:hover:before, .hvr-underline:focus:before, .hvr-underline:active:before {
+  right: 0;
 }

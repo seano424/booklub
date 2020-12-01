@@ -1,0 +1,8 @@
+<div class="container">
+  <h2>Invite your friends!</h2>
+  <%= simple_form_for [ @club, @invite ] do |f| %>
+    <%= f.input :sender_id, as: :hidden, input_html { value: current_user.id } %>
+    <%= f.input :email %>
+    <%= f.submit "Invite" %>
+  <% end %>
+</div>

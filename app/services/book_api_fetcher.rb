@@ -25,9 +25,9 @@ class BookApiFetcher
     doc2            = JSON.parse(doc2_serialized)
 
     isbn                = doc2['volumeInfo']['industryIdentifiers'][0]['identifier']
-    title             = doc2['volumeInfo']['title']
+    title               = doc2['volumeInfo']['title']
     # authors           = doc2['volumeInfo']['authors']
-    description       = doc2['volumeInfo']['description']
+    description         = doc2['volumeInfo']['description']
     page_count          = doc2['volumeInfo']['pageCount']
     categories          = doc2['volumeInfo']['categories']
     avg_rating          = doc2['volumeInfo']['avgRating']
