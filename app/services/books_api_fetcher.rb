@@ -20,5 +20,3 @@ class BooksApiFetcher
 end
 
 
-#  @books = BookApiFetcher.execute(book_query) (edited) 
-

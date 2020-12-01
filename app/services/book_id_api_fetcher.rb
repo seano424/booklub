@@ -9,7 +9,6 @@ class BookIdApiFetcher
   def execute
     doc = Nokogiri::XML(URI.open(@url))
     description = doc.search('description').first.text
-    # raise
     image_url = doc.at('image_url').content
     author = doc.search('name').first.text
     title = doc.at('title').content
@@ -35,5 +34,3 @@ class BookIdApiFetcher
 
   end
 end
-
-#  @books = BookIdApiFetcher.execute(value)
