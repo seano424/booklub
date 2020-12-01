@@ -7,20 +7,18 @@ class BookApiFetcher
   end
 
   def execute
-    doc = Nokogiri::HTML(URI.open(@url))
+    doc = Nokogiri::XML(URI.open(@url))
     description_text = doc.search('description').first.text
     description = description_text[0, description_text.length - 3]
-    
-    # image_url = doc.search('image_url').text
+    raise
     author = doc.search('name').first.text
     title = doc.at_xpath('//original_title').text
 
-    book_title = title.gsub(" ", "%20")
-    # raise
-    google_url          = "https://www.googleapis.com/books/v1/volumes?q=#{book_title}&langRestrict=en&key=#{ENV['GOOGLE_API_KEY']}"
-    document_serialized = open(google_url).read
-    document            = JSON.parse(document_serialized)
-    isbn                = document['items'][0]['volumeInfo']['industryIdentifiers'][0]['identifier']
+    # book_title = title.gsub(" ", "%20")
+    # google_url          = "https://www.googleapis.com/books/v1/volumes?q=#{book_title}&langRestrict=en&key=#{ENV['GOOGLE_API_KEY']}"
+    # document_serialized = open(google_url).read
+    # document            = JSON.parse(document_serialized)
+    # isbn                = document['items'][0]['volumeInfo']['industryIdentifiers'][0]['identifier']
     # title             = document['items'][0]['volumeInfo']['title']
     # authors           = document['items'][0]['volumeInfo']['authors']
     # description       = document['items'][0]['volumeInfo']['description']
@@ -29,10 +27,6 @@ class BookApiFetcher
     avg_rating          = document['items'][0]['volumeInfo']['avgRating']
     image               = document['items'][0]['volumeInfo']['imageLinks']['thumbnail']
 
-    image_sm = "http://covers.openlibrary.org/b/isbn/#{isbn}-S.jpg"
-    image_md = "http://covers.openlibrary.org/b/isbn/#{isbn}-M.jpg"
-    image_lg = "http://covers.openlibrary.org/b/isbn/#{isbn}-L.jpg"
-    # image_lg = "http://covers.openlibrary.org/b/isbn/0345339711-L.jpg"
     {
       author: author,
       title: title,
