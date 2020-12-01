@@ -16,7 +16,7 @@ class ClubsController < ApplicationController
   def show
     @club_membership = ClubMembership.find_by(user: current_user, club: @club)
     @club_membership = ClubMembership.new if @club_membership.nil?
-    @current_book = @club.club_books.find_by(current_book: true).book unless @club.club_books.empty?
+    @current_book = @club.club_books.find_by(current_book: true).book unless @club.club_books.empty? || @club.club_books.find_by(current_book: true).nil?
     @invite = Invite.new
   end
 

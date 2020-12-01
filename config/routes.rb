@@ -18,4 +18,5 @@ Rails.application.routes.draw do
   end
   resources :club_memberships, only: :destroy
   resources :club_books, only: :destroy
+  resources :users, only: :show
 end
