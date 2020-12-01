@@ -10,7 +10,7 @@ class BookIdApiFetcher
     doc = Nokogiri::XML(URI.open(@url))
     description = doc.search('description').first.text
     # raise
-    doc.at('image_url').content
+    image_url = doc.at('image_url').content
     author = doc.search('name').first.text
     title = doc.at('title').content
     
@@ -25,7 +25,7 @@ class BookIdApiFetcher
     image_md = doc['volumeInfo']['imageLinks']['medium']
 
     if image_md.nil?
-      image = image_url      
+      image = image_url
     else
       image = image_md
     end
