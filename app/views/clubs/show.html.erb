@@ -133,7 +133,7 @@
               <% if @club.user == current_user %>
                 <div class="make-admin">
                   <%= simple_form_for [ @club, club_membership = user.club_memberships.find_by(club: @club)] do |f| %>
-                    <%= f.input :admin, input_html: { class: "toggle admin-toggle", check: club_membership.admin } %>
+                    <%= f.input :admin, input_html: { id: club_membership.id, class: "toggle admin-toggle", check: club_membership.admin } %>
                   <% end %>
                 </div>
               <% end %>
