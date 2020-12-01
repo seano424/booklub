@@ -10,6 +10,7 @@
 
 <div class="container mx-5 row">
 
+
   <ul class="nav nav-tabs" id="myTab" role="tablist">
     <li class="nav-item" role="presentation">
       <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">Browse All</a>
@@ -23,11 +24,14 @@
   </ul>
   <div class="tab-content" id="myTabContent">
     <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+
       <div class="row row-cols-1 row-cols-md-3 py-5 d-flex flex-wrap">
         <!-- <h1 class="display-3 bg-light text-white vertical ml-3 pl-4 pt-2 mr-2" style="max-width: 540px; max-height: 234px;">Let's imagine together!</h1> -->
         <% @clubs.each do |club| %>
         <div class="col mb-4">
-          <div class="card mb-3" style="max-width: 540px">
+          <%= link_to club_path(club), class: "link-hover text-dark" do %>
+          <div class="card mb-3 club-card rounded" style="max-width: 540px">
+            <div class="cover-content pr-3 pl-3" style="height: 200px;"><p class="card-text"><%= club.description %></p></div>
             <div class="row no-gutters">
               <div class="col-md-6">
                 <% if club.club_books.find_by(current_book: true).nil? %>
@@ -40,14 +44,13 @@
               </div>
               <div class="col-md-6 d-flex flex-column" style="height: 40vh;">
                 <div class="card-body card-body-club d-flex align-items-center">
-                  <%= link_to club_path(club) do %>
-                  <h5 class=" card-title"><%= club.name %></h5>
+                  <h5 class="card-title"><%= club.name %></h5>
                   <!-- <p class="card-text"><%= club.description %></p> -->
-                  <% end %>
                 </div>
               </div>
             </div>
           </div>
+          <% end %>
         </div>
         <% end %>
       </div>
@@ -90,3 +93,4 @@
   </div>
 
 <%= javascript_pack_tag 'fetch-books' %>
+<%= javascript_pack_tag 'card-hide' %>
