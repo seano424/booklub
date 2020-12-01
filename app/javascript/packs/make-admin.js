@@ -1,8 +1,10 @@
 const makeAdmin = () => {
-  const form = document.querySelector(".edit_club_membership");
-  if (form) {
-    document.querySelector(".admin-toggle").addEventListener("click", function(){
-      form.submit();
+  const forms = document.querySelectorAll(".edit_club_membership");
+  if (forms.length > 0) {
+    forms.forEach((form) => {
+      form.querySelector(".admin-toggle").addEventListener("click", function(){
+        form.submit();
+      });
     });
   }
 }

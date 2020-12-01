@@ -221,8 +221,21 @@
 
     .make-admin {
       position: absolute;
-      top: 60px;
+      top: 65px;
       right: 5px;
+      font-size: 14px;
+
+      .toggle + label::before {
+        height: 16px;
+        width: 32px;
+      }
+      .toggle + label::after {
+        height: 12px;
+        width: 12px;
+      }
+      .toggle:checked + label::after {
+        left: 18px;
+      }
     }
   }
 }
