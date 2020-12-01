@@ -6,88 +6,87 @@
   </div>
 </div>
 
+
+
 <div class="container mx-5 row">
-  <div class="row row-cols-1 row-cols-md-2 py-5 d-flex flex-wrap">
-    <h1 class="display-3 bg-light text-white vertical ml-3 pl-4 pt-2" style="max-width: 540px; max-height: 234px;">Let's imagine together!</h1>
-    <% @clubs[0..4].each do |club| %>
-    <div class="col mb-4">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <% if club.club_books.find_by(current_book: true).nil? %>
-            <img class="card-img-top background-image: cover"
-              src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
-              alt="">
-            <% else %>
-            <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
-            <% end %>
-          </div>
-          <div class="col-md-8 d-flex flex-column">
-            <div class="card-body">
-              <h5 class="card-title"><%= club.name %></h5>
-              <p class="card-text"><%= club.description %></p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted"><em>Created by <%= club.user.username.capitalize()%></em></small>
-              <h4> <%= link_to "Join me!", club_path(club) %> </h4>
 
+  <ul class="nav nav-tabs" id="myTab" role="tablist">
+    <li class="nav-item" role="presentation">
+      <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">Browse All</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="create" aria-selected="false">Create</a>
+    </li>
+    <li class="nav-item" role="presentation">
+      <a class="nav-link" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="false">Categories</a>
+    </li>
+  </ul>
+  <div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+      <div class="row row-cols-1 row-cols-md-2 py-5 d-flex flex-wrap">
+        <!-- <h1 class="display-3 bg-light text-white vertical ml-3 pl-4 pt-2 mr-2" style="max-width: 540px; max-height: 234px;">Let's imagine together!</h1> -->
+        <% @clubs[0..3].each do |club| %>
+        <div class="col mb-4">
+          <div class="card mb-3" style="max-width: 540px">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <% if club.club_books.find_by(current_book: true).nil? %>
+                <img class="card-img-top background-image: cover"
+                  src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="">
+                <% else %>
+                <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                <% end %>
+              </div>
+              <div class="col-md-8 d-flex flex-column" style="height: 50vh;">
+                <div class="card-body card-body-club">
+                  <%= link_to club_path(club) do %>
+                  <h5 class="card-title"><%= club.name %></h5>
+                  <p class="card-text"><%= club.description %></p>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <% end %>
       </div>
     </div>
-    <% end %>
-  </div>
-  <div class="create-action">
-    <h3 class="display-4"><em>Have a book in mind?</em></h3>
-    <h2 class="display-2" style="font-weight: 700;"><%= link_to "Invent your own club...", new_club_path %></h2>
-  </div>
-
-  <div class="row row-cols-1 row-cols-md-2 py-5">
-    <% @clubs.drop(4).each do |club| %>
-    <div class="col mb-4">
-      <div class="card mb-3" style="max-width: 540px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <% if club.club_books.find_by(current_book: true).nil? %>
-            <img class="card-img-top background-image: cover"
-              src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
-              alt="">
-            <% else %>
-            <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
-            <% end %>
-          </div>
-          <div class="col-md-8 d-flex flex-column">
-            <div class="card-body">
-              <h5 class="card-title"><%= club.name %></h5>
-              <p class="card-text"><%= club.description %></p>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Created by <%= club.user.username.capitalize() %></small>
-              <h4> <%= link_to "Wanna see more??!", club_path(club) %> </h4>
-            </div>
-          </div>
-        </div>
+    <div class="tab-pane fade" id="create" role="tabpanel" aria-labelledby="create-tab">
+      <div class="create-action">
+        <h3 class="display-4"><em>Have a book in mind?</em></h3>
+        <h2 class="display-2" style="font-weight: 700;"><%= link_to "Invent your own club...", new_club_path %></h2>
       </div>
     </div>
-    <% end %>
-  </div>
-
-  <!-- <div class="testing" style="width: 800px; margin: 0 auto;">
-    <div class="container">
-      <form id="city-name">
-        <div class="form-row">
-          <div class="col-9">
-            <input type="text" class="form-control" placeholder="Change me :)">
-          </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+    <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
+      <div class="row row-cols-1 row-cols-md-2 py-5 d-flex flex-wrap">
+        <% @clubs.drop(4).each do |club| %>
+        <div class="col mb-4">
+          <div class="card mb-3">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <% if club.club_books.find_by(current_book: true).nil? %>
+                <img class="card-img-top background-image: cover"
+                  src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="">
+                <% else %>
+                <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                <% end %>
+              </div>
+              <div class="col-md-8 d-flex flex-column" style="height: 50vh;">
+                <div class="card-body card-body-club">
+                  <%= link_to club_path(club) do %>
+                  <h5 class="card-title"><%= club.name %></h5>
+                  <p class="card-text"><%= club.description %></p>
+                  <% end %>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </form>
+        <% end %>
+      </div>
     </div>
-  </div> -->
-</div>
-
+  </div>
 
 <%= javascript_pack_tag 'fetch-books' %>
