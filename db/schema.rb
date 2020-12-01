@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_27_201623) do
+ActiveRecord::Schema.define(version: 2020_12_01_025856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,17 @@ ActiveRecord::Schema.define(version: 2020_11_27_201623) do
     t.index ["user_id"], name: "index_clubs_on_user_id"
   end
 
+  create_table "invites", force: :cascade do |t|
+    t.string "email"
+    t.bigint "club_id", null: false
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.string "token"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["club_id"], name: "index_invites_on_club_id"
+  end
+
   create_table "room_messages", force: :cascade do |t|
     t.bigint "room_id", null: false
     t.bigint "user_id", null: false
@@ -119,6 +130,7 @@ ActiveRecord::Schema.define(version: 2020_11_27_201623) do
   add_foreign_key "club_memberships", "clubs"
   add_foreign_key "club_memberships", "users"
   add_foreign_key "clubs", "users"
+  add_foreign_key "invites", "clubs"
   add_foreign_key "room_messages", "rooms"
   add_foreign_key "room_messages", "users"
   add_foreign_key "rooms", "clubs"
