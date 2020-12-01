@@ -29,6 +29,7 @@
         <!-- <h1 class="display-3 bg-light text-white vertical ml-3 pl-4 pt-2 mr-2" style="max-width: 540px; max-height: 234px;">Let's imagine together!</h1> -->
         <% @clubs.each do |club| %>
         <div class="col mb-4">
+          <%= link_to club_path(club), class: "link-hover text-dark" do %>
           <div class="card mb-3 club-card rounded" style="max-width: 540px">
             <div class="cover-content pr-3 pl-3" style="height: 200px;"><p class="card-text"><%= club.description %></p></div>
             <div class="row no-gutters">
@@ -43,14 +44,13 @@
               </div>
               <div class="col-md-6 d-flex flex-column" style="height: 40vh;">
                 <div class="card-body card-body-club d-flex align-items-center">
-                  <%= link_to club_path(club) do %>
                   <h5 class="card-title"><%= club.name %></h5>
                   <!-- <p class="card-text"><%= club.description %></p> -->
-                  <% end %>
                 </div>
               </div>
             </div>
           </div>
+          <% end %>
         </div>
         <% end %>
       </div>
