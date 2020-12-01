@@ -5,14 +5,14 @@ class RoomsController < ApplicationController
   before_action :load_entities
 
   def index
-    # @rooms = []
-    # current_user.clubs.each do |club|
-    #   club.rooms.each do |room|
-    #     @rooms << room
-    #   end
-    # end
-    @club = Club.find(params[:club_id])
-    @rooms = @club.rooms
+    @rooms = []
+    current_user.clubs.each do |club|
+      club.rooms.each do |room|
+        @rooms << room
+      end
+    end
+    # @club = Club.find(params[:club_id])
+    # @rooms = @club.rooms
   end
 
   def new
