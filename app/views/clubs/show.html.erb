@@ -37,7 +37,7 @@
           <%= link_to "Go Back", clubs_path, class: "btn btn-sec" %>
           <% if @club_membership.id %>
             <%= link_to "Share with friends", "#", class: "btn btn-sec clipboard-btn", "data-clipboard-text" => club_url(@club) %>
-          <% elsif @club.user == current_user%>
+          <% elsif @club.user == current_user %>
             <h4>Invite your friends!</h4>
             <%= simple_form_for [ @club, @invite ] do |f| %>
               <%= f.input :email, label: false, placeholder: "Email" %>

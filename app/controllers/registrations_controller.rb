@@ -18,7 +18,12 @@ class RegistrationsController < Devise::RegistrationsController
       if resource.active_for_authentication?
         set_flash_message! :notice, :signed_up
         sign_up(resource_name, resource)
-        respond_with resource, location: after_sign_up_path_for(resource)
+        if @token.nil?
+          respond_with resource, location: after_sign_up_path_for(resource)
+        else
+          redirect_to club_path(club)
+          flash[:success] = "Congratulations!🎉 You're now a member of #{club.name}"
+        end 
       else
         set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
