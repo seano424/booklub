@@ -10,6 +10,8 @@ class Club < ApplicationRecord
   has_many :rooms, dependent: :destroy
   has_many :room_messages, through: :rooms
 
+  has_many :invites
+
   def create_room
     Room.create(name: self.name, club_id: self.id)
   end
