@@ -1,20 +1,21 @@
-<div class="container">
+<div class="container mt-5">
 
   <div class="card mb-3">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="<%= @external_book[:image] %>" class="img-fluid" alt="...">
-        <%= simple_form_for @book do |f| %>
-          <%= f.input :title, as: :hidden, input_html: { value: @external_book[:title] } %>
-          <%= f.input :syllabus, as: :hidden, input_html: { value: @external_book[:description] } %>
-          <%= f.input :author, as: :hidden, input_html: { value: @external_book[:author] } %>
-          <%= f.input :image_url, as: :hidden, input_html: { value: @external_book[:image_url] } %>
-          <%= f.submit "Add this book to your club", class: "btn btn-main" %>
+        <% if not current_user.created_clubs.empty? %>
+          <%= simple_form_for @book do |f| %>
+            <%= f.input :title, as: :hidden, input_html: { value: @external_book[:title] } %>
+            <%= f.input :syllabus, as: :hidden, input_html: { value: @external_book[:description] } %>
+            <%= f.input :author, as: :hidden, input_html: { value: @external_book[:author] } %>
+            <%= f.input :image_url, as: :hidden, input_html: { value: @external_book[:image] } %>
+            <%= f.submit "Add this book to your club", class: "btn btn-main" %>
+          <% end %>
         <% end %>
       </div>
       <div class="col-md-8">
         <div class="card-body">
-          <h2><%= @external_book[:title] %></h2>
           <h5 class="card-title"> <%= @external_book[:author] %></h5>
           <p class="card-text"><%= raw(@external_book[:description]) %></p>
         </div>
@@ -22,5 +23,5 @@
     </div>
   </div>
 
-  <%= link_to "Back to Clubs", clubs_path, class: "btn btn-sec" %>
+  <%= link_to "Back", :back, class: "btn btn-sec" %>
 </div>

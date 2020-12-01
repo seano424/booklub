@@ -12,7 +12,7 @@ class BookIdApiFetcher
     image_url = doc.at('image_url').content
     author = doc.search('name').first.text
     title = doc.at('title').content
-    
+
     google_url = "https://www.googleapis.com/books/v1/volumes?q=#{title}&langRestrict=en&key=#{ENV['GOOGLE_API_KEY']}"
     document_serialized = open(google_url).read
     document = JSON.parse(document_serialized)
@@ -30,7 +30,5 @@ class BookIdApiFetcher
     end
     
     { description: description, image: image, image_lg: image_lg, author: author, title: title }
-
-
   end
 end
