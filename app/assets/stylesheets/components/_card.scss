@@ -3,14 +3,13 @@
   height: 200px;
   object-fit: cover;
   flex-shrink: 0;
-    min-width: 100%;
-    min-height: 100%;
+  min-width: 100%;
+  min-height: 100%;
 }
 
 .featured-card {
   box-shadow: 0px 0px 4px #ccc;
 }
-
 
 .cards {
   display: grid;
@@ -23,7 +22,7 @@
   overflow: hidden;
   height: 120px;
   background: white;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
 }
@@ -47,13 +46,65 @@
 .card-product p {
   font-size: 12px;
   line-height: 1.4;
-  opacity: .7;
+  opacity: 0.7;
   margin-bottom: 0;
   margin-top: 8px;
 }
 
 .card-product .card-product-infos {
   padding: 16px;
+}
+
+.link-hover {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+// Club Card
+
+.club-card {
+  box-shadow: 0px 0px 4px #ccc;
+  border: none;
+  &:hover {
+    opacity: 0.9;
+    .cover-content {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+.cover-content {
+  
+  /* height: 200px; */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  z-index: 1;
+  background: white;
+  text-align: center;
+  padding-top: 50px;
+  visibility: hidden;
+  opacity: 0;
+  border: none;
+  transition: visibility 0s, opacity 0.3s ease-in-out;
+  // -webkit-transition: visibility 0s, opacity 0.2s ease-in-out;
+}
+
+.transition {
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 0, 0, 1);
+  transition-property: transform background;
+  transition-duration: 2s;
+  transition-delay: 1s;
+}
+
+.transition:hover {
+  transform: rotate(90deg);
+  background: rgba(255, 0, 0, 0);
 }
 
 // Smallest device
@@ -105,7 +156,6 @@
   border-radius: 5px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
-
 
 .card-product {
   overflow: hidden;
@@ -171,9 +221,21 @@
 
     .make-admin {
       position: absolute;
-      top: 60px;
+      top: 65px;
       right: 5px;
+      font-size: 14px;
+
+      .toggle + label::before {
+        height: 16px;
+        width: 32px;
+      }
+      .toggle + label::after {
+        height: 12px;
+        width: 12px;
+      }
+      .toggle:checked + label::after {
+        left: 18px;
+      }
     }
   }
 }
-
