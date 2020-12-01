@@ -4,64 +4,120 @@
   <title>The page you were looking for doesn't exist (404)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+  *, *:after, *:before {
+  box-sizing: border-box;
+}
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+html {
+  background: #1A1A1A;
+  font-family: "Playfair Display", "serif";
+  overflow: hidden;
+  color: #1A1A1A;
+}
+html:after, html:before {
+  content: '404';
+  position: absolute;
+  font-size: 100px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  bottom: 340px;
+  font-weight: 600;
+  z-index: 200;
+}
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+html:before {
+  content: 'Not all who wander are lost, but it looks like you are. ;)';
+  font-size: 22px;
+  font-weight: 400;
+  bottom: 330px;
+}
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+head {
+  display: block;
+  width: 35px;
+  height: 140px;
+  background: #646464;
+  border-bottom: 10px solid #333;
+  margin: auto;
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -webkit-animation: 5s find linear infinite;
+  animation: 5s find linear infinite;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+}
+head:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 25px 25px 0 25px;
+  border-color: #333 transparent transparent transparent;
+  width: 85px;
+  left: -25px;
+  top: 0;
+  box-shadow: 0px -10px 0 #FEAF33;
+}
+head:before {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 15px;
+  background: #FEAF33;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 40px;
+  border-radius: 6px;
+  box-shadow: 0px 0 1px 2px #333;
+}
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+meta {
+  display: block;
+  width: 250px;
+  height: 200px;
+  background: #FFFEE2;
+  border-radius: 50%;
+  position: absolute;
+  left: -107px;
+  bottom: 270px;
+  margin: auto;
+  text-align: center;
+  color: #333;
+  font-size: 90px;
+  line-height: 200px;
+  font-weight: 600;
+}
+meta:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 190px 75px 0 75px;
+  border-color: rgba(255, 254, 226, 0.3) transparent transparent transparent;
+  width: 230px;
+  left: 10px;
+  top: 100%;
+  -webkit-transform: translateY(-60px);
+  transform: translateY(-60px);
+}
+@-webkit-keyframes find {
+  25% {
+    -webkit-transform: rotate(25deg);
+    transform: rotate(25deg);
   }
+  0% , 50%  , 100% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  75% {
+    -webkit-transform: rotate(-25deg);
+    transform: rotate(-25deg);
+  }
+}
+@keyframes
   </style>
 </head>
-
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
-</body>
-</html>
