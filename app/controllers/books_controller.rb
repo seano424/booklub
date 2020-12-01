@@ -15,7 +15,7 @@ class BooksController < ApplicationController
   end
 
   def external
-    @external_book = BookIdApiFetcher.execute(params[:external_id])
+    @external_book = BookApiFetcher.execute(params[:external_id])
     @book = Book.new
   end
 
@@ -24,10 +24,15 @@ class BooksController < ApplicationController
 
   def create
     @book = Book.new(book_params)
-    if @book.save
-      redirect_to new_book_club_book_path(@book)
+    @existing_book = Book.find_by(title: params[:book][:title])
+    if @existing_book
+      redirect_to new_book_club_book_path(@existing_book)
     else
-      render :external
+      if @book.save
+        redirect_to new_book_club_book_path(@book)
+      else
+        render :external
+      end
     end
   end
 
