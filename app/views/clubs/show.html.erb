@@ -48,8 +48,17 @@
           <% else %>
             <img src="<%= @current_book.image_url %>"
               alt="<%= @current_book.title %>" class="book-cover-img">
-            <p><strong><%= @current_book.title %></strong></p>
-            <p><%= @current_book.author %></p>
+            <p class="mb-0"><strong><%= @current_book.title %></strong></p>
+            <p class="mt-0"><%= @current_book.author %></p>
+            
+            <% if current_user == @club.user %>
+              <%= simple_form_for [ @current_book, @club.club_books.find_by(book: @current_book) ] do |f| %>
+                <%= f.input :read_book, label: "Mark as read", input_html: { class: "toggle" } %>
+                <%= f.input :current_book, as: :hidden, input_html: { value: false } %>
+                <%= f.button :submit, "Confirm", class: "btn link-underlined" %>
+              <% end %>
+            <% end %>
+            
           <% end %>
         </div>
       </div>
