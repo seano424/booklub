@@ -1,35 +1,25 @@
-<div class="container py-5 mt-4">
-
-  <%= render partial: 'form' %>
-
-  <div class="testing" style="width: 800px; margin: 0 auto;">
-    <div class="container">
-      <form id="city-name">
-        <div class="form-row">
-          <div class="col-9">
-            <input type="text" class="form-control" placeholder="Change me :)">
-          </div>
-          <div class="col-auto">
-            <button type="submit" class="btn btn-primary mb-2">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
+<div class="banner"
+  style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1504802469493-cad9b622c4f7?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1051&q=80">
+  <div class="container">
+    <h1>Bringing <strong>book lovers</strong> <strong>together</strong></h1>
+    <p>Find a bookclub that excites you and people to share it with</p>
   </div>
+</div>
 
-  <h1 class="display-3 primary-header"><em>Let's find a bookclub!</em></h1>
-  <div class="row row-cols-1 row-cols-md-2 py-5">
-    <% @clubs[0..3].each do |club| %>
+<div class="container mx-5 row">
+  <div class="row row-cols-1 row-cols-md-2 py-5 d-flex flex-wrap">
+    <h1 class="display-3 bg-light text-white vertical ml-3 pl-4 pt-2" style="max-width: 540px; max-height: 234px;">Let's imagine together!</h1>
+    <% @clubs[0..4].each do |club| %>
     <div class="col mb-4">
       <div class="card mb-3" style="max-width: 540px;">
         <div class="row no-gutters">
           <div class="col-md-4">
             <% if club.club_books.find_by(current_book: true).nil? %>
-              <img class="card-img-top background-image: cover"
+            <img class="card-img-top background-image: cover"
               src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
               alt="">
             <% else %>
-              <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top"/>
+            <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
             <% end %>
           </div>
           <div class="col-md-8 d-flex flex-column">
@@ -49,7 +39,7 @@
     <% end %>
   </div>
   <div class="create-action">
-    <h3 class="display-4"><em>Not what you're looking for?</em></h3>
+    <h3 class="display-4"><em>Have a book in mind?</em></h3>
     <h2 class="display-2" style="font-weight: 700;"><%= link_to "Invent your own club...", new_club_path %></h2>
   </div>
 
@@ -60,11 +50,11 @@
         <div class="row no-gutters">
           <div class="col-md-4">
             <% if club.club_books.find_by(current_book: true).nil? %>
-              <img class="card-img-top background-image: cover"
+            <img class="card-img-top background-image: cover"
               src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
               alt="">
             <% else %>
-              <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top"/>
+            <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
             <% end %>
           </div>
           <div class="col-md-8 d-flex flex-column">
@@ -82,6 +72,21 @@
     </div>
     <% end %>
   </div>
+
+  <!-- <div class="testing" style="width: 800px; margin: 0 auto;">
+    <div class="container">
+      <form id="city-name">
+        <div class="form-row">
+          <div class="col-9">
+            <input type="text" class="form-control" placeholder="Change me :)">
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-2">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div> -->
 </div>
 
 
