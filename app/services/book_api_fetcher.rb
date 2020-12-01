@@ -9,40 +9,47 @@ class BookApiFetcher
 
   def execute
     # Goodreads
-    doc = Nokogiri::HTML(URI.open(@url))
-    description_text = doc.search('description').first.text
-    description = description_text[0, description_text.length - 3]
+    doc = Nokogiri::XML(URI.open(@url))
+    description = doc.search('description').first.text
+    image_url = doc.at('image_url').content
     author = doc.search('name').first.text
-    title = doc.at_xpath('//title').text
+    title = doc.at('title').content
+
+    # Google 1
     book_title = title.gsub(" ", "%20")
-    google_url          = "https://www.googleapis.com/books/v1/volumes?q=#{book_title}&langRestrict=en&key=#{ENV['GOOGLE_API_KEY']}"
+    book_author = author.gsub(" ", "%20")
+    google_url          = "https://www.googleapis.com/books/v1/volumes?q=#{book_title}%20#{book_author}&langRestrict=en&key=#{ENV['GOOGLE_API_KEY']}"
     document_serialized = open(google_url).read
     document            = JSON.parse(document_serialized)
     book_id = document['items'][0]['id']
-    
+
+    # Google 2
     id_url = "https://books.googleapis.com/books/v1/volumes/#{book_id}?key=#{ENV['GOOGLE_API_KEY']}"
-    doc2_serialized = open(id_url).read
-    doc2            = JSON.parse(doc2_serialized)
+    google_serialized = open(id_url).read
+    google            = JSON.parse(google_serialized)
 
-    isbn                = doc2['volumeInfo']['industryIdentifiers'][0]['identifier']
-    title               = doc2['volumeInfo']['title']
-    # authors           = doc2['volumeInfo']['authors']
-    description         = doc2['volumeInfo']['description']
-    page_count          = doc2['volumeInfo']['pageCount']
-    categories          = doc2['volumeInfo']['categories']
-    avg_rating          = doc2['volumeInfo']['avgRating']
-    image               = doc2['volumeInfo']['imageLinks']['thumbnail']
-    image_lg            = doc2['volumeInfo']['imageLinks']['large']
-    image_md            = doc2['volumeInfo']['imageLinks']['medium']
-    image_sm            = doc2['volumeInfo']['imageLinks']['small']
-
+    isbn                = google['volumeInfo']['industryIdentifiers'][0]['identifier']
+    # authors           = google['volumeInfo']['authors']
+    # description         = google['volumeInfo']['description']
+    page_count          = google['volumeInfo']['pageCount']
+    categories          = google['volumeInfo']['categories']
+    categories = categories.join(', ')
+    categories = categories.gsub(' / ', ', ')
+    categories = categories.gsub('Fiction, ', '')
+    categories = categories.gsub('General, ', '')
+    categories = categories.split(/, /)
+    avg_rating          = google['volumeInfo']['avgRating']
+    image               = google['volumeInfo']['imageLinks']['thumbnail']
+    image_lg            = google['volumeInfo']['imageLinks']['large']
+    image_md            = google['volumeInfo']['imageLinks']['medium']
+    image_sm            = google['volumeInfo']['imageLinks']['small']
     {
       author: author,
       title: title,
       description: strip_tags(description), 
-      page_count: page_count, 
-      categories: categories, 
-      avg_rating: avg_rating, 
+      page_count: page_count,
+      categories: categories,
+      avg_rating: avg_rating,
       image_sm: image_sm,
       image_md: image_md,
       image_lg: image_lg,

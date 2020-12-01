@@ -7,7 +7,6 @@
 </div>
 
 
-
 <div class="container mx-5 row">
 
 
@@ -28,7 +27,12 @@
       <div class="row row-cols-1 row-cols-md-3 py-5 d-flex flex-wrap">
         <!-- <h1 class="display-3 bg-light text-white vertical ml-3 pl-4 pt-2 mr-2" style="max-width: 540px; max-height: 234px;">Let's imagine together!</h1> -->
         <% @clubs.each do |club| %>
+        <!-- if  <p>  club.find_current_book.categories.include?('Fiction')  </p>-->
         <div class="col mb-4">
+          <% unless "No book" %>
+          <p> <%= club.find_current_book.title %> </p>
+          <% end %>
+          <div class="card mb-3" style="max-width: 540px">
           <%= link_to club_path(club), class: "link-hover text-dark" do %>
           <div class="card mb-3 club-card rounded" style="max-width: 540px">
             <div class="cover-content pr-3 pl-3" style="height: 200px;"><p class="card-text"><%= club.description %></p></div>
