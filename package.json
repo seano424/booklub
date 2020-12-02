@@ -10,7 +10,10 @@
     "clipboard": "^2.0.6",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
-    "turbolinks": "^5.2.0"
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^10.10.4",
+    "turbolinks": "^5.2.0",
+    "typed.js": "^2.0.11"
   },
   "version": "0.1.0",
   "devDependencies": {
