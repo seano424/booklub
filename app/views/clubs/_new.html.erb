@@ -1,7 +1,7 @@
 <div class="create-club-bg">
   <div class="container-form">
     <h1 class="text-center">Create A Club</h1>
-    <%= simple_form_for(@club) do |f| %>
+    <%= simple_form_for Club.new do |f| %>
       <%= f.input :name %>
       <%= f.input :description %>
       <%= f.input :language, as: :select, :collection => %w[Arabic Bengali English French German Hindi Japanese Javanese Korean Mandarin Portugese Russian Spanish Turkish Vietnamese], prompt: 'Select Language', label: false %>

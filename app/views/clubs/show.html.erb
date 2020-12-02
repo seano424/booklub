@@ -9,22 +9,9 @@
   <div id="overlay"></div>
   <h1 class="club-title"><%= @club.name %></h1>
   <% unless @club_membership.id || @club.user == current_user %>
-  <%= simple_form_for [ @club, @club_membership ] do |f| %>
-  <%= f.submit "Join this club", class: "btn btn-main join-btn hvr-underline" %>
-  <% end %>
-  <% end %>
-  <% if @club_membership.id %>
-  <%= link_to "Leave club", club_membership_path(@club_membership),
-                method: :delete,
-                data: { confirm: "Are you sure you want to leave this club?" },
-                class: "btn btn-sec leave-btn"
-    %>
-  <% elsif @club.user == current_user %>
-  <%= link_to "Delete club", club_path(@club),
-                method: :delete,
-                data: { confirm: "Are you sure you want to delete this club?" },
-                class: "btn btn-sec leave-btn"
-    %>
+    <%= simple_form_for [ @club, @club_membership ] do |f| %>
+      <%= f.submit "Join this club", class: "btn btn-main join-btn hvr-underline" %>
+    <% end %>
   <% end %>
 </div>
 
