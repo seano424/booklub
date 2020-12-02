@@ -31,6 +31,13 @@ import { initUpdateNavbarOnScroll } from './navbar';
 import { initRoomCable } from "../channels/room_channel";
 import { makeAdmin } from './make-admin';
 import { initClipboard } from './clipboard';
+import { loadDynamicBannerText } from './header';
+
+// document.addEventListener('turbolinks:load', () => {
+//   // Call your JS functions here
+//   // [...]
+
+// });
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -39,4 +46,5 @@ document.addEventListener('turbolinks:load', () => {
   initUpdateNavbarOnScroll();
   initRoomCable();
   makeAdmin();
+  loadDynamicBannerText();
 });
