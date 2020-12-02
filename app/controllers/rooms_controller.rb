@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
   before_action :load_entities
 
   def index
+    @club = Club.find(params[:club_id])
     @rooms = []
     current_user.clubs.each do |club|
       club.rooms.each do |room|
