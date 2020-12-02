@@ -5,27 +5,43 @@
     <p>Find a bookclub that excites you and people to share it with</p>
   </div>
 </div>
-<div class="container mx-5 row">
-  <ul class="nav nav-tabs" id="myTab" role="tablist">
-    <li class="nav-item" role="presentation">
-      <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">Browse All</a>
+
+<div class="container">
+  <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab"
+        aria-controls="pills-home" aria-selected="true">Home</a>
     </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="create-tab" data-toggle="tab" href="#create" role="tab" aria-controls="create" aria-selected="false">Create</a>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-fantasy-tab" data-toggle="pill" href="#pills-fantasy" role="tab"
+        aria-controls="pills-fantasy" aria-selected="false">Fantasy</a>
     </li>
-    <li class="nav-item" role="presentation">
-      <a class="nav-link" id="categories-tab" data-toggle="tab" href="#categories" role="tab" aria-controls="categories" aria-selected="false">Categories</a>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-fiction-tab" data-toggle="pill" href="#pills-fiction" role="tab"
+        aria-controls="pills-fiction" aria-selected="false">Fiction</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-mystery-tab" data-toggle="pill" href="#pills-mystery" role="tab"
+        aria-controls="pills-mystery" aria-selected="false">Mystery</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-science-fiction-tab" data-toggle="pill" href="#pills-science-fiction" role="tab"
+        aria-controls="pills-science-fiction" aria-selected="false">Science Fiction</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" id="pills-young-adult-tab" data-toggle="pill" href="#pills-young-adult" role="tab"
+        aria-controls="pills-young-adult" aria-selected="false">YA</a>
     </li>
   </ul>
-  <div class="tab-content" id="myTabContent">
-    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
-      <div class="row row-cols-1 row-cols-md-3 py-5 d-flex flex-wrap">
-        <!-- <h1 class="display-3 bg-light text-white vertical ml-3 pl-4 pt-2 mr-2" style="max-width: 540px; max-height: 234px;">Let's imagine together!</h1> -->
-        <% @clubs.each do |club| %>
-        <div class="col mb-4">
-          <%= link_to club_path(club), class: "link-hover text-dark" do %>
-          <div class="card mb-3 club-card rounded" style="max-width: 540px">
-            <div class="cover-content pr-3 pl-3" style="height: 200px;"><p class="card-text"><%= club.description %></p></div>
+  <div class="tab-content" id="pills-tabContent">
+    <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      <div class="row">
+        <% @clubs.each do |club|%>
+        <div class="col-lg-4">
+          <div class="card club-card mb-3" style="max-width: 540px;">
+            <div class="cover-content pr-3 pl-3" style="height: 200px;">
+              <p class="card-text"><%= club.description %></p>
+            </div>
             <div class="row no-gutters">
               <div class="col-md-6">
                 <% if club.club_books.find_by(current_book: true).nil? %>
@@ -36,60 +52,184 @@
                 <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
                 <% end %>
               </div>
-              <div class="col-md-6 d-flex flex-column" style="height: 40vh;">
-                <div class="card-body card-body-club d-flex align-items-center">
+              <div class="col-md-6">
+                <div class="card-body">
                   <h5 class="card-title"><%= club.name %></h5>
-                  <!-- <p class="card-text"><%= club.description %></p> -->
                 </div>
               </div>
             </div>
           </div>
-          <% end %>
         </div>
         <% end %>
       </div>
     </div>
-    <div class="tab-pane fade" id="create" role="tabpanel" aria-labelledby="create-tab">
-      <div class="create-action">
-        <h3 class="display-4"><em>Have a book in mind?</em></h3>
-        <h2 class="display-2" style="font-weight: 700;"><%= link_to "Invent your own club...", new_club_path %></h2>
-      </div>
-    </div>
-    <div class="tab-pane fade" id="categories" role="tabpanel" aria-labelledby="categories-tab">
-      <div class="row row-cols-1 row-cols-md-2 py-5 d-flex flex-wrap">
-        <% @clubs.each do |club| %>
-          <% unless club.find_current_book == "No book" %>
-            <% club.find_current_book.categories.map do |category| %>
-              <% if category.name == "Contemporary" %>
-                <div class="col mb-4">
-                  <div class="card mb-3">
-                    <div class="row no-gutters">
-                      <div class="col-md-4">
-                        <% if club.club_books.find_by(current_book: true).nil? %>
-                          <img class="card-img-top background-image: cover"
-                            src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
-                            alt="">
-                        <% else %>
-                          <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
-                        <% end %>
-                      </div>
-                      <div class="col-md-8 d-flex flex-column" style="height: 50vh;">
-                        <div class="card-body card-body-club">
-                          <%= link_to club_path(club) do %>
-                            <h5 class="card-title"><%= club.name %></h5>
-                            <p class="card-text"><%= club.description %></p>
-                          <% end %>
-                        </div>
-                      </div>
+    <div class="tab-pane fade" id="pills-fantasy" role="tabpanel" aria-labelledby="pills-fantasy-tab">
+      <div class="row">
+        <% @clubs.each do |club|%>
+          <% club.categories.each do |category| %>
+            <% if category.name.downcase.include? "fantasy" %>
+            <div class="col-lg-4">
+              <div class="card club-card mb-3" style="max-width: 540px;">
+                <div class="cover-content pr-3 pl-3" style="height: 200px;">
+                  <p class="card-text"><%= club.description %></p>
+                </div>
+                <div class="row no-gutters">
+                  <div class="col-md-6">
+                    <% if club.club_books.find_by(current_book: true).nil? %>
+                    <img class="card-img-top background-image: cover"
+                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                      alt="">
+                    <% else %>
+                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= club.name %></h5>
                     </div>
                   </div>
                 </div>
-              <% end %>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pills-fiction" role="tabpanel" aria-labelledby="pills-fiction-tab">
+      <div class="row">
+        <% @clubs.each do |club|%>
+          <% club.categories.each do |category| %>
+            <% if category.name.downcase.include? "fiction" %>
+            <div class="col-lg-4">
+              <div class="card club-card mb-3" style="max-width: 540px;">
+                <div class="cover-content pr-3 pl-3" style="height: 200px;">
+                  <p class="card-text"><%= club.description %></p>
+                </div>
+                <div class="row no-gutters">
+                  <div class="col-md-6">
+                    <% if club.club_books.find_by(current_book: true).nil? %>
+                    <img class="card-img-top background-image: cover"
+                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                      alt="">
+                    <% else %>
+                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= club.name %></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pills-mystery" role="tabpanel" aria-labelledby="pills-mystery-tab">
+      <div class="row">
+        <% @clubs.each do |club|%>
+          <% club.categories.each do |category| %>
+            <% if category.name.downcase.include? "mystery" %>
+            <div class="col-lg-4">
+              <div class="card club-card mb-3" style="max-width: 540px;">
+                <div class="cover-content pr-3 pl-3" style="height: 200px;">
+                  <p class="card-text"><%= club.description %></p>
+                </div>
+                <div class="row no-gutters">
+                  <div class="col-md-6">
+                    <% if club.club_books.find_by(current_book: true).nil? %>
+                    <img class="card-img-top background-image: cover"
+                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                      alt="">
+                    <% else %>
+                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= club.name %></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pills-science-fiction" role="tabpanel" aria-labelledby="pills-science-fiction-tab">
+      <div class="row">
+        <% @clubs.each do |club|%>
+          <% club.categories.each do |category| %>
+            <% if category.name.downcase.include? "science fiction" %>
+            <div class="col-lg-4">
+              <div class="card club-card mb-3" style="max-width: 540px;">
+                <div class="cover-content pr-3 pl-3" style="height: 200px;">
+                  <p class="card-text"><%= club.description %></p>
+                </div>
+                <div class="row no-gutters">
+                  <div class="col-md-6">
+                    <% if club.club_books.find_by(current_book: true).nil? %>
+                    <img class="card-img-top background-image: cover"
+                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                      alt="">
+                    <% else %>
+                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= club.name %></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="tab-pane fade" id="pills-young-adult" role="tabpanel" aria-labelledby="pills-young-adult-tab">
+      <div class="row">
+        <% @clubs.each do |club|%>
+          <% club.categories.each do |category| %>
+            <% if category.name.downcase.include? "young adult" %>
+            <div class="col-lg-4">
+              <div class="card club-card mb-3" style="max-width: 540px;">
+                <div class="cover-content pr-3 pl-3" style="height: 200px;">
+                  <p class="card-text"><%= club.description %></p>
+                </div>
+                <div class="row no-gutters">
+                  <div class="col-md-6">
+                    <% if club.club_books.find_by(current_book: true).nil? %>
+                    <img class="card-img-top background-image: cover"
+                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                      alt="">
+                    <% else %>
+                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                    <% end %>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <h5 class="card-title"><%= club.name %></h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
             <% end %>
           <% end %>
         <% end %>
       </div>
     </div>
   </div>
+</div>
+
 <%= javascript_pack_tag 'fetch-books' %>
 <%= javascript_pack_tag 'card-hide' %>
