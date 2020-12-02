@@ -33,11 +33,13 @@ class BookApiFetcher
     # description         = google['volumeInfo']['description']
     page_count          = google['volumeInfo']['pageCount']
     categories          = google['volumeInfo']['categories']
-    categories = categories.join(', ')
-    categories = categories.gsub(' / ', ', ')
-    categories = categories.gsub('Fiction, ', '')
-    categories = categories.gsub('General, ', '')
-    categories = categories.split(/, /)
+    unless categories.nil?
+      categories = categories.join(', ')
+      categories = categories.gsub(' / ', ', ')
+      categories = categories.gsub('Fiction, ', '')
+      categories = categories.gsub('General, ', '')
+      categories = categories.split(/, /)
+    end
     avg_rating          = google['volumeInfo']['avgRating']
     image               = google['volumeInfo']['imageLinks']['thumbnail']
     image_lg            = google['volumeInfo']['imageLinks']['large']
