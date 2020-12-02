@@ -10,6 +10,7 @@
             <%= f.input :syllabus, as: :hidden, input_html: { value: @external_book[:description] } %>
             <%= f.input :author, as: :hidden, input_html: { value: @external_book[:author] } %>
             <%= f.input :image_url, as: :hidden, input_html: { value: @external_book[:image] } %>
+            <%= f.input :categories, as: :hidden, input_html: { value: @external_book[:categories]} %>
             <%= f.submit "Add this book to your club", class: "btn btn-main" %>
           <% end %>
         <% end %>

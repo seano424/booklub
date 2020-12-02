@@ -38,7 +38,6 @@ class BookApiFetcher
       categories = categories.gsub(' / ', ', ')
       categories = categories.gsub('Fiction, ', '')
       categories = categories.gsub('General, ', '')
-      categories = categories.split(/, /)
     end
     avg_rating          = google['volumeInfo']['avgRating']
     image               = google['volumeInfo']['imageLinks']['thumbnail']

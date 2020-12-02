@@ -15,8 +15,10 @@ Rails.application.routes.draw do
       get "external"
     end
     resources :club_books, only: [ :new, :create, :edit, :update ]
+    resources :book_categories, only: [ :new, :create ]
   end
   resources :club_memberships, only: :destroy
   resources :club_books, only: :destroy
   resources :users, only: :show
+  resources :categories, only: [ :new, :create ]
 end
