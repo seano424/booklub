@@ -1,5 +1,5 @@
 <div class="mt-5 pt-3">
-     <h2>Your Chat Rooms</h2>
+     <h2><%= @club.name %> Chatrooms</h2>
     <div class="mb-3 mt-3 ml-4">
       <%= link_to new_club_room_path(@club), class: "btn btn-sec-small" do %>
         Create a room
@@ -9,12 +9,12 @@
     <% if @rooms.present? %>
       <nav class="nav flex-column ml-4">
         <% @rooms.each do |room| %>
-          <%= link_to room.name, club_room_path(@club, room), class: "room-nav" %>
+          <%= link_to room.name, club_room_path(@club, room), class: "room-nav hvr-underline" %>
         <% end %>
       </nav>
     <% else %>
       <div class="text-muted ml-4">
-        The are no rooms
+        There are no rooms
       </div>x
     <% end %>
 </div>

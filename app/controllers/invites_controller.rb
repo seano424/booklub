@@ -6,7 +6,7 @@ class InvitesController < ApplicationController
     if @invite.save
       # InviteMailer.new_user_invite(@invite, new_user_registration_url(invite_token: @invite.token)).deliver
       redirect_to @invite.club
-      flash[:success] = "#{new_user_registration_url(invite_token: @invite.token)}"
+      flash[:success] = "Your invite was successfully sent out! 💌"
     else
       redirect_to @invite.club
       flash[:alert] = "Something went wrong, please try again"
