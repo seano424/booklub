@@ -8,6 +8,9 @@
   left: 0;
   width: 100vw;
   transition: 0.8s background-color ease;
+  .avatar:hover {
+    cursor: pointer;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -24,7 +27,15 @@
 .navbar-black{
   background-color: black;
   opacity: 0.7;
+  &:hover {
+    opacity: 1;
+    z-index: 10;
+  }
+  .avatar:hover {
+    cursor: pointer;
+  }
 }
+
 
 // .hvr-underline-from-left {
 //   display: inline-block;
