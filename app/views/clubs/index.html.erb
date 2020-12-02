@@ -38,9 +38,10 @@
       <div class="row">
         <% @clubs.each do |club|%>
         <div class="col-lg-4">
-          <div class="card club-card mb-3" style="max-width: 540px;">
-            <div class="cover-content pr-3 pl-3" style="height: 200px;">
-              <p class="card-text"><%= club.description %></p>
+
+          <div class="card club-card rounded mb-3" style="max-width: 540px;">
+            <div class="cover-content pr-3 pl-3">
+              <p class="card-text cover-content-text pt-5"><%= club.description %></p>
             </div>
             <div class="row no-gutters">
               <div class="col-md-6">
@@ -52,9 +53,11 @@
                 <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
                 <% end %>
               </div>
-              <div class="col-md-6">
+              <div class="col-md-6 d-flex align-items-center">
                 <div class="card-body">
-                  <h5 class="card-title"><%= club.name %></h5>
+                  <%= link_to clubs_path(club), class: "stretched-link" do %>
+                    <h5 class="card-title"><%= club.name %></h5>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -66,165 +69,180 @@
     <div class="tab-pane fade" id="pills-fantasy" role="tabpanel" aria-labelledby="pills-fantasy-tab">
       <div class="row">
         <% @clubs.each do |club|%>
-          <% club.categories.each do |category| %>
-            <% if category.name.downcase.include? "fantasy" %>
-            <div class="col-lg-4">
-              <div class="card club-card mb-3" style="max-width: 540px;">
-                <div class="cover-content pr-3 pl-3" style="height: 200px;">
-                  <p class="card-text"><%= club.description %></p>
-                </div>
-                <div class="row no-gutters">
-                  <div class="col-md-6">
-                    <% if club.club_books.find_by(current_book: true).nil? %>
-                    <img class="card-img-top background-image: cover"
-                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
-                      alt="">
-                    <% else %>
-                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
-                    <% end %>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= club.name %></h5>
-                    </div>
-                  </div>
+        <% club.categories.each do |category| %>
+        <% if category.name.downcase.include? "fantasy" %>
+        <div class="col-lg-4">
+
+          <div class="card club-card rounded mb-3" style="max-width: 540px;">
+            <div class="cover-content pr-3 pl-3">
+              <p class="card-text cover-content-text pt-5"><%= club.description %></p>
+            </div>
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <% if club.club_books.find_by(current_book: true).nil? %>
+                <img class="card-img-top background-image: cover"
+                  src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="">
+                <% else %>
+                <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                <% end %>
+              </div>
+              <div class="col-md-6 d-flex align-items-center">
+                <div class="card-body">
+                  <%= link_to clubs_path(club), class: "stretched-link" do %>
+                    <h5 class="card-title"><%= club.name %></h5>
+                  <% end %>
                 </div>
               </div>
             </div>
-            <% end %>
-          <% end %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
         <% end %>
       </div>
     </div>
     <div class="tab-pane fade" id="pills-fiction" role="tabpanel" aria-labelledby="pills-fiction-tab">
       <div class="row">
         <% @clubs.each do |club|%>
-          <% club.categories.each do |category| %>
-            <% if category.name.downcase.include? "fiction" %>
-            <div class="col-lg-4">
-              <div class="card club-card mb-3" style="max-width: 540px;">
-                <div class="cover-content pr-3 pl-3" style="height: 200px;">
-                  <p class="card-text"><%= club.description %></p>
-                </div>
-                <div class="row no-gutters">
-                  <div class="col-md-6">
-                    <% if club.club_books.find_by(current_book: true).nil? %>
-                    <img class="card-img-top background-image: cover"
-                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
-                      alt="">
-                    <% else %>
-                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
-                    <% end %>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= club.name %></h5>
-                    </div>
-                  </div>
+        <% club.categories.each do |category| %>
+        <% if category.name.downcase.include? "fiction" %>
+        <div class="col-lg-4">
+
+          <div class="card club-card rounded mb-3" style="max-width: 540px;">
+            <div class="cover-content pr-3 pl-3">
+              <p class="card-text cover-content-text pt-5"><%= club.description %></p>
+            </div>
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <% if club.club_books.find_by(current_book: true).nil? %>
+                <img class="card-img-top background-image: cover"
+                  src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="">
+                <% else %>
+                <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                <% end %>
+              </div>
+              <div class="col-md-6 d-flex align-items-center">
+                <div class="card-body">
+                  <%= link_to clubs_path(club), class: "stretched-link" do %>
+                    <h5 class="card-title"><%= club.name %></h5>
+                  <% end %>
                 </div>
               </div>
             </div>
-            <% end %>
-          <% end %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
         <% end %>
       </div>
     </div>
     <div class="tab-pane fade" id="pills-mystery" role="tabpanel" aria-labelledby="pills-mystery-tab">
       <div class="row">
         <% @clubs.each do |club|%>
-          <% club.categories.each do |category| %>
-            <% if category.name.downcase.include? "mystery" %>
-            <div class="col-lg-4">
-              <div class="card club-card mb-3" style="max-width: 540px;">
-                <div class="cover-content pr-3 pl-3" style="height: 200px;">
-                  <p class="card-text"><%= club.description %></p>
-                </div>
-                <div class="row no-gutters">
-                  <div class="col-md-6">
-                    <% if club.club_books.find_by(current_book: true).nil? %>
-                    <img class="card-img-top background-image: cover"
-                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
-                      alt="">
-                    <% else %>
-                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
-                    <% end %>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= club.name %></h5>
-                    </div>
-                  </div>
+        <% club.categories.each do |category| %>
+        <% if category.name.downcase.include? "mystery" %>
+        <div class="col-lg-4">
+
+          <div class="card club-card rounded mb-3" style="max-width: 540px;">
+            <div class="cover-content pr-3 pl-3">
+              <p class="card-text cover-content-text pt-5"><%= club.description %></p>
+            </div>
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <% if club.club_books.find_by(current_book: true).nil? %>
+                <img class="card-img-top background-image: cover"
+                  src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="">
+                <% else %>
+                <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                <% end %>
+              </div>
+              <div class="col-md-6 d-flex align-items-center">
+                <div class="card-body">
+                  <%= link_to clubs_path(club), class: "stretched-link" do %>
+                    <h5 class="card-title"><%= club.name %></h5>
+                  <% end %>
                 </div>
               </div>
             </div>
-            <% end %>
-          <% end %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
         <% end %>
       </div>
     </div>
     <div class="tab-pane fade" id="pills-science-fiction" role="tabpanel" aria-labelledby="pills-science-fiction-tab">
       <div class="row">
         <% @clubs.each do |club|%>
-          <% club.categories.each do |category| %>
-            <% if category.name.downcase.include? "science fiction" %>
-            <div class="col-lg-4">
-              <div class="card club-card mb-3" style="max-width: 540px;">
-                <div class="cover-content pr-3 pl-3" style="height: 200px;">
-                  <p class="card-text"><%= club.description %></p>
-                </div>
-                <div class="row no-gutters">
-                  <div class="col-md-6">
-                    <% if club.club_books.find_by(current_book: true).nil? %>
-                    <img class="card-img-top background-image: cover"
-                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
-                      alt="">
-                    <% else %>
-                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
-                    <% end %>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= club.name %></h5>
-                    </div>
-                  </div>
+        <% club.categories.each do |category| %>
+        <% if category.name.downcase.include? "science fiction" %>
+        <div class="col-lg-4">
+
+          <div class="card club-card rounded mb-3" style="max-width: 540px;">
+            <div class="cover-content pr-3 pl-3">
+              <p class="card-text cover-content-text pt-5"><%= club.description %></p>
+            </div>
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <% if club.club_books.find_by(current_book: true).nil? %>
+                <img class="card-img-top background-image: cover"
+                  src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="">
+                <% else %>
+                <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                <% end %>
+              </div>
+              <div class="col-md-6 d-flex align-items-center">
+                <div class="card-body">
+                  <%= link_to clubs_path(club), class: "stretched-link" do %>
+                    <h5 class="card-title"><%= club.name %></h5>
+                  <% end %>
                 </div>
               </div>
             </div>
-            <% end %>
-          <% end %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
         <% end %>
       </div>
     </div>
     <div class="tab-pane fade" id="pills-young-adult" role="tabpanel" aria-labelledby="pills-young-adult-tab">
       <div class="row">
         <% @clubs.each do |club|%>
-          <% club.categories.each do |category| %>
-            <% if category.name.downcase.include? "young adult" %>
-            <div class="col-lg-4">
-              <div class="card club-card mb-3" style="max-width: 540px;">
-                <div class="cover-content pr-3 pl-3" style="height: 200px;">
-                  <p class="card-text"><%= club.description %></p>
-                </div>
-                <div class="row no-gutters">
-                  <div class="col-md-6">
-                    <% if club.club_books.find_by(current_book: true).nil? %>
-                    <img class="card-img-top background-image: cover"
-                      src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
-                      alt="">
-                    <% else %>
-                    <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
-                    <% end %>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="card-body">
-                      <h5 class="card-title"><%= club.name %></h5>
-                    </div>
-                  </div>
+        <% club.categories.each do |category| %>
+        <% if category.name.downcase.include? "young adult" %>
+        <div class="col-lg-4">
+
+          <div class="card club-card rounded mb-3" style="max-width: 540px;">
+            <div class="cover-content pr-3 pl-3">
+              <p class="card-text cover-content-text pt-5"><%= club.description %></p>
+            </div>
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <% if club.club_books.find_by(current_book: true).nil? %>
+                <img class="card-img-top background-image: cover"
+                  src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="">
+                <% else %>
+                <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                <% end %>
+              </div>
+              <div class="col-md-6 d-flex align-items-center">
+                <div class="card-body">
+                  <%= link_to clubs_path(club), class: "stretched-link" do %>
+                    <h5 class="card-title"><%= club.name %></h5>
+                  <% end %>
                 </div>
               </div>
             </div>
-            <% end %>
-          <% end %>
+          </div>
+        </div>
+        <% end %>
+        <% end %>
         <% end %>
       </div>
     </div>
