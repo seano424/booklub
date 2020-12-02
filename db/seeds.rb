@@ -73,9 +73,89 @@ books = Book.create!([
 
 puts "Finished with books!"
 
+puts "Seeding categories now..."
+categories = Category.create!([
+  {
+    name: 'Contemporary'
+  },
+  {
+    name: 'Fantasy'
+  },
+  {
+    name: 'Science Fiction'
+  },
+  {
+    name: 'Young Adult'
+  },
+  {
+    name: 'Mystery'
+  },
+  {
+    name: 'History'
+  },
+  {
+    name: 'General'
+  },
+  {
+    name: 'Thriller'
+  },
+  {
+    name: 'Fiction'
+  },
+  {
+    name: 'Literary'
+  },
+])
+
+puts "Seeding book_categories now..."
+book_categories = BookCategory.create([
+  {
+    book_id: books[0].id,
+    category_id: categories[rand(0..5)].id
+  },
+  {
+    book_id: books[0].id,
+    category_id: categories[rand(5..9)].id
+  },
+  {
+    book_id: books[1].id,
+    category_id: categories[rand(0..5)].id
+  },
+  {
+    book_id: books[1].id,
+    category_id: categories[rand(5..9)].id
+  },
+  {
+    book_id: books[2].id,
+    category_id: categories[rand(0..5)].id
+  },
+  {
+    book_id: books[2].id,
+    category_id: categories[rand(5..9)].id
+  },
+  {
+    book_id: books[3].id,
+    category_id: categories[rand(0..5)].id
+  },
+  {
+    book_id: books[3].id,
+    category_id: categories[rand(5..9)].id
+  },
+  {
+    book_id: books[4].id,
+    category_id: categories[rand(0..5)].id
+  },
+  {
+    book_id: books[4].id,
+    category_id: categories[rand(5..9)].id
+  },
+])
+
+
 puts "Seeding clubs now..."
 
-clubs = Club.create!([{
+clubs = Club.create!([
+  {
     name: "Grandpa Frank and Friends",
     description: "We are a Grandson and Grandaughter creating a group for other folks to find time to connect with their elders.",
     # club_photo: "https://images.unsplash.com/photo-1595123550441-d377e017de6a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1768&q=80",
@@ -145,6 +225,7 @@ club_books = ClubBook.create!([{
   read_book: false,
   current_book: true
 }])
+
 
 
 puts "All finished"
