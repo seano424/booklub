@@ -91,9 +91,9 @@
             aria-selected="false">Members (<%= @club.club_memberships.count + 1 %>)</a>
         </li>
         <% end %>
-        <%# <li class="nav-item">
-          <a class="nav-link" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="false">About</a>
-        </li> %>
+        <li class="nav-item">
+          <a class="nav-link" id="books-tab" data-toggle="tab" href="#books" role="tab" aria-controls="books" aria-selected="false">Our Books</a>
+        </li>
       </ul>
       <div class="tab-content" id="myTabContent">
         <div class="tab-pane fade show active" id="about-club" role="tabpanel" aria-labelledby="about-club-tab">
@@ -141,7 +141,44 @@
             <% end %>
           </div>
         </div>
-        <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab">This is the tab for about
+        <div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">
+          <div class="">
+            <h5 class="our-books-title">Previously Read</h5>
+            <div class="cards">
+              <% @club.club_books.where(read_book: true).each do |read| %>
+                <div class="book-card rounded">
+                  <div class="book-info rounded">
+                    <p class="mb-0"><strong><%= read.book.title %></strong></p>
+                    <p class="book-description mt-0"><%= read.book.syllabus %></p>
+                  </div>
+                  <div class="book-cover justify-content-center"><%= image_tag read.book.image_url, class: "book-cover" %></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="">
+            <h5 class="mt-4 our-books-title">Coming Soon</h5>
+            <div class="cards">
+              <% @club.club_books.where(read_book: false, current_book: false).each do |unread| %>
+                <div class="book-card rounded">
+                  <div class="book-info rounded">
+                    <p class="mb-0"><strong><%= unread.book.title %></strong></p>
+                    <p class="book-description mt-0"><%= unread.book.syllabus %></p>
+                  </div>
+                  <div class="book-cover justify-content-center"><%= image_tag unread.book.image_url, class: "book-cover" %></div>
+                  <div class="book-controls">
+                    <% if (current_user == @club_membership.admin || @club.user) && @current_book.nil? %>
+                      <%= simple_form_for [ @club, unread.book, unread ] do |f| %>
+                        <%= f.input :read_book, as: :hidden, input_html: { value: false } %>
+                        <%= f.input :current_book, label: "Read now", input_html: { class: "toggle" } %>
+                        <%= f.button :submit, "Confirm", class: "mt-0 link_underlined bolder hvr-underline" %>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
         </div>
       </div>
     </div>
