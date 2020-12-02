@@ -11,9 +11,23 @@
     color: $bkblue;
     transition-delay: 100ms;
     transition-duration: 100ms;
-
+    box-shadow: 0 0 5px $bkblue;
   }
+}
 
+.btn-main-small {
+  color: white;
+  background-color: $bkblue;
+  padding: 5px 10px;
+  border-radius: 25px;
+  font-weight: bolder;
+
+  &:hover {
+    background-color: white;
+    color: $bkblue;
+    transition-delay: 100ms;
+    transition-duration: 100ms;
+  }
 }
 
 .btn-sec {

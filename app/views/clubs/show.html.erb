@@ -48,8 +48,7 @@
           <% if @current_book.nil? %>
             <p>Not reading anything right now</p>
             <% if @club_membership.admin || @club.user == current_user %>
-            <!-- We need to make a user automatically an admin if they have created a club -->
-              <%= render partial: 'form' %>
+              <%= link_to "Add a book to your club!", club_books_path(@club), class: "hvr-underline" %>
             <% end %>
           <% else %>
             <img src="<%= @current_book.image_url %>"
@@ -58,11 +57,12 @@
             <p class="mt-0"><%= @current_book.author %></p>
 
             <% if current_user == @club.user %>
-              <%= simple_form_for [ @current_book, @club.club_books.find_by(book: @current_book) ] do |f| %>
+              <%= simple_form_for [ @club, @current_book, @club.club_books.find_by(book: @current_book) ] do |f| %>
                 <%= f.input :read_book, label: "Mark as read", input_html: { class: "toggle" } %>
                 <%= f.input :current_book, as: :hidden, input_html: { value: false } %>
-                <%= f.button :submit, "Confirm", class: "btn link-underlined hvr-underline" %>
+                <%= f.button :submit, "Confirm", class: "mt-0 hvr-underline" %>
               <% end %>
+              <%= link_to "Add more books to your club!", club_books_path(@club), class: "hvr-underline" %>
             <% end %>
 
           <% end %>

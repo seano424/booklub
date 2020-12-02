@@ -1,11 +1,11 @@
 <div class="container mt-5">
 
-  <div class="card mb-3">
+  <div class="card mb-3 mt-5">
     <div class="row no-gutters">
       <div class="col-md-4">
         <img src="<%= @external_book[:image] %>" class="img-fluid" alt="...">
-        <% if not current_user.created_clubs.empty? %>
-          <%= simple_form_for @book do |f| %>
+        <% unless current_user.created_clubs.empty? %>
+          <%= simple_form_for [ @club, @book ] do |f| %>
             <%= f.input :title, as: :hidden, input_html: { value: @external_book[:title] } %>
             <%= f.input :syllabus, as: :hidden, input_html: { value: @external_book[:description] } %>
             <%= f.input :author, as: :hidden, input_html: { value: @external_book[:author] } %>
@@ -17,6 +17,7 @@
       </div>
       <div class="col-md-8">
         <div class="card-body">
+          <h3 class="card-title"><%= @external_book[:title] %></h3>
           <h5 class="card-title"> <%= @external_book[:author] %></h5>
           <p class="card-text"><%= raw(@external_book[:description]) %></p>
         </div>

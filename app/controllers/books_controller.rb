@@ -3,18 +3,19 @@ class BooksController < ApplicationController
   require 'open-uri'
   
   def index
+    @club = Club.find(params[:club_id])
     if params[:query]
       @books = BooksApiFetcher.execute(params[:query])
-    else
-      @books = Book.all
     end
   end
 
   def show
-    @book = BookApiFetcher.execute(params[:id])
+    @book = Book.find(params[:id])
+    @club = Club.find(params[:club_id])
   end
 
   def external
+    @club = Club.find(params[:club_id])
     @external_book = BookApiFetcher.execute(params[:external_id])
     @book = Book.new
   end
@@ -23,14 +24,24 @@ class BooksController < ApplicationController
   end
 
   def create
+    @club = Club.find(params[:club_id])
     @book = Book.new(book_params)
     @categories = params.dig(:book, :categories).split(", ").uniq
     @existing_book = Book.find_by(title: params.dig("book", "title"))
     if @existing_book
-      redirect_to new_book_club_book_path(@existing_book)
+      if @club.find_current_book != "No book"
+        ClubBook.create(club: @club, book: @existing_book, read_book: false, current_book: false)
+      else
+        ClubBook.create(club: @club, book: @existing_book, read_book: false, current_book: true)
+      end
     else
       if @book.save
-        redirect_to new_book_club_book_path(@book)
+        if @club.find_current_book != "No book"
+          ClubBook.create(club: @club, book: @book, read_book: false, current_book: false)
+        else
+          ClubBook.create(club: @club, book: @book, read_book: false, current_book: true)
+        end
+        redirect_to @club
       else
         render :external
       end
