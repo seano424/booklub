@@ -69,3 +69,45 @@
     }
   }
 }
+
+.our-books-title {
+  border-bottom: 2px solid black;
+}
+
+.club-book-current-book {
+  margin-bottom: 0;
+}
+
+.book-card {
+  width: 130px;
+  position: relative;
+  .book-cover {
+    width: 100%;
+  }
+  .book-info {
+    height: 100px;
+    width: 100px;
+    box-shadow: 0 2px 5px gray;
+    background-color: white;
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    visibility: hidden;
+    opacity: 0.8;
+    transition: visibility 0.2s, opacity 0.3s, height 0.2s, width 0.2s ease-in-out;
+    z-index: 10;
+    font-size: 14px;
+    padding: 3px;
+  }
+  &:hover {
+    .book-info {
+      height: 200px;
+      width: 300px;
+      visibility: visible;
+      opacity: 1;
+      white-space: wrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
