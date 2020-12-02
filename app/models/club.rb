@@ -6,6 +6,8 @@ class Club < ApplicationRecord
   has_many :users, through: :club_memberships
   has_many :club_books, dependent: :destroy
   has_many :books, through: :club_books
+  has_many :book_categories, through: :books 
+  has_many :categories, through: :book_categories
 
   has_many :rooms, dependent: :destroy
   has_many :room_messages, through: :rooms

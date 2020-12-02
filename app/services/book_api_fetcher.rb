@@ -36,8 +36,8 @@ class BookApiFetcher
     unless categories.nil?
       categories = categories.join(', ')
       categories = categories.gsub(' / ', ', ')
-      categories = categories.gsub('Fiction, ', '')
-      categories = categories.gsub('General, ', '')
+      # categories = categories.gsub('Fiction, ', '')
+      # categories = categories.gsub('General, ', '')
     end
     avg_rating          = google['volumeInfo']['avgRating']
     image               = google['volumeInfo']['imageLinks']['thumbnail']
