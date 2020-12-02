@@ -28,7 +28,7 @@ class BookApiFetcher
     google_serialized = open(id_url).read
     google            = JSON.parse(google_serialized)
 
-    isbn                = google['volumeInfo']['industryIdentifiers'][0]['identifier']
+    
     # authors           = google['volumeInfo']['authors']
     # description         = google['volumeInfo']['description']
     page_count          = google['volumeInfo']['pageCount']
