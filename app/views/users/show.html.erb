@@ -1,9 +1,9 @@
 <div class="container mt-4 pt-5">
     <div class="main-body">
-          <nav aria-label="breadcrumb" class="main-breadcrumb">
+          <nav class="main-breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><%= link_to "Home", root_path, class: "" %></li>
-              <li class="breadcrumb-item active" aria-current="page">User Profile</li>
+              <li class="breadcrumb-item active">User Profile</li>
             </ol>
           </nav>
 
@@ -42,16 +42,16 @@
                       <h6 class="mb-0">Email</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      <%= current_user.username%>
+                      <%= current_user.email%>
                     </div>
                   </div>
                   <hr>
                   <div class="row">
                     <div class="col-sm-3">
-                      <h6 class="mb-0">Favorite Book</h6>
+                      <h6 class="mb-0">Favorite Genre</h6>
                     </div>
                     <div class="col-sm-9 text-secondary">
-                      The one about that guy with the face
+                      <%= Faker::Book.genre %>
                     </div>
                   </div>
                 </div>
@@ -60,20 +60,40 @@
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3 material-icons mr-2">Book Clubs I've Created</h6>
-                      <small>Created Clubs here</small>
-                      <div class="mb-3" style="height: 5px">
-                      </div>
+                      <h6 class="d-flex align-items-center text-center mb-3">Book Clubs I've Joined</h6>
+                      <small>
+                        <% if not @user.club_memberships.empty? %>
+                        <ul>
+                          <% @user.clubs.each do |club| %>
+                            <li>
+                            <%= link_to club.name, club_path(club), class: "link-to-club" %>
+                            </li>
+                            <% end %>
+                        <% else %>
+                        <h4 class="my-5">You don't have any clubs, <%= link_to "create one now!", new_club_path %></h4 class="my-5">
+                        <% end %>
+                        </ul>
+                    </small>
                     </div>
                   </div>
                 </div>
                 <div class="col-sm-6 mb-3">
                   <div class="card h-100">
                     <div class="card-body">
-                      <h6 class="d-flex align-items-center mb-3 material-icons mr-2">Book Clubs I've Joined</h6>
-                      <small>Joined Clubs here</small>
-                      <div class="mb-3" style="height: 5px">
-                      </div>
+                      <h6 class="d-flex align-items-center text-center mb-3">Book Clubs I've Created</h6>
+                      <small>
+                        <% if not @user.created_clubs.empty? %>
+                        <ul>
+                          <% @user.created_clubs.each do |created_club| %>
+                            <li>
+                            <%= link_to created_club.name, club_path(created_club), class: "link-to-club" %>
+                            </li>
+                            <% end %>
+                        <% else %>
+                        <h4 class="my-5">You don't have any clubs, <%= link_to "create one now!", new_club_path %></h4 class="my-5">
+                        <% end %>
+                        </ul>
+                      </small>
                     </div>
                   </div>
                 </div>
