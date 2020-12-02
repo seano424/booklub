@@ -48,7 +48,7 @@
           <% if @current_book.nil? %>
             <p>Not reading anything right now</p>
             <% if @club_membership.admin || @club.user == current_user %>
-              <%= link_to "Add a book to your club!", club_books_path(@club), class: "hvr-underline" %>
+              <%= link_to "Add a book to your club!", club_books_path(@club), class: "hvr-underline", :style=> 'text-decoration:none;' %>
             <% end %>
           <% else %>
             <img src="<%= @current_book.image_url %>"
@@ -103,7 +103,7 @@
           <ul class="list-group list-group-flush">
             <% @club.rooms.each do |room| %>
             <li class="list-group-item">
-              <%= link_to room.name, club_room_path(@club, room), class: "chat-link"%>
+              <%= link_to room.name, club_room_path(@club, room), class: "chat-link", :style=> 'text-decoration:none;'%>
             </li>
             <% end  %>
           </ul>
