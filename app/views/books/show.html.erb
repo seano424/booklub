@@ -2,17 +2,7 @@
   <div class="card mb-3 mt-5">
     <div class="row no-gutters">
       <div class="col-md-4">
-        <img src="<%= @book.image_url %>" class="img-fluid w-50 ml-3 mt-3" alt="...">
-        <% unless current_user.created_clubs.empty? %>
-          <%= simple_form_for [ @club, @book ] do |f| %>
-            <%= f.input :title, as: :hidden, input_html: { value: @book[:title] } %>
-            <%= f.input :syllabus, as: :hidden, input_html: { value: @book[:description] } %>
-            <%= f.input :author, as: :hidden, input_html: { value: @book[:author] } %>
-            <%= f.input :image_url, as: :hidden, input_html: { value: @book[:image] } %>
-            <%= f.input :categories, as: :hidden, input_html: { value: @book[:categories]} %>
-            <%= f.submit "Add this book to your club", class: "btn btn-main mb-3" %>
-          <% end %>
-        <% end %>
+        <img src="<%= @book.image_url %>" class="img-fluid w-50 ml-3 mt-3 mb-3" alt="...">
       </div>
       <div class="col-md-8">
         <div class="card-body">
@@ -25,4 +15,3 @@
   </div>
   <%= link_to "Back", :back, class: "btn btn-sec" %>
 </div>
-

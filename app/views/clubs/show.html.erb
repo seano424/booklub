@@ -149,9 +149,16 @@
                 <div class="book-card rounded">
                   <div class="book-info rounded">
                     <p class="mb-0"><strong><%= read.book.title %></strong></p>
-                    <p class="book-description mt-0"><%= read.book.syllabus %></p>
+                    <p class="book-description mt-0">
+                      <%= read.book.syllabus[0..300] %>... 
+                      <%= link_to "Read more", club_book_path(@club, read.book.id) %>
+                    </p>
                   </div>
-                  <div class="book-cover justify-content-center"><%= image_tag read.book.image_url, class: "book-cover" %></div>
+                  <div class="book-cover justify-content-center">
+                    <%= link_to club_book_path(@club, read.book.id) do %>
+                      <%= image_tag read.book.image_url, class: "book-cover" %>
+                    <% end %>
+                  </div>
                 </div>
               <% end %>
             </div>
@@ -163,7 +170,10 @@
                 <div class="book-card rounded">
                   <div class="book-info rounded">
                     <p class="mb-0"><strong><%= unread.book.title %></strong></p>
-                    <p class="book-description mt-0"><%= unread.book.syllabus %></p>
+                    <p class="book-description mt-0">
+                      <%= unread.book.syllabus[0..300] %>... 
+                      <%= link_to "Read more", club_book_path(@club, unread.book.id) %>
+                    </p>
                   </div>
                   <div class="book-cover justify-content-center"><%= image_tag unread.book.image_url, class: "book-cover" %></div>
                   <div class="book-controls">
