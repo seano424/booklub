@@ -44,7 +44,7 @@ document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   const chatContainer = document.querySelector('.chat')
-    chatContainer.scrollTop = chatContainer.scrollHeight
+  if (chatContainer) chatContainer.scrollTop = chatContainer.scrollHeight
   initClipboard();
   initUpdateNavbarOnScroll();
   initRoomCable();
