@@ -1,19 +1,18 @@
 .btn-main {
-  color: white;
-  background-color: $bkblue;
   padding: 10px 20px;
   border-radius: 25px;
+  border: none;
   margin: 5px;
   font-weight: bolder;
-
+  transition: background-color 0.2s ease-in-out;
+  background-color: $bkblue;
+  color: white;
   &:hover {
-    background-color: white;
-    color: $bkblue;
-    transition-delay: 100ms;
-    transition-duration: 100ms;
-    box-shadow: 0 0 5px $bkblue;
+    padding: 12px 21px;
+    color: white;
   }
 }
+
 
 .btn-main-small {
   color: white;

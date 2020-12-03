@@ -5,6 +5,10 @@
   font-size: 1.5rem;
 }
 
+.nav-link {
+  font-family: $body-font;
+}
+
 .tabs-underlined .tab-underlined {
   color: black;
   padding: 8px;
@@ -22,8 +26,8 @@
 
 .navigation-tabs .nav-item a {
   color: rgba(0, 0, 0, 0.5);
-  font-family: $body-font;
-  font-size: 1.2rem;
+  font-family: $headers-font;
+  font-size: 1.5rem;
   &:hover {
     color: rgba(0, 0, 0, 0.8);
   }
