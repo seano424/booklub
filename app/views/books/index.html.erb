@@ -1,23 +1,24 @@
-
 <div class="container">
   <br>
   <% if @books.nil? %>
     <h2 class="mt-5 text-center">Let's find a book!</h2>
-    <div class="mt-5"><%= render 'clubs/form' %></div>
+    <div class="mt-5 api-call"><%= render 'clubs/form' %></div>
     <div class="powered-by text-right">
       <small>powered by</small>
       <img src="https://s.gr-assets.com/assets/press/logo-fe2ef7d630d5f23daf46230e8592cd99.png" 
         alt="goodreads logo"
         class="goodreads-logo">
     </div>
+    <div id="loader" class="loader-5 mx-auto d-none"><span></span></div>
   <% else %>
-    <div class="mt-5"><%= render 'clubs/form' %></div>
+    <div class="mt-5 api-call"><%= render 'clubs/form' %></div>
     <div class="powered-by text-right">
       <small>powered by</small>
       <img src="https://s.gr-assets.com/assets/press/logo-fe2ef7d630d5f23daf46230e8592cd99.png" 
         alt="goodreads logo"
         class="goodreads-logo mt-0">
     </div>
+    <div id="loader" class="loader-5 mx-auto d-none"><span></span></div>
     <div class="row row-cols-1 row-cols-md-2 py-5">
     <% @books[0..9].each do |book| %>
       <div class="col mb-4">
@@ -39,7 +40,6 @@
       </div>
     <% end %>
   <% end %>
-  </div>
 </div>
 
 <!-- = link_to "some text", some_path, id: "some_id", data: {value: @some_value}  #where @some_value is set in your controller -->
