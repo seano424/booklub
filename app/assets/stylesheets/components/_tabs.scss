@@ -20,19 +20,20 @@
   border-bottom: 3px solid $bkblue;
 }
 
-.nav-tabs .nav-item a {
+.navigation-tabs .nav-item a {
   color: rgba(0, 0, 0, 0.5);
   font-family: $body-font;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   &:hover {
     color: rgba(0, 0, 0, 0.8);
   }
 }
 
-.nav-tabs .nav-item .active {
+.navigation-tabs .nav-item .active {
   background-color: transparent;
   border-bottom: 3px solid $bkblue;
   color: rgba(0, 0, 0, 1);
+  font-weight: bolder;
 }
 
 
