@@ -4,23 +4,26 @@
 </h2>
 
 <div class="row">
-  <div class="col-12 col-md-2 mt-3">
-    <ul>
-      <li><%= link_to "Club Page", club_path, class: "", :style=> 'text-decoration:none;' %></li>
+  <div class="col-4 mt-3">
+    <ul class="col-4 mt-3 pr-4">
+      <li><%= link_to "Club Page", club_path, class: "links-nav", :style=> 'text-decoration:none;' %></li>
       <li><%= link_to "Create a Room", new_club_room_path(@club), class: '', :style=> 'text-decoration:none;' %></li>
     </ul>
 
 
   </div>
 
-  <div class="col mr-4 mt-3">
+  <div class="col-4 mt-3">
     <div class="chat" data-channel-subscribe="room">
       <% @room_messages.each do |room_message| %>
         <div class="chat-message-container" id="messages" data-room-id="<%= @room.id  %>">
           <div class="row no-gutters">
             <div class="col-auto text-center">
-                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80" class="avatar-chat" alt="">
-
+              <% if current_user.profile_photo.attached? %>
+                <%= cl_image_tag current_user.profile_photo.key, class: "avatar-chat" %>
+              <% else %>
+                <%= image_tag "https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80", class: "avatar-chat" %>
+              <% end %>
             </div>
 
             <div class="col">
@@ -30,7 +33,7 @@
                 </p>
                 <div class="text-right mb-2 mr-2">
                   <small>
-                    <%= Time.now.to_s(:time) %>
+                    <%= room_message.created_at.strftime("%a %b %e at %l:%M%p") %>
                   </small>
                 </div>
               </div>
@@ -45,12 +48,13 @@
         <%= form.input :message, as: :string,
                                  wrapper: false,
                                  label: false,
+                                 placeholder: "Write your message here!",
                                  input_html: {
                                    class: 'chat-input'
                                  } %>
-<!--         <div class="input-group-append">
- -->          <%= form.submit "Send", class: 'btn btn-chat-input chat-input' %>
-       <!--  </div> -->
+          <div class="input-group-append">
+        <%= form.submit "Send", class: 'btn btn-chat-input chat-input' %>
+          </div>
       </div>
 
       <%= form.input :room_id, as: :hidden %>
