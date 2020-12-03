@@ -29,7 +29,7 @@
               <%= f.input :password_confirmation,
                             required: true,
                             input_html: { autocomplete: "new-password" } %>
-              <%= f.input :profile_photo, as: :file %>
+              <%= f.input :profile_photo, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo'}, label: '📷 Upload a profile photo' %>
               <% if @token != nil %>
                 <%= f.hidden_field :invite_token, value: @token %>
               <% end %>
