@@ -13,24 +13,6 @@
 @import "components/index";
 @import "pages/index";
 
-.link-underlined {
-  border-bottom: 2px solid $bkblue;
-  font-weight: bolder;
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-$size: 30px;
-
-.social-share-button {
-  .ssb-icon {
-    background-size: $size $size;
-    height: $size;
-    width: $size;
-  }
-}
-
 .site {
   display: flex;
   min-height: 100vh;
