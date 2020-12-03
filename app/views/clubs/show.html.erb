@@ -1,8 +1,12 @@
+<% content_for :meta_title, "#{@club.name} is on #{DEFAULT_META["meta_club_name"]}" %>
+<% content_for :meta_description, @club.description %>
+<% content_for :meta_image, cl_image_path(@club.cover_photo.path) %>
+
 <% if @club.cover_photo.attached? %>
-  <div class="banner" 
+  <div class="banner"
   style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_tag @club.cover_photo.key %>')">
 <% else %>
-  <div class="banner" 
+  <div class="banner"
   style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80)">
 <% end %>
     <div class="container">
@@ -142,7 +146,7 @@
                   <div class="book-info rounded">
                     <p class="mb-0"><strong><%= read.book.title %></strong></p>
                     <p class="book-description mt-0">
-                      <%= read.book.syllabus[0..300] %>... 
+                      <%= read.book.syllabus[0..300] %>...
                       <%= link_to "Read more", club_book_path(@club, read.book.id) %>
                     </p>
                   </div>
@@ -163,7 +167,7 @@
                   <div class="book-info rounded">
                     <p class="mb-0"><strong><%= unread.book.title %></strong></p>
                     <p class="book-description mt-0">
-                      <%= unread.book.syllabus[0..300] %>... 
+                      <%= unread.book.syllabus[0..300] %>...
                       <%= link_to "Read more", club_book_path(@club, unread.book.id) %>
                     </p>
                   </div>
