@@ -1,6 +1,7 @@
 import consumer from "./consumer";
 
 const initRoomCable = () => {
+  const chatContainer = document.querySelector('.chat')
   const messagesContainer = document.getElementById('messages');
   console.log(messagesContainer)
   if (messagesContainer) {
@@ -10,6 +11,7 @@ const initRoomCable = () => {
       received(data) {
         console.log(data)
         messagesContainer.insertAdjacentHTML('beforeend', data);
+        chatContainer.scrollTop = chatContainer.scrollHeight
       },
     });
   }
