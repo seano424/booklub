@@ -1,6 +1,6 @@
 
 .chat {
-  border: 1px solid lighten(gray, 40%);
+  border: 1px solid lighten(#5700FF, 30%);
   background: lighten(#5700FF, 50%);
   height: 50vh;
   border-radius: 5px 5px 0 0;
@@ -9,7 +9,7 @@
 }
 
 .chat-input {
-  border: 5px 5px 0px 0px solid lighten(gray, 40%);
+  border: 5px 5px 0px 0px solid lighten(#5700FF, 30%);
   border-radius: 0  0 0px 0px;
   height: 5vh;
   // box-shadow: 0 2px 5px #5700FF;

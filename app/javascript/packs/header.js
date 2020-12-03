@@ -1,8 +1,7 @@
 import Typed from 'typed.js';
 
-const banner = document.getElementById("banner-typed-text")
-
 const loadDynamicBannerText = () => {
+  const banner = document.getElementById("banner-typed-text")
   if (banner) {
     new Typed('#banner-typed-text', {
       strings: ["Book lovers &#129299;", "Booklore &#128218;", "Booklub"],

@@ -1,6 +1,6 @@
 <% content_for :meta_title, "#{@club.name} is on #{DEFAULT_META["meta_club_name"]}" %>
 <% content_for :meta_description, @club.description %>
-<% content_for :meta_image, @club.cover_photo.attached? ? cl_image_path(@club.cover_photo.path) : image_url("https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80") %>
+<% content_for :meta_image, @club.cover_photo.attached? ? cl_image_path(@club.cover_photo.key) : image_url("https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80") %>
 
 <!-- Banner -->
 <% if @club.cover_photo.attached? %>
@@ -95,6 +95,7 @@
       <!-- Tabs Section -->
       <div class="col-8 club-tabs" style="box-shadow: 0px 0px 4px #ccc;">
         <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
+
           <li class="nav-item">
             <a class="nav-link active" id="about-club-tab" data-toggle="tab" href="#about-club" role="tab"
               aria-controls="about-club" aria-selected="true">About this club</a>
@@ -144,6 +145,7 @@
               <% @club.users.each do |user| %>
               <div class="member-card">
                 <% if user.profile_photo.attached? %>
+
                 <%= cl_image_tag user.profile_photo.key, class: "avatar-large member-avatar" %>
                 <% else %>
                 <img
