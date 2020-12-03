@@ -55,6 +55,19 @@
           <% end %>
             <p class="mb-0"><strong><%= @current_book.title %></strong></p>
             <p class="mt-0"><%= @current_book.author %></p>
+              <% if @club_membership.id %>
+              <%= link_to "Leave club", club_membership_path(@club_membership),
+                            method: :delete,
+                            data: { confirm: "Are you sure you want to leave this club?" },
+                            class: ""
+                %>
+              <% elsif @club.user == current_user %>
+              <%= link_to "Delete club", club_path(@club),
+                            method: :delete,
+                            data: { confirm: "Are you sure you want to delete this club?" },
+                            class: ""
+                %>
+              <% end %>
 
             <% if @club_membership.admin || @club.user == current_user %>
               <%= simple_form_for [ @club, @current_book, @club.club_books.find_by(book: @current_book) ] do |f| %>
@@ -102,7 +115,7 @@
           <ul class="list-group list-group-flush">
             <% @club.rooms.each do |room| %>
             <li class="list-group-item">
-              <%= link_to room.name, club_room_path(@club, room), class: "chat-link", :style=> 'text-decoration:none;'%>
+              <%= link_to room.name, club_room_path(@club, room), class: "stretched-link chat-link", :style=> 'text-decoration:none;'%>
             </li>
             <% end  %>
           </ul>

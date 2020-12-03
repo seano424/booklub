@@ -23,7 +23,7 @@
   color: black;
 
   &:hover {
-    background-color: #5500ff0c;
+    background-color: transparent;
     &::after {
       content: " 💬";
     }
