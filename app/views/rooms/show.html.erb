@@ -4,7 +4,7 @@
 </h2>
 
 <div class="row">
-  <div class="col-12 col-md-2 mt-3">
+  <div class="col-4 mt-3">
     <ul>
       <li><%= link_to "Club Page", club_path, class: "", :style=> 'text-decoration:none;' %></li>
       <li><%= link_to "Create a Room", new_club_room_path(@club), class: '', :style=> 'text-decoration:none;' %></li>
@@ -13,7 +13,7 @@
 
   </div>
 
-  <div class="col mr-4 mt-3">
+  <div class="col-8 mt-3">
     <div class="chat" data-channel-subscribe="room">
       <% @room_messages.each do |room_message| %>
         <div class="chat-message-container" id="messages" data-room-id="<%= @room.id  %>">
