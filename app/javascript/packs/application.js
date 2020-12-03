@@ -32,6 +32,7 @@ import { initRoomCable } from "../channels/room_channel";
 import { makeAdmin } from './make-admin';
 import { initClipboard } from './clipboard';
 import { loadDynamicBannerText } from './header';
+import { loader } from './loader';
 
 // document.addEventListener('turbolinks:load', () => {
 //   // Call your JS functions here
@@ -49,4 +50,5 @@ document.addEventListener('turbolinks:load', () => {
   initRoomCable();
   makeAdmin();
   loadDynamicBannerText();
+  loader();
 });
