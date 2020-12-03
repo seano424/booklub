@@ -12,16 +12,18 @@
         <li class="nav-item active">
           <div class= "search row align-right" >
             <%= form_tag clubs_path, method: :get do %>
+            <div class="search-container">
               <%= text_field_tag :query,
                 params[:query],
                 class: "form-control",
+                id: "search-field",
                 placeholder: "search for clubs"
               %>
             <% end %>
           </div>
         <li class="nav-item dropdown ml-4 mr-4">
           <% if current_user.profile_photo.attached? %>
-            <%= cl_image_tag current_user.profile_photo.key, class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+            <%= cl_image_tag current_user.profile_photo.key, class: "avatar dropdown-toggle ml-2", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% else %>
             <%= image_tag "https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
@@ -32,15 +34,17 @@
           </div>
         </li>
       <% else %>
-       <div class= "search row align-right" >
-          <%= form_tag clubs_path, method: :get do %>
-            <%= text_field_tag :query,
-              params[:query],
-              class: "form-control",
-              placeholder: "search for clubs"
-            %>
-          <% end %>
-        </div>
+       <<div class= "search row align-right" >
+            <%= form_tag clubs_path, method: :get do %>
+            <div class="search-container">
+              <%= text_field_tag :query,
+                params[:query],
+                class: "form-control",
+                id: "search-field",
+                placeholder: "search for clubs"
+              %>
+            <% end %>
+          </div>
         <li class="nav-item ml-4 mr-1 hvr-underline">
           <%= link_to "Login", new_user_session_path, class: "nav-link text-white" %>
         </li>
