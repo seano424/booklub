@@ -38,8 +38,11 @@
               <%= link_to "Add a book to your club!", club_books_path(@club), class: "hvr-underline", :style=> 'text-decoration:none;' %>
             <% end %>
           <% else %>
+          <!-- /clubs/:club_id/books/:id(.:format) -->
+          <%= link_to club_book_path(@club) do %>
             <img src="<%= @current_book.image_url %>"
               alt="<%= @current_book.title %>" class="book-cover-img">
+          <% end %>
             <p class="mb-0"><strong><%= @current_book.title %></strong></p>
             <p class="mt-0"><%= @current_book.author %></p>
 

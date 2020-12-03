@@ -1,33 +1,38 @@
-<div class="container">
-  <br>
-  <div class="card mb-3 mt-5">
+<div class="container pt-5">
+  <div class="card mb-3 mt-5 pb-5 pt-5" style="box-shadow: 0 0 15px rgba(0,0,0,0.2);">
     <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="<%= @external_book[:image] %>" class="img-fluid m-3" alt="...">
-        <div>
-          <img src="https://books.google.com/googlebooks/images/poweredby.png" alt="google-logo" class="mt-2 ml-2">
-        </div>
+      <div class="col-md-4 d-flex flex-md-column-reverse justify-content-end">
+        <img src="<%= @external_book[:image] %>" class="img-fluid img-book align-self-center" alt="..." style="width: 42%;">
         <% unless current_user.created_clubs.empty? %>
-          <%= simple_form_for [ @club, @book ] do |f| %>
-            <%= f.input :title, as: :hidden, input_html: { value: @external_book[:title] } %>
-            <%= f.input :syllabus, as: :hidden, input_html: { value: @external_book[:description] } %>
-            <%= f.input :author, as: :hidden, input_html: { value: @external_book[:author] } %>
-            <%= f.input :image_url, as: :hidden, input_html: { value: @external_book[:image] } %>
-            <%= f.input :categories, as: :hidden, input_html: { value: @external_book[:categories]} %>
-            <%= f.submit "Add this book to your club", class: "btn btn-main" %>
+          <%= simple_form_for [ @club, @book ], :html=> { class: 'd-flex justify-content-center' } do |f| %>
+          <%= f.input :title, as: :hidden, input_html: { value: @external_book[:title] } %>
+          <%= f.input :syllabus, as: :hidden, input_html: { value: @external_book[:description] } %>
+          <%= f.input :author, as: :hidden, input_html: { value: @external_book[:author] } %>
+          <%= f.input :image_url, as: :hidden, input_html: { value: @external_book[:image] } %>
+          <%= f.input :categories, as: :hidden, input_html: { value: @external_book[:categories]} %>
+          <%= f.submit "Add to bookclub", class: "btn btn-main btn-external" %>
           <% end %>
-        <% end %>
+          <% end %>
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
+      <div class="col-md-8 pr-5">
+        <div class="card-body pt-0">
           <h3 class="card-title"><%= @external_book[:title] %></h3>
-          <h5 class="card-title"> <%= @external_book[:author] %></h5>
+          <h5 class="card-title"> by <%= @external_book[:author] %></h5>
           <p class="card-text"><%= raw(@external_book[:description]) %></p>
         </div>
+        <%= link_to :back, class: "text-primary d-flex justify-content-end pr-3 pt-3 pb-3", :style=> 'text-decoration:none;' do %>
+            <!-- <i class="icon-caret-right"></i> -->
+            <i class="fas fa-arrow-left" style="font-size: 20px;">Back to Browse</i>
+          <% end %>
       </div>
     </div>
   </div>
-
-  <%= link_to "Back", :back, class: "btn btn-sec" %>
 </div>
 
+<!-- papayawhip -->
+<!-- style: "position: relative;
+  
+            left: 43rem;" -->
+<!-- <div>
+  <img src="https://books.google.com/googlebooks/images/poweredby.png" alt="google-logo" class="mt-2 ml-2 img-google" style="width: 40%;">
+</div> -->

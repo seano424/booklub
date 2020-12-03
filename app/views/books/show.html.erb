@@ -1,18 +1,21 @@
 <div class="container">
   <br>
-  <div class="card mb-3 mt-5">
+  <div class="card mb-3 mt-5 pb-3 pt-2">
     <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="<%= @book.image_url %>" class="img-fluid w-50 ml-3 mt-3 mb-3" alt="...">
+      <div class="col-md-3 mt-2 d-flex flex-column align-items-center">
+        <img src="<%= @book.image_url %>" class="img-fluid ml-3 mt-3 mb-3" alt="...">
+        <%= link_to :back, class: "hvr-underline", :style=> 'text-decoration:none;' do %>
+        <!-- <i class="icon-caret-right"></i> -->
+        <i class="fas fa-arrow-left" style="font-size: 20px;"></i>
+        <% end %>
       </div>
-      <div class="col-md-8">
-        <div class="card-body">
+      <div class="col-md-9">
+        <div class="card-body mx-4">
           <h3 class="card-title"><%= @book.title %></h3>
           <h5 class="card-title"> <%= @book.author %></h5>
-          <p class="card-text"><%= @book.syllabus %></p>
+          <p class="card-text pt-1"><%= @book.syllabus %></p>
         </div>
       </div>
     </div>
   </div>
-  <%= link_to "Back", :back, class: "btn btn-sec" %>
 </div>
