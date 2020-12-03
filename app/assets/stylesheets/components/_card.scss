@@ -232,13 +232,12 @@
     display: flex;
     align-items: center;
     position: relative;
-    box-shadow: 0 2px 5px $bkblue;
+    box-shadow: 0 2px 5px gray;
     overflow-wrap: break-word;
 
     .member-avatar {
       position: absolute;
       left: 10px;
-      box-shadow: 0 2px 5px $bkblue;
     }
 
     .member-username {
