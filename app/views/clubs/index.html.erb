@@ -40,7 +40,7 @@
         <div class="col-lg-4">
 
           <div class="card club-card rounded mb-3" style="max-width: 540px;">
-            <div class="cover-content pr-3 pl-3">
+            <div class="cover-content pr-3 pl-3 pt-5">
               <p class="card-text cover-content-text pt-5"><%= club.description %></p>
             </div>
             <div class="row no-gutters">
@@ -74,7 +74,7 @@
         <div class="col-lg-4">
 
           <div class="card club-card rounded mb-3" style="max-width: 540px;">
-            <div class="cover-content pr-3 pl-3">
+            <div class="cover-content pr-3 pl-3 pt-5">
               <p class="card-text cover-content-text pt-5"><%= club.description %></p>
             </div>
             <div class="row no-gutters">
@@ -105,12 +105,12 @@
     <div class="tab-pane fade" id="pills-fiction" role="tabpanel" aria-labelledby="pills-fiction-tab">
       <div class="row">
         <% @clubs.each do |club|%>
-        <% club.categories.each do |category| %>
+        <% club.categories.uniq.each do |category| %>
         <% if category.name.downcase.include? "fiction" %>
         <div class="col-lg-4">
 
           <div class="card club-card rounded mb-3" style="max-width: 540px;">
-            <div class="cover-content pr-3 pl-3">
+            <div class="cover-content pr-3 pl-3 pt-5">
               <p class="card-text cover-content-text pt-5"><%= club.description %></p>
             </div>
             <div class="row no-gutters">
@@ -146,7 +146,7 @@
         <div class="col-lg-4">
 
           <div class="card club-card rounded mb-3" style="max-width: 540px;">
-            <div class="cover-content pr-3 pl-3">
+            <div class="cover-content pr-3 pl-3 pt-5">
               <p class="card-text cover-content-text pt-5"><%= club.description %></p>
             </div>
             <div class="row no-gutters">
@@ -182,7 +182,7 @@
         <div class="col-lg-4">
 
           <div class="card club-card rounded mb-3" style="max-width: 540px;">
-            <div class="cover-content pr-3 pl-3">
+            <div class="cover-content pr-3 pl-3 pt-5">
               <p class="card-text cover-content-text pt-5"><%= club.description %></p>
             </div>
             <div class="row no-gutters">
@@ -218,7 +218,7 @@
         <div class="col-lg-4">
 
           <div class="card club-card rounded mb-3" style="max-width: 540px;">
-            <div class="cover-content pr-3 pl-3">
+            <div class="cover-content pr-3 pl-3 pt-5">
               <p class="card-text cover-content-text pt-5"><%= club.description %></p>
             </div>
             <div class="row no-gutters">

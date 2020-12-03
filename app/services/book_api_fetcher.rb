@@ -36,6 +36,9 @@ class BookApiFetcher
     unless categories.nil?
       categories = categories.join(', ')
       categories = categories.gsub(' / ', ', ')
+      categories = categories.split(", ")
+      categories = categories.uniq
+      categories.join(", ")
       # categories = categories.gsub('Fiction, ', '')
       # categories = categories.gsub('General, ', '')
     end
