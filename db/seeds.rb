@@ -111,43 +111,43 @@ puts "Seeding book_categories now..."
 book_categories = BookCategory.create([
   {
     book_id: books[0].id,
-    category_id: categories[rand(0..5)].id
+    category_id: categories[1].id
   },
   {
     book_id: books[0].id,
-    category_id: categories[rand(5..9)].id
+    category_id: categories[8].id
   },
   {
     book_id: books[1].id,
-    category_id: categories[rand(0..5)].id
+    category_id: categories[2].id
   },
   {
     book_id: books[1].id,
-    category_id: categories[rand(5..9)].id
+    category_id: categories[0].id
   },
   {
     book_id: books[2].id,
-    category_id: categories[rand(0..5)].id
+    category_id: categories[3].id
   },
   {
     book_id: books[2].id,
-    category_id: categories[rand(5..9)].id
+    category_id: categories[4].id
   },
   {
     book_id: books[3].id,
-    category_id: categories[rand(0..5)].id
+    category_id: categories[1].id
   },
   {
     book_id: books[3].id,
-    category_id: categories[rand(5..9)].id
+    category_id: categories[6].id
   },
   {
     book_id: books[4].id,
-    category_id: categories[rand(0..5)].id
+    category_id: categories[4].id
   },
   {
     book_id: books[4].id,
-    category_id: categories[rand(5..9)].id
+    category_id: categories[7].id
   },
 ])
 
