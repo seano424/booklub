@@ -20,7 +20,7 @@
   border-bottom: 3px solid $bkblue;
 }
 
-.club-tabs .nav-item a {
+.nav-tabs .nav-item a {
   color: rgba(0, 0, 0, 0.5);
   font-family: $body-font;
   font-size: 1.5rem;
@@ -29,7 +29,7 @@
   }
 }
 
-.club-tabs .nav-item .active {
+.nav-tabs .nav-item .active {
   background-color: transparent;
   border-bottom: 3px solid $bkblue;
   color: rgba(0, 0, 0, 1);
