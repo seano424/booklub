@@ -7,7 +7,7 @@
   style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_tag @club.cover_photo.key %>')">
 <% else %>
   <div class="banner"
-  style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80)">
+  style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/collection/3637118/)">
 <% end %>
     <div class="container">
       <h1><%= @club.name %></h1>
@@ -23,6 +23,7 @@
   <%= link_to "Go Back", clubs_path, class: "hvr-underline" %>
 </div>
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="col-4">
