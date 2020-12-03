@@ -2,10 +2,10 @@
   <div class="container-form">
     <h1 class="text-center">Create A Club</h1>
     <%= simple_form_for Club.new do |f| %>
-      <%= f.input :name %>
-      <%= f.input :description %>
+      <%= f.input :name, placeholder: "Give an awesome name to your club" %>
+      <%= f.input :description, placeholder: "Describe your club to get people to join it!" %>
       <%= f.input :language, as: :select, :collection => %w[Arabic Bengali English French German Hindi Japanese Javanese Korean Mandarin Portugese Russian Spanish Turkish Vietnamese], prompt: 'Select Language', label: false %>
-      <%= f.input :cover_photo, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo'}, label: '📷 Upload a cover photo' %>
+      <%= f.input :cover_photo, input_html: { class: 'd-none' }, label_html: { class: 'upload-photo text-dark'}, label: '📷 Upload a cover photo' %>
       <%= f.input :private, input_html: { class: "toggle" } %>
       <%= f.submit "Create", class: "btn btn-main hvr-underline" %>
     <% end %>
