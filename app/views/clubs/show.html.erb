@@ -2,150 +2,171 @@
 <% content_for :meta_description, @club.description %>
 <% content_for :meta_image, @club.cover_photo.attached? ? cl_image_path(@club.cover_photo.path) : image_url("https://images.unsplash.com/photo-1598646506899-ac6be1000c2f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80") %>
 
+<!-- Banner -->
 <% if @club.cover_photo.attached? %>
-  <div class="banner"
+<div class="banner"
   style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_tag @club.cover_photo.key %>')">
-<% else %>
+  <% else %>
   <div class="banner"
-  style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/collection/3637118/)">
-<% end %>
+    style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/collection/3637118/)">
+    <% end %>
     <div class="container">
       <h1><%= @club.name %></h1>
       <% unless @club_membership.id || @club.user == current_user %>
-        <%= simple_form_for [ @club, @club_membership ] do |f| %>
-          <%= f.submit "Join this club", class: "btn btn-main join-btn" %>
-        <% end %>
+      <%= simple_form_for [ @club, @club_membership ] do |f| %>
+      <%= f.submit "Join this club", class: "btn btn-main join-btn" %>
+      <% end %>
       <% end %>
     </div>
   </div>
 
-<div class="container back-link">
-  <%= link_to "Go Back", clubs_path, class: "hvr-underline" %>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+  <!-- Go Back Button inside of the banner -->
+  <!-- Try to improve the placement both of the code and of the button -->
+  <div class="container back-link">
+    <%= link_to "Go Back", clubs_path, class: "hvr-underline" %>
+  </div>
 
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-4">
-      <div class="row mb-3">
-        <div class="col-12">
-          <% if @club_membership.id || @club.user == current_user %>
-            <%= link_to "#", class: "btn btn-sec w-75 mx-5 clipboard-btn", "data-clipboard-text" => club_url(@club) do %>
-              Share
-              <i class="fas fa-share-alt"></i>
-            <% end %>
-          <% end %>
-          <% if @club.user == current_user %>
-            <h4>Invite your friends!</h4>
-            <%= simple_form_for [ @club, @invite ] do |f| %>
-              <%= f.input :email, label: false, placeholder: "Email" %>
-              <%= f.submit "Invite", class: "d-none" %>
-            <% end %>
-          <% end %>
-          <h4>Currently Reading</h4>
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <!-- Reading Section -->
+      <!-- Move share and invite below currently reading for now -->
+      <div class="col-4 col-4 d-flex flex-column" style="min-height: 350px;">
+        <!-- Whatchya reading section -->
+        <div class="reading-book p-4" style="box-shadow: 0px 0px 4px #ccc;">
           <% if @current_book.nil? %>
-            <p class="text-center">Not reading anything right now</p>
+            <h3 class="mb-5">We still need to pick a book... 🧐</h3>
             <% if @club_membership.admin || @club.user == current_user %>
-              <%= link_to "Add a book to your club!", club_books_path(@club), class: "hvr-underline", :style=> 'text-decoration:none;' %>
+              <%= link_to club_books_path(@club), class: "cta", :style=> 'text-decoration:none;' do %>
+                <span>Add a book!</span>
+                <svg width="13px" height="10px" viewBox="0 0 13 10">
+                  <path d="M1,5 L11,5"></path>
+                  <polyline points="8 1 12 5 8 9"></polyline>
+                </svg>
+              <% end %>
             <% end %>
           <% else %>
-          <!-- /clubs/:club_id/books/:id(.:format) -->
-          <%= link_to club_book_path(@club) do %>
-            <img src="<%= @current_book.image_url %>"
-              alt="<%= @current_book.title %>" class="book-cover-img">
-          <% end %>
-            <p class="mb-0"><strong><%= @current_book.title %></strong></p>
-            <p class="mt-0"><%= @current_book.author %></p>
-
+            <div class="currently-reading d-flex flex-column align-items-center">
+              <h2 class="text-center">Currently Reading</h2>
+              <div class="info text-center">
+                <p class="mb-0"><strong><%= @current_book.title %></strong></p>
+                <p class="mt-0">by <%= @current_book.author %></p>
+              </div>
+              <!-- /clubs/:club_id/books/:id(.:format) -->
+              <%= link_to club_book_path(@club) do %>
+                <img src="<%= @current_book.image_url %>" alt="<%= @current_book.title %>" class="book-cover-img">
+              <% end %>
+            </div>
+          
+        <!-- Add a book section -->
+          <div class="form mt-5">
             <% if @club_membership.admin || @club.user == current_user %>
               <%= simple_form_for [ @club, @current_book, @club.club_books.find_by(book: @current_book) ] do |f| %>
                 <%= f.input :read_book, label: "Mark as read", input_html: { class: "toggle" } %>
                 <%= f.input :current_book, as: :hidden, input_html: { value: false } %>
-                <%= f.button :submit, "Confirm", class: "mt-0 hvr-underline" %>
+                <%= f.button :submit, "Confirm", class: "p-0" %>
               <% end %>
-              <%= link_to "Add more books to your club!", club_books_path(@club), class: "hvr-underline" %>
+              <%= link_to "Add more books to your club!", club_books_path(@club), class: "hvr-underline pt-3", :style=> 'text-decoration:none;' %>
             <% end %>
+          </div>
+        
           <% end %>
         </div>
+        
+        <!-- Invite section -->
+        <div class="share mt-3" style="box-shadow: 0px 0px 4px #ccc;">
+          <% if @club.user == current_user %>
+          <h5 class="text-center">Invite your friends!</h5>
+          <%= simple_form_for [ @club, @invite ] do |f| %>
+          <%= f.input :email, label: false, placeholder: "Email" %>
+          <%= f.submit "Invite", class: "d-none" %>
+          <% end %>
+          <% end %>
+  
+          <!-- Share section -->
+          <% if @club_membership.id || @club.user == current_user %>
+          <%= link_to "#", class: "btn btn-sec w-75 mx-5 clipboard-btn", "data-clipboard-text" => club_url(@club) do %>
+          Share
+          <i class="fas fa-share-alt"></i>
+          <% end %>
+          <% end %>
+        </div> 
       </div>
-      <div class="row mt-3">
-        <div class="col-12">
-          <%# <h4>Upcoming Events</h4> %>
-        </div>
-      </div>
-    </div>
-    <div class="col-8 club-tabs">
-      <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
-        <li class="nav-item">
-          <a class="nav-link active" id="about-club-tab" data-toggle="tab" href="#about-club" role="tab" aria-controls="about-club"
-            aria-selected="true">About this club</a>
-        </li>
-        <% if @club_membership.id || @club.user == current_user %>
+
+      <!-- Tabs Section -->
+      <div class="col-8 club-tabs" style="box-shadow: 0px 0px 4px #ccc;">
+        <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
           <li class="nav-item">
-            <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat" aria-selected="false">Chatrooms</a>
+            <a class="nav-link active" id="about-club-tab" data-toggle="tab" href="#about-club" role="tab"
+              aria-controls="about-club" aria-selected="true">About this club</a>
           </li>
-        <% end %>
-        <% if @club_membership.id || @club.user == current_user %>
-        <li class="nav-item">
-          <a class="nav-link" id="members-tab" data-toggle="tab" href="#members" role="tab" aria-controls="members"
-            aria-selected="false">Members (<%= @club.club_memberships.count + 1 %>)</a>
-        </li>
-        <% end %>
-        <li class="nav-item">
-          <a class="nav-link" id="books-tab" data-toggle="tab" href="#books" role="tab" aria-controls="books" aria-selected="false">Our Books</a>
-        </li>
-      </ul>
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="about-club" role="tabpanel" aria-labelledby="about-club-tab">
-          <%= @club.description %>
-        </div>
-        <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
-          <ul class="list-group list-group-flush">
-            <% @club.rooms.each do |room| %>
-            <li class="list-group-item">
-              <%= link_to room.name, club_room_path(@club, room), class: "chat-link", :style=> 'text-decoration:none;'%>
-            </li>
-            <% end  %>
-          </ul>
-        </div>
-        <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
-          <div class="member-cards">
-            <div class="member-card">
-              <% if @club.user.profile_photo.attached? %>
-              <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large member-avatar" %>
-              <% else %>
-              <img
-                src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
-                alt="" class="avatar-large member-avatar">
-              <% end %>
-              <p class="member-username"><%= @club.user.username %> - Host</p>
-            </div>
-            <% @club.users.each do |user| %>
-            <div class="member-card">
-              <% if user.profile_photo.attached? %>
-                <%= cl_image_tag user.profile_photo.key, class: "avatar-large member-avatar" %>
-              <% else %>
+          <% if @club_membership.id || @club.user == current_user %>
+          <li class="nav-item">
+            <a class="nav-link" id="chat-tab" data-toggle="tab" href="#chat" role="tab" aria-controls="chat"
+              aria-selected="false">Chatrooms</a>
+          </li>
+          <% end %>
+          <% if @club_membership.id || @club.user == current_user %>
+          <li class="nav-item">
+            <a class="nav-link" id="members-tab" data-toggle="tab" href="#members" role="tab" aria-controls="members"
+              aria-selected="false">Members (<%= @club.club_memberships.count + 1 %>)</a>
+          </li>
+          <% end %>
+          <li class="nav-item">
+            <a class="nav-link" id="books-tab" data-toggle="tab" href="#books" role="tab" aria-controls="books"
+              aria-selected="false">Our Books</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active" id="about-club" role="tabpanel" aria-labelledby="about-club-tab">
+            <%= @club.description %>
+          </div>
+          <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
+            <ul class="list-group list-group-flush">
+              <% @club.rooms.each do |room| %>
+              <li class="list-group-item">
+                <%= link_to room.name, club_room_path(@club, room), class: "chat-link", :style=> 'text-decoration:none;'%>
+              </li>
+              <% end  %>
+            </ul>
+          </div>
+          <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
+            <div class="member-cards">
+              <div class="member-card">
+                <% if @club.user.profile_photo.attached? %>
+                <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large member-avatar" %>
+                <% else %>
                 <img
                   src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
                   alt="" class="avatar-large member-avatar">
-              <% end %>
-              <p class="member-username"><%= user.username %></p>
-              <% if @club.user == current_user %>
+                <% end %>
+                <p class="member-username"><%= @club.user.username %> - Host</p>
+              </div>
+              <% @club.users.each do |user| %>
+              <div class="member-card">
+                <% if user.profile_photo.attached? %>
+                <%= cl_image_tag user.profile_photo.key, class: "avatar-large member-avatar" %>
+                <% else %>
+                <img
+                  src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                  alt="" class="avatar-large member-avatar">
+                <% end %>
+                <p class="member-username"><%= user.username %></p>
+                <% if @club.user == current_user %>
                 <div class="make-admin">
                   <%= simple_form_for [ @club, club_membership = user.club_memberships.find_by(club: @club)] do |f| %>
-                    <%= f.input :admin, input_html: { id: club_membership.id, class: "toggle admin-toggle", check: club_membership.admin } %>
+                  <%= f.input :admin, input_html: { id: club_membership.id, class: "toggle admin-toggle", check: club_membership.admin } %>
                   <% end %>
                 </div>
+                <% end %>
+              </div>
               <% end %>
             </div>
-            <% end %>
           </div>
-        </div>
-        <div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">
-          <div class="">
-            <h5 class="our-books-title">Previously Read</h5>
-            <div class="cards">
-              <% @club.club_books.where(read_book: true).each do |read| %>
+          <div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">
+            <div class="">
+              <h5 class="our-books-title">Previously Read</h5>
+              <div class="cards">
+                <% @club.club_books.where(read_book: true).each do |read| %>
                 <div class="book-card rounded">
                   <div class="book-info rounded">
                     <p class="mb-0"><strong><%= read.book.title %></strong></p>
@@ -156,17 +177,17 @@
                   </div>
                   <div class="book-cover justify-content-center">
                     <%= link_to club_book_path(@club, read.book.id) do %>
-                      <%= image_tag read.book.image_url, class: "book-cover" %>
+                    <%= image_tag read.book.image_url, class: "book-cover" %>
                     <% end %>
                   </div>
                 </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
-          </div>
-          <div class="">
-            <h5 class="mt-4 our-books-title">Coming Soon</h5>
-            <div class="cards">
-              <% @club.club_books.where(read_book: false, current_book: false).each do |unread| %>
+            <div class="">
+              <h5 class="mt-4 our-books-title">Coming Soon</h5>
+              <div class="cards">
+                <% @club.club_books.where(read_book: false, current_book: false).each do |unread| %>
                 <div class="book-card rounded">
                   <div class="book-info rounded">
                     <p class="mb-0"><strong><%= unread.book.title %></strong></p>
@@ -175,22 +196,26 @@
                       <%= link_to "Read more", club_book_path(@club, unread.book.id) %>
                     </p>
                   </div>
-                  <div class="book-cover justify-content-center"><%= image_tag unread.book.image_url, class: "book-cover" %></div>
+                  <div class="book-cover justify-content-center">
+                    <%= image_tag unread.book.image_url, class: "book-cover" %></div>
                   <div class="book-controls">
                     <% if (current_user == @club_membership.admin || @club.user) && @current_book.nil? %>
-                      <%= simple_form_for [ @club, unread.book, unread ] do |f| %>
-                        <%= f.input :read_book, as: :hidden, input_html: { value: false } %>
-                        <%= f.input :current_book, label: "Read now", input_html: { class: "toggle" } %>
-                        <%= f.button :submit, "Confirm", class: "mt-0 link_underlined bolder hvr-underline" %>
-                      <% end %>
+                    <%= simple_form_for [ @club, unread.book, unread ] do |f| %>
+                    <%= f.input :read_book, as: :hidden, input_html: { value: false } %>
+                    <%= f.input :current_book, label: "Read now", input_html: { class: "toggle" } %>
+                    <%= f.button :submit, "Confirm", class: "mt-0 link_underlined bolder hvr-underline" %>
+                    <% end %>
                     <% end %>
                   </div>
                 </div>
-              <% end %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
