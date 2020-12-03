@@ -19,6 +19,7 @@ class Club < ApplicationRecord
   end
 
   validates :name, presence: true, uniqueness: true
+  validates :description, presence: true, length: { minimum: 30 }
   has_one_attached :cover_photo
 
   include PgSearch::Model
