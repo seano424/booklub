@@ -4,8 +4,20 @@
   <% if @books.nil? %>
     <h2 class="mt-5 text-center">Let's find a book!</h2>
     <div class="mt-5"><%= render 'clubs/form' %></div>
+    <div class="powered-by text-right">
+      <small>powered by</small>
+      <img src="https://s.gr-assets.com/assets/press/logo-fe2ef7d630d5f23daf46230e8592cd99.png" 
+        alt="goodreads logo"
+        class="goodreads-logo">
+    </div>
   <% else %>
     <div class="mt-5"><%= render 'clubs/form' %></div>
+    <div class="powered-by text-right">
+      <small>powered by</small>
+      <img src="https://s.gr-assets.com/assets/press/logo-fe2ef7d630d5f23daf46230e8592cd99.png" 
+        alt="goodreads logo"
+        class="goodreads-logo mt-0">
+    </div>
     <div class="row row-cols-1 row-cols-md-2 py-5">
     <% @books[0..9].each do |book| %>
       <div class="col mb-4">
