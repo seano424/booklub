@@ -139,7 +139,7 @@
             </ul>
           </div>
           <div class="tab-pane fade" id="members" role="tabpanel" aria-labelledby="members-tab">
-            <div class="member-cards">
+            <div class="member-cards d-flex flex-wrap">
               <div class="member-card">
                 <% if @club.user.profile_photo.attached? %>
                 <%= cl_image_tag @club.user.profile_photo.key, class: "avatar-large member-avatar" %>
@@ -148,7 +148,7 @@
                   src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
                   alt="" class="avatar-large member-avatar">
                 <% end %>
-                <p class="member-username"><%= @club.user.username %> - Host</p>
+                <p class="member-username text-wrap" style="width: 4rem"><%= @club.user.username %> - Host</p>
               </div>
               <% @club.users.each do |user| %>
               <div class="member-card">
