@@ -34,6 +34,7 @@ import { initClipboard } from './clipboard';
 import { loadDynamicBannerText } from './header';
 import { loader } from './loader';
 import { shareConfirmation } from "./share-btn";
+import { changePlaceholder } from "./search";
 
 // document.addEventListener('turbolinks:load', () => {
 //   // Call your JS functions here
@@ -53,4 +54,5 @@ document.addEventListener('turbolinks:load', () => {
   loadDynamicBannerText();
   loader();
   shareConfirmation();
+  changePlaceholder();
 });
