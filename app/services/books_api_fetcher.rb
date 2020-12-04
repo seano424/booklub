@@ -12,7 +12,7 @@ class BooksApiFetcher
     search = @url + @book_query
     doc = Nokogiri::XML(URI.open(search)) 
     book = doc.xpath('//best_book').map do |best_book|  
-      author                = best_book.search('name')
+      author                = best_book.search('name').text
       title                 = best_book.search('title').text
       # book_title          = title.gsub(" ", "%20")
       # book_author         = author.gsub(" ", "%20")
