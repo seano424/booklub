@@ -189,7 +189,7 @@
       <div class="row">
         <% @clubs.each do |club|%>
         <% club.categories.each do |category| %>
-        <% if category.name.downcase.include? "science fiction" %>
+        <% if category.name.downcase.include? "science" %>
         <div class="col-lg-4">
 
           <div class="card club-card rounded mb-3" style="max-width: 540px;">
