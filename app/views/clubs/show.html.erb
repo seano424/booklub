@@ -54,7 +54,7 @@
                 <p class="mt-0">by <%= @current_book.author %></p>
               </div>
               <!-- /clubs/:club_id/books/:id(.:format) -->
-              <%= link_to club_book_path(@club) do %>
+              <%= link_to club_book_path(@current_book) do %>
                 <img src="<%= @current_book.image_url %>" alt="<%= @current_book.title %>" class="book-cover-img">
               <% end %>
             </div>
