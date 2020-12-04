@@ -2,7 +2,9 @@ class BooksApiFetcher
   include Executable
 
   def initialize(book_query)
-    @book_query = book_query.gsub(" ", "+")
+    @book_query = book_query
+    normalize_query = @book_query.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').downcase.to_s
+    @book_query = normalize_query.gsub(" ", "+")
     @url = "https://www.goodreads.com/search/index.xml?key=#{ENV['GOODREADS_API_KEY']}&q="
   end
 

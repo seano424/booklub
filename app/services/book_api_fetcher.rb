@@ -20,8 +20,10 @@ class BookApiFetcher
     page_count = doc.at('num_pages').content
 
     # Google to get ID
-    book_title = title.gsub(" ", "%20")
-    book_author = author.gsub(" ", "%20")
+    author_normalized   = author.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').downcase.to_s
+    title_normalized    = title.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').downcase.to_s
+    book_title          = title_normalized.gsub(" ", "+")
+    book_author         = author_normalized.gsub(" ", "+")
     google_url          = "https://www.googleapis.com/books/v1/volumes?q=#{book_title}%20#{book_author}&filter=ebooks&printType=BOOKS&langRestrict=en&key=#{ENV['GOOGLE_API_KEY']}"
     document_serialized = open(google_url).read
     document            = JSON.parse(document_serialized)
