@@ -132,9 +132,11 @@
           <div class="tab-pane fade" id="chat" role="tabpanel" aria-labelledby="chat-tab">
             <ul class="list-group list-group-flush">
               <% @club.rooms.each do |room| %>
-              <li class="list-group-item">
-                <%= link_to room.name, club_room_path(@club, room), class: "chat-link", :style=> 'text-decoration:none;'%>
-              </li>
+                <%= link_to club_room_path(@club, room), class: "chat-link", :style=> 'text-decoration:none;' do %>
+                  <li class="list-group-item">
+                    <%= room.name %>
+                  </li>
+                <% end %>
               <% end  %>
             </ul>
           </div>
@@ -176,7 +178,11 @@
             <div class="">
               <h5 class="our-books-title">Previously Read 📖</h5>
               <% if @club.club_books.where(read_book: true).empty? %>
-                <p>Keep reading books to see your history here!</p>
+                <% if @club_membership.id || @club.user == current_user %>
+                  <p>Keep reading books to see your history here!</p>
+                <% else %>
+                  <p>This club has not completed any books yet</p>
+                <% end %>
               <% else %>
               <div class="cards">
                 <% @club.club_books.where(read_book: true).each do |read| %>
@@ -184,7 +190,7 @@
                   <div class="book-info rounded">
                     <p class="mb-0"><strong><%= read.book.title %></strong></p>
                     <p class="book-description mt-0">
-                      <%= read.book.syllabus[0..300] %>...
+                      <%= read.book.syllabus[0..250] %>...
                       <%= link_to "Read more", club_book_path(@club, read.book.id) %>
                     </p>
                   </div>
@@ -201,8 +207,12 @@
             <div class="">
               <h5 class="mt-4 our-books-title">Coming Soon 📘</h5>
               <% if @club.club_books.where(read_book: false, current_book: false).empty? %>
-                <p>What will you read in the future?</p>
-                <%= link_to "Plan ahead and add more books!", club_books_path(@club), class: "hvr-underline text-decoration-none btn btn-link" %>
+                <% if @club_membership.id || @club.user == current_user %>
+                  <p>What will you read in the future?</p>
+                  <%= link_to "Plan ahead and add more books!", club_books_path(@club), class: "hvr-underline text-decoration-none" %>
+                <% else %>
+                  <p>This club has not added any books to their plans</p>
+                <% end %>
               <% else %>
               <div class="cards">
                 <% @club.club_books.where(read_book: false, current_book: false).each do |unread| %>
