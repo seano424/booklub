@@ -26,7 +26,8 @@ class BooksController < ApplicationController
   def create
     @club = Club.find(params[:club_id])
     @book = Book.new(book_params)
-    @categories = params.dig(:book, :categories).split(", ").uniq
+    cat = params.dig(:book, :categories).gsub(" &", "").split(" ").uniq
+    @categories = cat.map { |cat| cat.downcase }.uniq
     @existing_book = Book.find_by(title: params.dig("book", "title"))
     if @existing_book
       if @club.find_current_book != "No book"
