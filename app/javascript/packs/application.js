@@ -33,6 +33,7 @@ import { makeAdmin } from './make-admin';
 import { initClipboard } from './clipboard';
 import { loadDynamicBannerText } from './header';
 import { loader } from './loader';
+import { shareConfirmation } from "./share-btn";
 
 // document.addEventListener('turbolinks:load', () => {
 //   // Call your JS functions here
@@ -51,4 +52,5 @@ document.addEventListener('turbolinks:load', () => {
   makeAdmin();
   loadDynamicBannerText();
   loader();
+  shareConfirmation();
 });
