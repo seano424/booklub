@@ -13,6 +13,9 @@
   }
 }
 
+.leave-delete-link {
+  color: rgb(85, 0, 255);
+}
 
 .book-cover-img {
   width: 8rem;
@@ -20,12 +23,12 @@
 
 .chat-link {
   text-decoration: none;
-  color: black;
+  color: rgb(85, 0, 255);
 
   &:hover {
     background-color: transparent;
     &::after {
-      content: " 💬";
+      content: "";
     }
   }
 }
