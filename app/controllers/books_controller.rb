@@ -34,6 +34,7 @@ class BooksController < ApplicationController
       else
         ClubBook.create(club: @club, book: @existing_book, read_book: false, current_book: true)
       end
+      redirect_to @club
     else
       if @book.save
         if @club.find_current_book != "No book"

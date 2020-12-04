@@ -10,7 +10,7 @@
           <%= f.input :author, as: :hidden, input_html: { value: @external_book[:author] } %>
           <%= f.input :image_url, as: :hidden, input_html: { value: @external_book[:image] } %>
           <%= f.input :categories, as: :hidden, input_html: { value: @external_book[:categories]} %>
-          <%= f.submit "Add to bookclub", class: "btn btn-main btn-external" %>
+          <%= f.submit "Add to your club", class: "btn btn-main btn-external" %>
           <% end %>
           <% end %>
       </div>
@@ -20,10 +20,12 @@
           <h5 class="card-title"> by <%= @external_book[:author] %></h5>
           <p class="card-text"><%= raw(@external_book[:description]) %></p>
         </div>
-        <%= link_to :back, class: "text-primary d-flex justify-content-end pr-3 pt-3 pb-3", :style=> 'text-decoration:none;' do %>
-            <!-- <i class="icon-caret-right"></i> -->
-            <i class="fas fa-arrow-left" style="font-size: 20px;">Back to Browse</i>
+        <div class="container text-right">
+          <%= link_to :back, class: "text-right hvr-underline text-decoration-none btn btn-link" do %>
+              <!-- <i class="icon-caret-right"></i> -->
+            <i class="fas fa-arrow-left"></i> Go back
           <% end %>
+        </div>
       </div>
     </div>
   </div>

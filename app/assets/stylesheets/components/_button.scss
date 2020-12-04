@@ -1,15 +1,15 @@
 .btn-main {
   padding: 10px 20px;
   border-radius: 25px;
-  border: none;
+  border: 1px solid $bkblue;
   margin: 5px;
   font-weight: bolder;
   transition: background-color 0.2s ease-in-out;
   background-color: $bkblue;
   color: white;
   &:hover {
-    padding: 12px 21px;
-    color: white;
+    color: $bkblue;
+    background-color: #efe8fd;
   }
 }
 
@@ -39,7 +39,7 @@
   border: 1px solid $bkblue;
 
   &:hover {
-    background-color: white;
+    background-color: #efe8fd;
     color: $bkblue;
     transition-delay: 100ms;
     transition-duration: 100ms;
@@ -60,10 +60,9 @@
     color: $bkblue;
     transition-delay: 100ms;
     transition-duration: 100ms;
-
   }
-
 }
+
 .btn-chat-input {
   color: white;
   background-color: $bkblue;
