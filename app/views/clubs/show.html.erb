@@ -5,7 +5,7 @@
 <!-- Banner -->
 <% if @club.cover_photo.attached? %>
 <div class="banner"
-  style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_tag @club.cover_photo.key %>')">
+  style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @club.cover_photo.key %>')">
   <% else %>
   <div class="banner"
     style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url(https://source.unsplash.com/collection/3637118/)">
@@ -23,11 +23,13 @@
   <!-- Go Back Button inside of the banner -->
   <!-- Try to improve the placement both of the code and of the button -->
   <div class="container back-link">
-    <%= link_to "Go Back", clubs_path, class: "hvr-underline" %>
+    <%= link_to clubs_path, class: "hvr-underline" do %>
+      <i class="fas fa-arrow-left"></i> Go back
+    <% end %>
   </div>
 
   <div class="container mt-5">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-4">
       <!-- Reading Section -->
       <!-- Move share and invite below currently reading for now -->
       <div class="col-4 col-4 d-flex flex-column" style="min-height: 350px;">
@@ -58,14 +60,14 @@
             </div>
           
         <!-- Add a book section -->
-          <div class="form mt-5">
+          <div class="form text-center mt-3">
             <% if @club_membership.admin || @club.user == current_user %>
-              <%= simple_form_for [ @club, @current_book, @club.club_books.find_by(book: @current_book) ] do |f| %>
-                <%= f.input :read_book, label: "Mark as read", input_html: { class: "toggle" } %>
+              <%= simple_form_for [ @club, @current_book, @club.club_books.find_by(book: @current_book) ], html: { class: "text-center" } do |f| %>
+                <%= f.input :read_book, label: "Mark as read", input_html: { class: "toggle mb-0" } %>
                 <%= f.input :current_book, as: :hidden, input_html: { value: false } %>
-                <%= f.button :submit, "Confirm", class: "p-0" %>
+                <%= f.button :submit, "Confirm", class: "p-0 btn btn-link text-decoration-none mt-0 hvr-underline" %>
               <% end %>
-              <%= link_to "Add more books to your club!", club_books_path(@club), class: "hvr-underline pt-3", :style=> 'text-decoration:none;' %>
+              <%= link_to "Add more books to your club!", club_books_path(@club), class: "hvr-underline mt-3 pt-3 text-decoration-none btn btn-link" %>
             <% end %>
           </div>
         
@@ -73,10 +75,10 @@
         </div>
         
         <!-- Invite section -->
-        <div class="share mt-3" style="box-shadow: 0px 0px 4px #ccc;">
+        <div class="share mt-3 justify-content-center text-center" style="box-shadow: 0px 0px 4px #ccc;">
           <% if @club.user == current_user %>
-          <h5 class="text-center">Invite your friends!</h5>
-          <%= simple_form_for [ @club, @invite ] do |f| %>
+          <h5 class="text-center mt-3">Invite your friends!</h5>
+          <%= simple_form_for [ @club, @invite ], html: { class: "mx-1"} do |f| %>
           <%= f.input :email, label: false, placeholder: "Email" %>
           <%= f.submit "Invite", class: "d-none" %>
           <% end %>
@@ -84,7 +86,7 @@
   
           <!-- Share section -->
           <% if @club_membership.id || @club.user == current_user %>
-          <%= link_to "#", class: "btn btn-sec w-75 mx-5 clipboard-btn", "data-clipboard-text" => club_url(@club) do %>
+          <%= link_to "#", class: "btn btn-sec w-75 clipboard-btn mb-3", "data-clipboard-text" => club_url(@club) do %>
           Share
           <i class="fas fa-share-alt"></i>
           <% end %>
@@ -93,7 +95,7 @@
       </div>
 
       <!-- Tabs Section -->
-      <div class="col-8 club-tabs" style="box-shadow: 0px 0px 4px #ccc;">
+      <div class="col-8 navigation-tabs" style="box-shadow: 0px 0px 4px #ccc;">
         <ul class="nav nav-pills mb-3" id="myTab" role="tablist">
 
           <li class="nav-item">
@@ -166,7 +168,10 @@
           </div>
           <div class="tab-pane fade" id="books" role="tabpanel" aria-labelledby="books-tab">
             <div class="">
-              <h5 class="our-books-title">Previously Read</h5>
+              <h5 class="our-books-title">Previously Read 📖</h5>
+              <% if @club.club_books.where(read_book: true).empty? %>
+                <p>Keep reading books to see your history here!</p>
+              <% else %>
               <div class="cards">
                 <% @club.club_books.where(read_book: true).each do |read| %>
                 <div class="book-card rounded">
@@ -185,33 +190,39 @@
                 </div>
                 <% end %>
               </div>
+              <% end %>
             </div>
             <div class="">
-              <h5 class="mt-4 our-books-title">Coming Soon</h5>
+              <h5 class="mt-4 our-books-title">Coming Soon 📘</h5>
+              <% if @club.club_books.where(read_book: false, current_book: false).empty? %>
+                <p>What will you read in the future?</p>
+                <%= link_to "Plan ahead and add more books!", club_books_path(@club), class: "hvr-underline text-decoration-none btn btn-link" %>
+              <% else %>
               <div class="cards">
                 <% @club.club_books.where(read_book: false, current_book: false).each do |unread| %>
-                <div class="book-card rounded">
-                  <div class="book-info rounded">
-                    <p class="mb-0"><strong><%= unread.book.title %></strong></p>
-                    <p class="book-description mt-0">
-                      <%= unread.book.syllabus[0..300] %>...
-                      <%= link_to "Read more", club_book_path(@club, unread.book.id) %>
-                    </p>
+                  <div class="book-card rounded">
+                    <div class="book-info rounded">
+                      <p class="mb-0"><strong><%= unread.book.title %></strong></p>
+                      <p class="book-description mt-0">
+                        <%= unread.book.syllabus[0..250] %>...
+                        <%= link_to "Read more", club_book_path(@club, unread.book.id), class: "hvr-underline text-decoration-none text-primary" %>
+                      </p>
+                    </div>
+                    <div class="book-cover justify-content-center">
+                      <%= image_tag unread.book.image_url, class: "book-cover" %></div>
+                    <div class="book-controls">
+                      <% if (current_user == @club_membership.admin || @club.user) && @current_book.nil? %>
+                      <%= simple_form_for [ @club, unread.book, unread ], html: { class: "text-center" } do |f| %>
+                      <%= f.input :read_book, as: :hidden, input_html: { value: false } %>
+                      <%= f.input :current_book, label: "Read now", input_html: { class: "toggle" } %>
+                      <%= f.button :submit, "Confirm", class: "mt-0 btn btn-link text-decoration-none bolder hvr-underline" %>
+                      <% end %>
+                      <% end %>
+                    </div>
                   </div>
-                  <div class="book-cover justify-content-center">
-                    <%= image_tag unread.book.image_url, class: "book-cover" %></div>
-                  <div class="book-controls">
-                    <% if (current_user == @club_membership.admin || @club.user) && @current_book.nil? %>
-                    <%= simple_form_for [ @club, unread.book, unread ] do |f| %>
-                    <%= f.input :read_book, as: :hidden, input_html: { value: false } %>
-                    <%= f.input :current_book, label: "Read now", input_html: { class: "toggle" } %>
-                    <%= f.button :submit, "Confirm", class: "mt-0 link_underlined bolder hvr-underline" %>
-                    <% end %>
-                    <% end %>
-                  </div>
-                </div>
                 <% end %>
               </div>
+              <% end %>
             </div>
           </div>
         </div>
