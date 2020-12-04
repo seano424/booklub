@@ -11,7 +11,7 @@
       <% if user_signed_in? %>
         <li class="nav-item active">
           <div class= "search row align-right" >
-            <%= form_tag clubs_path, method: :get do %>
+            <%= form_tag clubs_path, method: :get, id: "nav-form" do %>
             <div class="search-container">
               <%= text_field_tag :query,
               params[:query],
