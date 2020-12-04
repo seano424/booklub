@@ -34,7 +34,7 @@ class RoomsController < ApplicationController
     @room.club = @club
     if @room.save
       flash[:success] = "Room #{@room.name} was created successfully"
-      redirect_to club_rooms_path(@club)
+      redirect_to club_path(@club)
     else
       render :new
     end

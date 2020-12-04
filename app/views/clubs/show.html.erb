@@ -184,7 +184,7 @@
                   <p>This club has not completed any books yet</p>
                 <% end %>
               <% else %>
-              <div class="cards">
+              <div class="cards mb-3">
                 <% @club.club_books.where(read_book: true).each do |read| %>
                 <div class="book-card rounded">
                   <div class="book-info rounded">
@@ -214,7 +214,7 @@
                   <p>This club has not added any books to their plans</p>
                 <% end %>
               <% else %>
-              <div class="cards">
+              <div class="cards mb-3">
                 <% @club.club_books.where(read_book: false, current_book: false).each do |unread| %>
                   <div class="book-card rounded">
                     <div class="book-info rounded">
