@@ -59,52 +59,38 @@
 </div>
 
 <h2 class="text-center pb-4 section-heading">Featured Clubs</h2>
+<div class="conatiner-home">
+<div class="row">
+        <% @clubs.first(3).each do |club|%>
+        <div class="col-lg-4">
 
-<div class="row featured-clubs row-cols-1 row-cols-md-3">
-  <div class="col mb-4 pl-4">
-    <div class="card h-100 featured-card border-0 rounded">
-      <img
-          src="https://ca-times.brightspotcdn.com/dims4/default/15db1ed/2147483647/strip/true/crop/652x367+0+317/resize/1200x675!/quality/90/?url=https%3A%2F%2Fcalifornia-times-brightspot.s3.amazonaws.com%2Fee%2F98%2F823b05674b2382e923688e598a02%2Fla-photos-handouts-la-ca-uncanny-valley-book-90.JPG"
-          class="card-img-top mt-4 mb-0" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= "Uncanny Valley" %></h5>
-        <p class="card-text"><%= "Wiener’s stylish memoir is an uncommonly literary chronicle of tech-world disillusionment." %></p>
-      </div>
-      <div class="card-footer">
-        <%# <%= link_to "Check out more", clubs_path, class: "btn btn-sec" %>
-      </div>
-    </div>
-  </div>
+          <div class="card club-card rounded mb-3" style="max-width: 540px;">
+            <div class="cover-content pr-3 pl-3 pt-5">
+              <p class="card-text cover-content-text pt-5"><%= club.description %></p>
+            </div>
+            <%= link_to club_path(club), class: "stretched-link", :style=> 'text-decoration:none;' do %>
+            <div class="row no-gutters">
+              <div class="col-md-6">
+                <% if club.club_books.find_by(current_book: true).nil? %>
+                <img class="card-img-top background-image: cover"
+                  src="https://images.unsplash.com/photo-1575709527142-a93ed587bb83?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=700&q=80"
+                  alt="">
+                <% else %>
+                <img src="<%= club.club_books.find_by(current_book: true).book.image_url %>" class="card-img-top" />
+                <% end %>
+              </div>
+              <div class="col-md-6 d-flex align-items-center">
+                <div class="card-body">
 
-  <div class="col mb-4">
-    <div class="card h-100 featured-card border-0 rounded">
-        <img
-          src="https://thestorybookstore.com/wp-content/uploads/2018/07/Bossypants-Tina-Fey.png"
-          class="card-img-top mt-4 mb-0" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= "Bossypants" %></h5>
-        <p class="card-text"><%= "Need a laugh? Our book club meetings will have you rolling on the floor laughing" %></p>
+                  <h5 class="card-title text-wrap" style="width: 9rem;"><%= club.name %></h5>
+                </div>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        </div>
+        <% end %>
       </div>
-      <div class="card-footer">
-        <%# <%= link_to "Check out more", clubs_path, class: "btn btn-sec" %>
-      </div>
-    </div>
-  </div>
-
-  <div class="col mb-4 pr-4">
-    <div class="card h-100 featured-card border-0 rounded">
-      <img
-          src="https://cdn.shoplightspeed.com/shops/611345/files/8231848/faber-faber-childrens-wuthering-heights.jpg"
-          class="card-img-top mt-4 mb-0" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= "Wuthering Heights" %></h5>
-        <p class="card-text"><%= "A man becomes obsessed with vengeance when his soul mate marries another man. Heathcliff is Cathy Earnshaw's foster brother; more than that, he is her other half." %></p>
-      </div>
-      <div class="card-footer">
-        <%# <%= link_to "Check out more", clubs_path, class: "btn btn-sec hvr-underline" %>
-      </div>
-    </div>
-  </div>
 </div>
 <br>
 <br>
