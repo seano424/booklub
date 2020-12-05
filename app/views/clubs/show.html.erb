@@ -58,7 +58,7 @@
                 <img src="<%= @current_book.image_url %>" alt="<%= @current_book.title %>" class="book-cover-img">
               <% end %>
             </div>
-          
+
         <!-- Add a book section -->
           <div class="form text-center mt-3">
             <% if @club_membership.admin || @club.user == current_user %>
@@ -70,10 +70,10 @@
               <%= link_to "Add more books to your club!", club_books_path(@club), class: "hvr-underline mt-3 pt-3 text-decoration-none btn btn-link" %>
             <% end %>
           </div>
-        
+
           <% end %>
         </div>
-        
+
         <!-- Invite section -->
         <div class="share mt-3 justify-content-center text-center" style="box-shadow: 0px 0px 4px #ccc;">
           <% if @club.user == current_user %>
@@ -83,7 +83,7 @@
           <%= f.submit "Invite", class: "d-none" %>
           <% end %>
           <% end %>
-  
+
           <!-- Share section -->
           <% if @club_membership.id || @club.user == current_user %>
             <button class="share-btn btn btn-sec w-50 my-3 clipboard-btn" data-clipboard-text="<%= new_user_registration_url(invite_token: Invite.create(club: @club, sender_id: current_user.id).token) %>">
@@ -91,13 +91,29 @@
               <i class="fas fa-share-alt"></i>
             </button>
           <% end %>
+
           <div id="confirm-copy-flash" class="alert alert-success alert-dismissible fade" role="alert">
             The link has been copied to your clipboard 📋
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-        </div> 
+        </div>
+        <div class="leave-delete-link text-center">
+        <% if @club_membership.id %>
+          <%= link_to "Leave club", club_membership_path(@club_membership),
+                        method: :delete,
+                        data: { confirm: "Are you sure you want to leave this club?" },
+                        class: "text-center hvr-underline"
+            %>
+          <% elsif @club.user == current_user %>
+          <%= link_to "Delete club", club_path(@club),
+                        method: :delete,
+                        data: { confirm: "Are you sure you want to delete this club?" },
+                        class: "text-center hvr-underline"
+            %>
+          <% end %>
+        </div>
       </div>
 
       <!-- Tabs Section -->
@@ -133,7 +149,7 @@
             <ul class="list-group list-group-flush">
               <% @club.rooms.each do |room| %>
               <li class="list-group-item">
-                <%= link_to room.name, club_room_path(@club, room), class: "chat-link", :style=> 'text-decoration:none;'%>
+                <%= link_to room.name, club_room_path(@club, room), class: "chat-link stretched-link hvr-underline", :style=> 'text-decoration:none;'%> <%= "💬" %>
               </li>
               <% end  %>
             </ul>
