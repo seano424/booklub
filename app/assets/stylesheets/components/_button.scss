@@ -20,12 +20,19 @@
   padding: 5px 10px;
   border-radius: 25px;
   font-weight: bolder;
+  width: 40px;
+  .fa-search {
+    color: white;
+  }
 
   &:hover {
     background-color: white;
     color: $bkblue;
     transition-delay: 100ms;
     transition-duration: 100ms;
+    .fa-search {
+      color: $bkblue;
+    }
   }
 }
 
