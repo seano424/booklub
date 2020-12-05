@@ -12,7 +12,9 @@
   text-decoration: none;
   }
 }
-
+.link {
+   color: rgb(85, 0, 255);
+}
 .leave-delete-link {
   color: rgb(85, 0, 255);
 }
@@ -28,7 +30,7 @@
   &:hover {
     background-color: transparent;
     &::after {
-      content: "";
+      content: " 💬";
     }
   }
 }
