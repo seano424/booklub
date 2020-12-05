@@ -1,20 +1,23 @@
 <div class="mt-5 pt-3">
-     <h2><%= @club.name %> Chatrooms</h2>
-    <div class="mb-3 mt-3 ml-4">
-      <%= link_to new_club_room_path(@club), class: "btn btn-sec-small" do %>
-        Create a room
-      <% end %>
-    </div>
-
-    <% if @rooms.present? %>
-      <nav class="nav flex-column ml-4">
-        <% @rooms.each do |room| %>
-          <%= link_to room.name, club_room_path(@club, room), class: "room-nav hvr-underline" %>
-        <% end %>
-      </nav>
-    <% else %>
-      <div class="text-muted ml-4">
-        There are no rooms
-      </div>x
+  <h2><%= @club.name %> Chatrooms</h2>
+  <div class="mb-3 mt-3 ml-4">
+    <%= link_to new_club_room_path(@club), class: "btn btn-sec-small" do %>
+      Create a room
     <% end %>
+  </div>
+
+  <% if @rooms.present? %>
+    <nav class="nav flex-column ml-4">
+      <% @rooms.each do |room| %>
+        <%= link_to room.name, club_room_path(@club, room), class: "room-nav text-decoration-none hvr-underline" %>
+      <% end %>
+    </nav>
+  <% else %>
+    <div class="text-muted ml-4">
+      There are no rooms
+    </div>
+  <% end %>
+  <%= link_to club_path(@club), class: "hvr-underline mt-5 ml-4" do %>
+    <i class="fas fa-arrow-left"></i> Go back
+  <% end %>
 </div>
