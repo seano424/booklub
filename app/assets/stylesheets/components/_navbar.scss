@@ -26,7 +26,7 @@
   width: 40px;
 }
 
-.search{
+.search {
 }
 
 .navbar-black{
@@ -51,11 +51,22 @@
   border-radius: 100px;
   position: relative;
   transition: all 0.2s ease-in-out;
-    background-color: rgba(255,255,255,0.1);
-  }
+}
 
+
+// input:focus::placeholder {
+//   color: transparent;
+// }
+
+.form-control:focus {
+  box-shadow: none;
+}
 
 #search-field {
+  position: relative;
+  left: 8rem;
+  font-size: 1.5rem;
+  background: transparent;
   box-sizing: border-box;
   width: 40px;
   height: 40px;
@@ -68,6 +79,8 @@
   z-index: 10;
 
   &:focus {
+    position: initial;
+    font-size: initial;
     width: 400px;
     height: 35px;
     background-color: #ffff;
@@ -84,5 +97,3 @@
 .form-control:focus {
   box-shadow: none;
 }
-
-

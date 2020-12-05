@@ -15,13 +15,16 @@
             <div class="search-container">
               <i class="fas fa-search"></i>
               <%= text_field_tag :query,
-                params[:query],
-                class: "form-control",
-                id: "search-field",
-                placeholder: "search for clubs"
+              params[:query],
+              class: "form-control",
+              id: "search-field",
+              placeholder: "🔍"
               %>
-            <% end %>
+              <% end %>
+
           </div>
+
+
         <li class="nav-item dropdown ml-4 mr-4">
           <% if current_user.profile_photo.attached? %>
             <%= cl_image_tag current_user.profile_photo.key, class: "avatar dropdown-toggle ml-2", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
@@ -35,7 +38,7 @@
           </div>
         </li>
       <% else %>
-     <div class= "search row align-right" >
+      <div class= "search row align-right" >
             <%= form_tag clubs_path, method: :get do %>
             <div class="search-container">
               <i class="fas fa-search"></i>
