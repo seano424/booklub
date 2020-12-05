@@ -104,13 +104,13 @@
           <%= link_to "Leave club", club_membership_path(@club_membership),
                         method: :delete,
                         data: { confirm: "Are you sure you want to leave this club?" },
-                        class: "text-center hvr-underline"
+                        class: "text-center hvr-underline text-decoration-none"
             %>
           <% elsif @club.user == current_user %>
           <%= link_to "Delete club", club_path(@club),
                         method: :delete,
                         data: { confirm: "Are you sure you want to delete this club?" },
-                        class: "text-center hvr-underline"
+                        class: "text-center hvr-underline text-decoration-none"
             %>
           <% end %>
         </div>
@@ -178,7 +178,7 @@
                   src="https://images.unsplash.com/photo-1452882628481-6a2da9481239?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
                   alt="" class="avatar-large member-avatar">
                 <% end %>
-                <p class="member-username"><%= user.username %></p>
+                <p class="member-username text-wrap" style="width: 4rem"><%= user.username %></p>
                 <% if @club.user == current_user %>
                 <div class="make-admin">
                   <%= simple_form_for [ @club, club_membership = user.club_memberships.find_by(club: @club)] do |f| %>

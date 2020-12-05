@@ -4,4 +4,5 @@ const changePlaceholder = () => {
     input.value = "";
   });
 };
+
 export { changePlaceholder };
