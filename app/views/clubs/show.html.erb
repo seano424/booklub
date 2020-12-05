@@ -54,7 +54,7 @@
                 <p class="mt-0">by <%= @current_book.author %></p>
               </div>
               <!-- /clubs/:club_id/books/:id(.:format) -->
-              <%= link_to club_book_path(@current_book) do %>
+              <%= link_to club_book_path(@club, @current_book) do %>
                 <img src="<%= @current_book.image_url %>" alt="<%= @current_book.title %>" class="book-cover-img">
               <% end %>
             </div>
@@ -191,7 +191,7 @@
                     <p class="mb-0"><strong><%= read.book.title %></strong></p>
                     <p class="book-description mt-0">
                       <%= read.book.syllabus[0..250] %>...
-                      <%= link_to "Read more", club_book_path(@club, read.book.id) %>
+                      <%= link_to "Read more", club_book_path(@club, read.book.id), class: "hvr-underline text-decoration-none" %>
                     </p>
                   </div>
                   <div class="book-cover justify-content-center">
